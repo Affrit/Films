@@ -1,13 +1,30 @@
 import './App.css';
-import { Provider } from 'react-redux'
+import React from 'react';
+import { Provider } from 'react-redux';
 import store from './store/store.js';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { PrivateRoute } from './HOC/PrivateRoute';
+
+import { FilmsPage } from './components/FilmsPage/FilmsPage';
+import { SignUp } from './components/SignUpPage/SignUp';
+import { SignIn } from './components/SignInPage/SignIn';
 
 function App() {
   return (
     <Provider store={store}>
-      <div>
-        test
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<FilmsPage />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/favorites" element={
+            <PrivateRoute>
+              
+            </PrivateRoute>
+          }/>
+          <Route path="*" element={'404 page'} />
+        </Routes>
+      </BrowserRouter>
     </Provider>
   )
 }
