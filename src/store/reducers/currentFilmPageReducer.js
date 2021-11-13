@@ -1,28 +1,28 @@
-import { FILMS_PAGE_TYPES } from "../actions/types";
+import { CURRENT_FILM_PAGE_TYPES } from "../actions/types";
 
 const initialState = {
-  filmsData: {},
+  filmData: {},
   isFetching: false,
   error: '',
 }
 
-export default function filmsPageReducer(state = initialState, action) {
+export default function currentFilmPageReducer(state = initialState, action) {
   switch (action.type) {
-    case FILMS_PAGE_TYPES.SET_FILMS_DATA:
+    case CURRENT_FILM_PAGE_TYPES.SET_FILM_DATA:
       return {
         ...state,
-        filmsData: {
+        filmData: {
           ...action.payload
         }
       }
 
-    case FILMS_PAGE_TYPES.SET_FETCHING:
+    case CURRENT_FILM_PAGE_TYPES.SET_FETCHING:
       return {
         ...state,
         isFetching: action.payload
       }
 
-    case FILMS_PAGE_TYPES.SET_ERROR:
+    case CURRENT_FILM_PAGE_TYPES.SET_ERROR:
       return {
         ...state,
         error: action.payload

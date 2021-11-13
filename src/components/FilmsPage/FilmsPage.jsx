@@ -7,8 +7,8 @@ const baseUrl = 'https://image.tmdb.org/t/p/w500'
 
 export const FilmsPage = () => {
   const dispatch = useDispatch()
-  const { films } = useSelector(({ filmsPage: { films } }) => ({
-    films
+  const { filmsData, isFetching } = useSelector(({ filmsPage: { filmsData, isFetching } }) => ({
+    filmsData, isFetching
   }))
 
   useEffect(() => {
@@ -16,8 +16,11 @@ export const FilmsPage = () => {
   }, [])
 
   const spawnImg = () => {
-    return films.results.map(film => {
-      return <img key={film.id} src={baseUrl + film.poster_path} style={{width: '200px'}} alt="#" />
+    if (!filmsData.results) return
+    return filmsData.results.map(film => { ////////// film card will be return here
+      return <Link key={film.id} to={`/films/${film.id}`}> 
+        <img src={baseUrl + film.poster_path} style={{ width: '200px' }} alt="#" /> 
+      </Link>
     })
   }
 
@@ -37,7 +40,7 @@ export const FilmsPage = () => {
         </div>
       </div>
       <div>
-        {films.results && spawnImg()}
+        {isFetching ? <span>LOADING...</span> : spawnImg()}
       </div>
     </div>
   )

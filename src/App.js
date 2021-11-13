@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { PrivateRoute } from './HOC/PrivateRoute';
 
 import { FilmsPage } from './components/FilmsPage/FilmsPage';
+import { CurrentFilmPage } from './components/CurrentFilmPage/CurrentFilmPage';
 import { SignUp } from './components/SignUpPage/SignUp';
 import { SignIn } from './components/SignInPage/SignIn';
 
@@ -14,14 +15,16 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<FilmsPage />} />
+        <Route path="/" element={<SignIn />} />
+          <Route path="/films" element={<FilmsPage />} />
+          <Route path="/films/:film" element={<CurrentFilmPage />} />
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/favorites" element={
             <PrivateRoute>
-              
+
             </PrivateRoute>
-          }/>
+          } />
           <Route path="*" element={'404 page'} />
         </Routes>
       </BrowserRouter>
