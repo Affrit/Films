@@ -34,15 +34,15 @@ export const setErrorAC = (newData) => {
 
 export const setPageAC = (newData) => {
   return {
-      type: FILMS_PAGE_TYPES.SET_ERROR,
+      type: FILMS_PAGE_TYPES.SET_PAGE,
       payload: newData
   }
 }
 
-export const getFilms = (page) => async (dispatch) => {
+export const getFilms = (page, qwery) => async (dispatch) => {
   try {
     dispatch(fetchingAC(true))
-    const dataFromServer = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=d213a0b8d4c80c1b639c6fe4b9cb34ac&query=girls&page=${page}&include_adult=true`)
+    const dataFromServer = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=d213a0b8d4c80c1b639c6fe4b9cb34ac&query=${qwery}&page=${page}&include_adult=true`)
     const data = await dataFromServer.json()
     if (data.errors) {
       throw new Error(data.errors[0])

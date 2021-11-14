@@ -1,7 +1,12 @@
 import { FILMS_PAGE_TYPES } from "../actions/types";
 
 const initialState = {
-  filmsData: {},
+  filmsData: {
+    page: 1,
+    results: [],
+    total_pages: 0,
+    total_results: 0,
+  },
   isFetching: false,
   error: '',
 }
@@ -26,6 +31,15 @@ export default function filmsPageReducer(state = initialState, action) {
       return {
         ...state,
         error: action.payload
+      }
+
+    case FILMS_PAGE_TYPES.SET_PAGE:
+      return {
+        ...state,
+        filmsData: {
+          ...state.filmsData,
+          page: action.payload,
+        }
       }
 
     default:
