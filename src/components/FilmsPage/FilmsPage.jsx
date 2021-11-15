@@ -1,15 +1,11 @@
+import './style.css'
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilms } from '../../store/actions/actions';
 import { Pagination } from 'antd';
-import 'antd/dist/antd.css';
 import { setPageAC } from '../../store/actions/actions';
-
-import { Layout, Menu, Breadcrumb } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
-const { SubMenu } = Menu;
-const { Header, Content, Sider } = Layout;
+import { SiderApp } from '../Layouts/Sider/SiderApp';
 
 const baseUrl = 'https://image.tmdb.org/t/p/w500'
 
@@ -29,9 +25,12 @@ export const FilmsPage = () => {
   const spawnImg = () => {
     if (!filmsData.results) return
     if (filmsData.results.length === 0) return <span>Films not Found</span>
+
     return filmsData.results.map(film => { ////////// film card will be return here
       return <Link key={film.id} to={`/films/${film.id}`}>
-        <img src={baseUrl + film.poster_path} style={{ width: '200px' }} alt="#" />
+        <div className='films__item'>
+          <img src={baseUrl + film.poster_path} style={{ width: '200px' }} alt="#" />
+        </div>
       </Link>
     })
   }
@@ -42,26 +41,20 @@ export const FilmsPage = () => {
 
 
   return (
-    <div>
-      <div>
-        FilmsPage
+    <>
+      <SiderApp />
+      <div className='films-page'>
         <div>
-          <Link to='/sign-in' >to sign-in</Link>
+          FilmsPage
         </div>
-        <div>
-          <Link to='/sign-up' >to sign-up</Link>
+        <div className='films'>
+          {isFetching ? <span>LOADING...</span> : spawnImg()}
         </div>
-        <div>
-          <Link to='/favorites' >to favorites</Link>
-        </div>
+        <Pagination showQuickJumper showSizeChanger={false}
+          current={page} pageSize={20} total={total_results}
+          onChange={onChangePage}
+        />
       </div>
-      <div>
-        {isFetching ? <span>LOADING...</span> : spawnImg()}
-      </div>
-      <Pagination showQuickJumper showSizeChanger={false}
-        current={page} pageSize={20} total={total_results}
-        onChange={onChangePage}
-      />
-    </div>
+    </>
   )
 }

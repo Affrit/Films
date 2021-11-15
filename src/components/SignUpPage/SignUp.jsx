@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 export const SignUp = () => {
   return (
     <div>
-      SignUp
+      SignUp Page
     </div>
   )
 }

@@ -1,0 +1,19 @@
+.films-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.films {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.films__item {
+  width: 20%;
+  padding: 10px;
+}
