@@ -1,14 +1,15 @@
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu } from 'antd';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 
 const { SubMenu } = Menu
-const { Header, Content, Sider } = Layout
+const {  Sider } = Layout
 
 export const SiderApp = () => {
   return (
     <Layout>
-      <Sider theme='dark' width={200} className="site-layout-background" collapsible breakpoint="lg">
+      <Sider theme='dark' width={200} className="site-layout-background" collapsible breakpoint="lg" style={{
+        minHeight: '100vh',
+      }} >
         <Menu
           theme="dark"
           mode="inline"

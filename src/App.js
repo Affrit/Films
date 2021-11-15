@@ -8,7 +8,6 @@ import { Layout } from 'antd';
 
 import { HeaderApp } from './components/Layouts/Header/HeaderApp';
 import { ContentApp } from './components/Layouts/Content/ContentApp';
-import { SiderApp } from './components/Layouts/Sider/SiderApp';
 import { FilmsPage } from './components/FilmsPage/FilmsPage';
 import { CurrentFilmPage } from './components/CurrentFilmPage/CurrentFilmPage';
 import { SignUp } from './components/SignUpPage/SignUp';

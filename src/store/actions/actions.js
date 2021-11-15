@@ -39,10 +39,10 @@ export const setPageAC = (newData) => {
   }
 }
 
-export const getFilms = (page, qwery) => async (dispatch) => {
+export const getFilms = (page, searchWord) => async (dispatch) => {
   try {
     dispatch(fetchingAC(true))
-    const dataFromServer = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=d213a0b8d4c80c1b639c6fe4b9cb34ac&query=${qwery}&page=${page}&include_adult=true`)
+    const dataFromServer = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=d213a0b8d4c80c1b639c6fe4b9cb34ac&query=${searchWord || 'war' }&page=${page}&include_adult=true`)
     const data = await dataFromServer.json()
     if (data.errors) {
       throw new Error(data.errors[0])

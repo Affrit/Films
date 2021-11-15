@@ -1,13 +1,10 @@
-import { Layout, Menu, Breadcrumb } from 'antd';
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import { Layout } from 'antd';
 
-const { SubMenu } = Menu
-const { Header, Content, Sider } = Layout
+const { Content } = Layout
 
 export const ContentApp = ({ children }) => {
   return (
-      <Content className="site-layout" style={{ padding: '0 50px'}}>
+      <Content className="site-layout" style={{ padding: '60px 0'}}>
         <div className="site-layout-background" style={{ display: 'flex', justifyContent: 'center' }}>
           {children}
         </div>
