@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getCurrentFilm } from '../../store/actions/actions';
+import { getCurrentFilm } from '../../store/actions/filmActions';
 import { useLocation } from 'react-router-dom';
-
-const baseUrl = 'https://image.tmdb.org/t/p/w500'
+import { BASE_URL_IMG } from '../../constants/constants';
 
 export const CurrentFilmPage = () => {
   const dispatch = useDispatch()
@@ -20,7 +19,7 @@ export const CurrentFilmPage = () => {
 
   const spawnImg = () => {
     if (!filmData.poster_path) return
-    return <img src={baseUrl + filmData?.poster_path} style={{ width: '500px' }} alt="#" /> //full film info will be here
+    return <img src={BASE_URL_IMG + filmData?.poster_path} style={{ width: '500px' }} alt="#" /> //full film info will be here
   }
 
   return (

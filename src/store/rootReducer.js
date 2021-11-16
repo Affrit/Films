@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import loginReducer from './reducers/loginReducer';
-import filmsPageReducer from './reducers/filmsPageReducer';
+import searchPageReducer from './reducers/searchPageReducer';
 import currentFilmPageReducer from './reducers/currentFilmPageReducer';
 
 export default combineReducers({
     login: loginReducer,
-    filmsPage: filmsPageReducer,
+    searchPage: searchPageReducer,
     currentFilmPage: currentFilmPageReducer,
   })

@@ -15,7 +15,7 @@ export const HeaderApp = () => {
             <Link to='/sign-up' >sign-up</Link>
           </Menu.Item>
           <Menu.Item key="3">
-            <Link to='/films' >films</Link>
+            <Link to='/search/movies' >search</Link>
           </Menu.Item>
           <Menu.Item key="4">
             <Link to='/favorites' >favorites</Link>
