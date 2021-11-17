@@ -28,7 +28,24 @@ export default function moviesPageReducer(state = initialState, action) {
     case MOVIES_PAGE_TYPES.SET_MOVIES_DATA:
       return {
         ...state,
-        moviesPageData: action.payload
+        moviesPageData: {
+          ...action.payload,
+          results: [...state.moviesPageData.results, ...action.payload.results]
+        }
+      }
+
+    case MOVIES_PAGE_TYPES.SET_PAGE:
+      return {
+        ...state,
+        moviesPageData: {
+          ...state.moviesPageData,
+          page: action.payload
+        }
+      }
+
+    case MOVIES_PAGE_TYPES.SET_CLEAN_MOVIES_STATE:
+      return {
+        ...initialState
       }
 
     default:

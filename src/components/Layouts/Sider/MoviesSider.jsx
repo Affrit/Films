@@ -7,12 +7,12 @@ import { useLocation } from 'react-router';
 
 const { SubMenu } = Menu
 
-export const MoviesSider = () => {
+export const MoviesSider = (props) => {
   const location = useLocation()
   const currentLocation = location.pathname.split('/').pop()
-
+  
   return (
-    <SiderApp>
+    <SiderApp {...props} >
       <Menu
         theme="dark"
         mode="inline"

@@ -1,18 +1,34 @@
+import './style.css'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { MoviesSider } from '../Layouts/Sider/MoviesSider';
-import { getMoviesPageData } from '../../store/actions/moviesPageActions';
+import { getMoviesPageData, setCleanMoviesState, setPageAC } from '../../store/actions/moviesPageActions';
+import { Button } from 'antd';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
   const { moviesPageData, isFetching } = useSelector(({ moviesPage: { moviesPageData, isFetching } }) => ({
     moviesPageData, isFetching
   }))
+  const { page } = useSelector(({ moviesPage: { moviesPageData: { page } } }) => ({
+    page
+  }))
 
   useEffect(() => {
-    dispatch(getMoviesPageData(1))
+    dispatch(getMoviesPageData(page))
+  }, [page])
+
+  useEffect(() => {
+    /*
+    const onScroll = (e) => {
+      console.log(e)
+      //console.log(e.wheelDelta < 0)
+      console.log(window.scrollY)
+    }
+    window.addEventListener('wheel', onScroll)
+    */
   }, [])
 
   const spawnImg = (data) => {
@@ -28,12 +44,28 @@ export const MoviesPage = () => {
     })
   }
 
+  const onLoadMore = () => {
+    dispatch(setPageAC(page + 1))
+  }
+
   return (
     <>
-      <MoviesSider />
-      <div className='films'>
+      <MoviesSider lol='LOL' />
+      <div className='movies-page'>
         Movies Page
-        {isFetching ? <span>LOADING...</span> : spawnImg(moviesPageData)}
+        <div className='movies'>
+          {isFetching ? <span>LOADING...</span> : spawnImg(moviesPageData)}
+        </div>
+        <Button
+          onClick={onLoadMore}
+          type="primary"
+          loading={isFetching}
+          block={true}
+          shape="round"
+          size={'large'}
+        >
+          Load More
+        </Button>
       </div>
     </>
   )

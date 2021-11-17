@@ -23,6 +23,19 @@ export const setMoviesAC = (newData) => {
   }
 }
 
+export const setPageAC = (newData) => {
+  return {
+      type: MOVIES_PAGE_TYPES.SET_PAGE,
+      payload: newData
+  }
+}
+
+export const setCleanMoviesState = () => {
+  return {
+      type: MOVIES_PAGE_TYPES.SET_CLEAN_MOVIES_STATE
+  }
+}
+
 export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
   try {
     dispatch(setFetchingAC(true))
@@ -31,7 +44,6 @@ export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
     if (moviesData.errors) {
       throw new Error(moviesData.errors[0])
     }
-    console.log(moviesData)
     dispatch(setMoviesAC(moviesData))
   } catch (error) {
     console.warn(error)
