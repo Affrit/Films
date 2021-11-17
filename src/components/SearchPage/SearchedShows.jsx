@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { getShowsData } from '../../store/actions/searchPageActions';
+import { getSearchedShowsData } from '../../store/actions/searchPageActions';
 import { Pagination } from 'antd';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { setShowsPageAC } from '../../store/actions/searchPageActions';
+import { SearchPage } from './SearchPage';
 
 export const SearchedShows = () => {
   const { showsData, isFetching } = useSelector(({ searchPage: { showsData, isFetching } }) => ({
@@ -16,7 +17,7 @@ export const SearchedShows = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getShowsData(page))
+    dispatch(getSearchedShowsData(page))
   }, [page])
 
   const spawnImg = (data) => {
@@ -37,7 +38,7 @@ export const SearchedShows = () => {
   }
 
   return (
-    <>
+    <SearchPage>
       <div className='films'>
         {isFetching ?
           <span>LOADING...</span> :
@@ -47,6 +48,6 @@ export const SearchedShows = () => {
         current={page} pageSize={20} total={total_results}
         onChange={onChangePage}
       />
-    </>
+    </SearchPage>
   )
 }

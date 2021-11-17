@@ -17,3 +17,9 @@ export const CURRENT_FILM_PAGE_TYPES = Object.freeze({
   SET_ERROR: 'SET_ERROR',
   SET_FILM_DATA: 'SET_FILM_DATA',
 })
+
+export const MOVIES_PAGE_TYPES = Object.freeze({
+  SET_FETCHING: 'SET_FETCHING',
+  SET_ERROR: 'SET_ERROR',
+  SET_MOVIES_DATA: 'SET_MOVIES_DATA',
+})

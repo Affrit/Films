@@ -51,7 +51,7 @@ export const setShowsPageAC = (newData) => {
   }
 }
 
-export const getMoviesData = (page) => async (dispatch, getState) => {
+export const getSearchedMoviesData = (page = 1) => async (dispatch, getState) => {
   try {
     dispatch(fetchingAC(true))
     const { searchPage: { searchWord } } = getState()
@@ -69,7 +69,7 @@ export const getMoviesData = (page) => async (dispatch, getState) => {
   }
 }
 
-export const getShowsData = (page) => async (dispatch, getState) => {
+export const getSearchedShowsData = (page = 1) => async (dispatch, getState) => {
   try {
     dispatch(fetchingAC(true))
     const { searchPage: { searchWord } } = getState()
