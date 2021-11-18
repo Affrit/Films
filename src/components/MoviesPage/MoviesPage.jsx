@@ -1,11 +1,10 @@
 import './style.css'
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { BASE_URL_IMG } from '../../constants/constants';
 import { MoviesSider } from '../Layouts/Sider/MoviesSider';
 import { getMoviesPageData, setMoviesFetchingAC } from '../../store/actions/moviesPageActions';
 import { Button } from 'antd';
+import { moviesSpawner } from '../../helpers/moviesSpawner';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
@@ -49,19 +48,6 @@ export const MoviesPage = () => {
     */
   }, [])
 
-  const spawnImg = (data) => {
-    if (!data.results) return
-    if (data.results.length === 0) return <span>Films not Found</span>
-
-    return data.results.map(film => { ////////// film card will be return here
-      return <Link key={film.id} to={`/films/${film.id}`}>
-        <div className='films__item'>
-          <img src={BASE_URL_IMG + film.poster_path} style={{ width: '200px' }} alt="#" />
-        </div>
-      </Link>
-    })
-  }
-
   const onLoadMore = () => {
     dispatch(setMoviesFetchingAC(true))
     document.addEventListener('scroll', onScroll)
@@ -73,7 +59,7 @@ export const MoviesPage = () => {
       <div className='movies-page'>
         Movies Page
         <div className='movies'>
-          {isMoviesFetching ? <span>LOADING...</span> : spawnImg(moviesPageData)}
+          {moviesSpawner(moviesPageData)}
         </div>
         <Button
           onClick={onLoadMore}
