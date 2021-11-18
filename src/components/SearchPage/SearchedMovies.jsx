@@ -6,6 +6,7 @@ import { Pagination } from 'antd';
 import { setMoviesPageAC } from '../../store/actions/searchPageActions';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { SearchPage } from './SearchPage';
+import { MovieCard } from '../MovieCard/MovieCard';
 
 export const SearchedMovies = () => {
   const { moviesData, isFetching } = useSelector(({ searchPage: { moviesData, isFetching } }) => ({
@@ -24,10 +25,17 @@ export const SearchedMovies = () => {
     if (!data.results) return
     if (data.results.length === 0) return <span>Films not Found</span>
 
-    return data.results.map(film => { ////////// film card will be return here
+    return data.results.map(film => {  ////////// film card will be return here
+       const filmData = {
+         Id: film.id,
+         title: film.original_title,
+         releaseDate: film.release_date,
+         imgSrc: BASE_URL_IMG + film.poster_path,
+         rating: film.vote_average
+       }
       return <Link key={film.id} to={`/films/${film.id}`}>
         <div className='films__item'>
-          <img src={BASE_URL_IMG + film.poster_path} style={{ width: '200px' }} alt="#" />
+          <MovieCard isFetching={isFetching} filmData={ filmData } style={{ width: '200px' }} />
         </div>
       </Link>
     })
@@ -40,9 +48,8 @@ export const SearchedMovies = () => {
   return (
     <SearchPage>
       <div className='films'>
-        {isFetching ?
-          <span>LOADING...</span> :
-          spawnImg(moviesData)}
+        {/*isFetching ? <span>LOADING...</span> : spawnImg(moviesData)*/}
+        {spawnImg(moviesData)}
       </div>
       <Pagination showQuickJumper showSizeChanger={false}
         current={page} pageSize={20} total={total_results}
