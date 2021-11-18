@@ -1,15 +1,12 @@
 import { Menu } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
 import { SiderApp } from './SiderApp';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router';
+//import { useLocation } from 'react-router';
 
-const { SubMenu } = Menu
+//const { SubMenu } = Menu
 
 export const MoviesSider = (props) => {
-  const location = useLocation()
-  const currentLocation = location.pathname.split('/').pop()
+  //const location = useLocation()
+  //const currentLocation = location.pathname.split('/').pop()
   
   return (
     <SiderApp {...props} >

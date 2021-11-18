@@ -2,9 +2,9 @@ import { MOVIES_PAGE_TYPES } from "./types"
 import { API_KEY } from "../../constants/constants"
 import { BASE_URL } from "../../constants/constants"
 
-export const setFetchingAC = (newData) => {
+export const setMoviesFetchingAC = (newData) => {
   return {
-      type: MOVIES_PAGE_TYPES.SET_FETCHING,
+      type: MOVIES_PAGE_TYPES.SET_MOVIES_FETCHING,
       payload: newData
   }
 }
@@ -23,22 +23,9 @@ export const setMoviesAC = (newData) => {
   }
 }
 
-export const setPageAC = (newData) => {
-  return {
-      type: MOVIES_PAGE_TYPES.SET_PAGE,
-      payload: newData
-  }
-}
-
-export const setCleanMoviesState = () => {
-  return {
-      type: MOVIES_PAGE_TYPES.SET_CLEAN_MOVIES_STATE
-  }
-}
-
 export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
   try {
-    dispatch(setFetchingAC(true))
+    dispatch(setMoviesFetchingAC(true))
     const dataFromServer = await fetch(`${BASE_URL}/discover/movie?${API_KEY}&page=${page}&include_adult=true`)
     const moviesData = await dataFromServer.json()
     if (moviesData.errors) {
@@ -49,6 +36,6 @@ export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
     console.warn(error)
     dispatch(setErrorAC(error.message))
   } finally {
-    dispatch(setFetchingAC(false))
+    dispatch(setMoviesFetchingAC(false))
   }
 }

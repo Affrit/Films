@@ -28,7 +28,7 @@ export const CurrentFilmPage = () => {
       <div>
         {isFetching ? <span>LOADING...</span> : spawnImg()}
       </div>
-      <Link to='/films'>to All Films</Link>
+      <Link to='/movies'>to All Films</Link>
     </div>
   )
 }

@@ -1,24 +1,42 @@
 import './style.css'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { MoviesSider } from '../Layouts/Sider/MoviesSider';
-import { getMoviesPageData, setCleanMoviesState, setPageAC } from '../../store/actions/moviesPageActions';
+import { getMoviesPageData, setMoviesFetchingAC } from '../../store/actions/moviesPageActions';
 import { Button } from 'antd';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
-  const { moviesPageData, isFetching } = useSelector(({ moviesPage: { moviesPageData, isFetching } }) => ({
-    moviesPageData, isFetching
+  const { moviesPageData, isMoviesFetching } = useSelector(({ moviesPage: { moviesPageData, isMoviesFetching } }) => ({
+    moviesPageData, isMoviesFetching
   }))
   const { page } = useSelector(({ moviesPage: { moviesPageData: { page } } }) => ({
     page
   }))
 
   useEffect(() => {
-    dispatch(getMoviesPageData(page))
-  }, [page])
+    if (isMoviesFetching) {
+      dispatch(getMoviesPageData(page + 1))
+    }
+  }, [isMoviesFetching])
+
+  useEffect(() => {
+    return () => {
+      document.removeEventListener('scroll', onScroll)
+    }
+  }, [])
+
+  const onScroll = (e) => {
+    const commonHeight = e.target.documentElement.scrollHeight
+    const currentPos = e.target.documentElement.scrollTop
+    const windowHeigth = window.innerHeight
+    const heightBufer = 10
+    if (commonHeight - currentPos - heightBufer < windowHeigth) {
+      dispatch(setMoviesFetchingAC(true))
+    }
+  }
 
   useEffect(() => {
     /*
@@ -45,7 +63,8 @@ export const MoviesPage = () => {
   }
 
   const onLoadMore = () => {
-    dispatch(setPageAC(page + 1))
+    dispatch(setMoviesFetchingAC(true))
+    document.addEventListener('scroll', onScroll)
   }
 
   return (
@@ -54,12 +73,12 @@ export const MoviesPage = () => {
       <div className='movies-page'>
         Movies Page
         <div className='movies'>
-          {isFetching ? <span>LOADING...</span> : spawnImg(moviesPageData)}
+          {isMoviesFetching ? <span>LOADING...</span> : spawnImg(moviesPageData)}
         </div>
         <Button
           onClick={onLoadMore}
           type="primary"
-          loading={isFetching}
+          loading={isMoviesFetching}
           block={true}
           shape="round"
           size={'large'}
