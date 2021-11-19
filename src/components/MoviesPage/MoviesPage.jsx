@@ -55,7 +55,7 @@ export const MoviesPage = () => {
 
   return (
     <>
-      <MoviesSider lol='LOL' />
+      <MoviesSider />
       <div className='movies-page'>
         Movies Page
         <div className='movies'>
