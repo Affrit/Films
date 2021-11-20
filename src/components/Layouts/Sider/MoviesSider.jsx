@@ -17,8 +17,8 @@ export const MoviesSider = (props) => {
     dispatch(getMoviesPageData())
   }
 
-  const handleClick = ({ key }) => {
-    dispatch(setSortParamAC(key))
+  const onChangeSort = (value) => {
+    dispatch(setSortParamAC(value))
   }
 
   return (
@@ -26,26 +26,20 @@ export const MoviesSider = (props) => {
       <Menu
         theme="dark"
         mode="inline"
-        defaultSelectedKeys={[]}
+        defaultSelectedKeys={['sort']}
         style={{ height: '100%' }}
       >
+
         <SubMenu key="sort" icon={<SearchOutlined />} title="Sort by" style={{
-          overflow: 'auto',
-          //height: '100vh',
-          //position: 'fixed',
-          width: '200px'
+
         }}>
-          <Menu.Item key="popularity.desc" onClick={handleClick}>
-            Popularity(descending)
-          </Menu.Item>
-          <Menu.Item key="popularity.asc" onClick={handleClick}>
-            Popularity(ascending)
-          </Menu.Item>
-          <Menu.Item key="vote_average.desc" onClick={handleClick}>
-            Rating(descending)
-          </Menu.Item>
-          <Menu.Item key="vote_average.asc" onClick={handleClick}>
-            Rating(ascending)
+          <Menu.Item key="sort-select" style={{ padding: '10px' }}>
+            <Select defaultValue="vote_average.desc" onChange={onChangeSort}>
+              <Option value="vote_average.desc">Popularity(descending)</Option>
+              <Option value="vote_average.asc">Popularity(ascending)</Option>
+              <Option value="popularity.desc">Rating(descending)</Option>
+              <Option value="popularity.asc">Rating(ascending)</Option>
+            </Select>
           </Menu.Item>
         </SubMenu>
 
@@ -76,15 +70,3 @@ export const MoviesSider = (props) => {
     </SiderApp>
   )
 }
-
-
-
-
-/*
-<Select defaultValue="vote_average.desc" style={{ width: 120, background: 'black' }} onChange={onChangeSort}>
-            <Option value="vote_average.desc">Popularity(descending)</Option>
-            <Option value="vote_average.asc">Popularity(ascending)</Option>
-            <Option value="popularity.desc">Rating(descending)</Option>
-            <Option value="popularity.asc">Rating(ascending)</Option>
-          </Select>
-*/
