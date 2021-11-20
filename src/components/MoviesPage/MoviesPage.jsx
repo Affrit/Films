@@ -2,12 +2,62 @@ import './style.css'
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MoviesSider } from '../Layouts/Sider/MoviesSider';
-import { getMoviesPageData, setMoviesFetchingAC } from '../../store/actions/moviesPageActions';
-import { Button } from 'antd';
+import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
+import { Button, Pagination } from 'antd';
 import { moviesSpawner } from '../../helpers/moviesSpawner';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
+  const { moviesPageData, isMoviesFetching } = useSelector(({ moviesPage: { moviesPageData, isMoviesFetching } }) => ({
+    moviesPageData, isMoviesFetching
+  }))
+  const { page, total_results } = useSelector(({ moviesPage: { moviesPageData: { page, total_results } } }) => ({
+    page, total_results
+  }))
+
+  useEffect(() => {
+      dispatch(getMoviesPageData(page))
+  }, [dispatch, page])
+
+  const onChangePage = (page) => {
+    dispatch(setMoviesPageAC(page))
+  }
+
+  useEffect(() => {
+    /*
+    const onScroll = (e) => {
+      console.log(e)
+      //console.log(e.wheelDelta < 0)
+      console.log(window.scrollY)
+    }
+    window.addEventListener('wheel', onScroll)
+    */
+  }, [])
+
+  return (
+    <>
+      <MoviesSider />
+      <div className='movies-page'>
+        Movies Page
+        <div className='movies'>
+          {moviesSpawner(moviesPageData)}
+        </div>
+        <Pagination showQuickJumper showSizeChanger={false}
+          current={page} pageSize={20} total={total_results}
+          onChange={onChangePage}
+        />
+      </div>
+    </>
+  )
+}
+
+
+
+
+
+
+/*
+const dispatch = useDispatch()
   const { moviesPageData, isMoviesFetching } = useSelector(({ moviesPage: { moviesPageData, isMoviesFetching } }) => ({
     moviesPageData, isMoviesFetching
   }))
@@ -38,14 +88,14 @@ export const MoviesPage = () => {
   }
 
   useEffect(() => {
-    /*
+    
     const onScroll = (e) => {
       console.log(e)
       //console.log(e.wheelDelta < 0)
       console.log(window.scrollY)
     }
     window.addEventListener('wheel', onScroll)
-    */
+    
   }, [])
 
   const onLoadMore = () => {
@@ -74,4 +124,4 @@ export const MoviesPage = () => {
       </div>
     </>
   )
-}
+  */

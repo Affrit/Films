@@ -23,10 +23,37 @@ export const setMoviesAC = (newData) => {
   }
 }
 
+export const setMoviesPageAC = (newData) => {
+  return {
+      type: MOVIES_PAGE_TYPES.SET_MOVIES_PAGE,
+      payload: newData
+  }
+}
+
+export const setSortParamAC = (newData) => {
+  return {
+      type: MOVIES_PAGE_TYPES.SET_SORT_PARAM,
+      payload: newData
+  }
+}
+
+const getUrl = (page, sort) => {
+  let url = `${BASE_URL}/discover/movie?${API_KEY}&page=${page}`
+  if (sort) {
+    console.log('HERE')
+    url = url + `&sort_by=${sort}`
+  }
+
+  return url
+}
+
 export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
   try {
     dispatch(setMoviesFetchingAC(true))
-    const dataFromServer = await fetch(`${BASE_URL}/discover/movie?${API_KEY}&page=${page}&include_adult=true`)
+    const { moviesPage: { filtrationOptions: { sort_by } } } = getState()
+    const url = getUrl(page, sort_by)
+    console.log(url)
+    const dataFromServer = await fetch(url)
     const moviesData = await dataFromServer.json()
     if (moviesData.errors) {
       throw new Error(moviesData.errors[0])

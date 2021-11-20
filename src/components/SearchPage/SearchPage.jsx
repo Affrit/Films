@@ -16,7 +16,7 @@ export const SearchPage = () => {
     isFetching, searchWord, searchData
   }))
   const { page, total_results } = useSelector(({ searchPage: { searchData: { page, total_results } } }) => ({
-   page, total_results
+    page, total_results
   }))
   const dispatch = useDispatch()
   const location = useLocation()
@@ -35,6 +35,7 @@ export const SearchPage = () => {
   }
 
   const onSearch = () => {
+    if (inputValue.length < 1) return
     dispatch(setSearchWordAC(inputValue))
     dispatch(setSearchPageAC(1))
   }

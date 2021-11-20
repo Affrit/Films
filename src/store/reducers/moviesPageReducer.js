@@ -2,10 +2,14 @@ import { MOVIES_PAGE_TYPES } from "../actions/types";
 
 const initialState = {
   moviesPageData: {
-    page: 0,
+    page: 1,
     results: [],
     total_pages: 0,
     total_results: 0,
+  },
+  filtrationOptions: {
+    sort_by: '',
+    with_genres: []
   },
   isMoviesFetching: true,
   error: '',
@@ -28,9 +32,25 @@ export default function moviesPageReducer(state = initialState, action) {
     case MOVIES_PAGE_TYPES.SET_MOVIES_DATA:
       return {
         ...state,
+        moviesPageData: action.payload,
+        //results: [...state.moviesPageData.results, ...action.payload.results]
+      }
+
+    case MOVIES_PAGE_TYPES.SET_SORT_PARAM:
+      return {
+        ...state,
+        filtrationOptions: {
+          ...state.filtrationOptions,
+          sort_by: action.payload
+        }
+      }
+
+    case MOVIES_PAGE_TYPES.SET_MOVIES_PAGE:
+      return {
+        ...state,
         moviesPageData: {
-          ...action.payload,
-          results: [...state.moviesPageData.results, ...action.payload.results]
+          ...state.moviesPageData,
+          page: action.payload
         }
       }
 
