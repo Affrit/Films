@@ -2,10 +2,18 @@ import { Menu } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { SiderApp } from './SiderApp';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setSearchPageAC } from '../../../store/actions/searchPageActions';
 
 const { SubMenu } = Menu
 
 export const SearchSider = ({ currentLocation }) => {
+  const dispatch = useDispatch()
+
+  const handleClick = () => {
+    dispatch(setSearchPageAC(1))
+  }
+
   return (
     <SiderApp>
       <Menu
@@ -20,13 +28,13 @@ export const SearchSider = ({ currentLocation }) => {
           height: '100vh',
           position: 'fixed',
         }}>
-          <Menu.Item key="movies" style={{ width: '200px' }}>
-            <Link to='/search/movies'>
+          <Menu.Item key="movie" style={{ width: '200px' }}>
+            <Link to='/search/movie' onClick={handleClick}>
               <span>Movies</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="shows" style={{ width: '200px' }}>
-            <Link to='/search/shows'>
+          <Menu.Item key="tv" style={{ width: '200px' }}>
+            <Link to='/search/tv' onClick={handleClick}>
               <span>Shows</span>
             </Link>
           </Menu.Item>

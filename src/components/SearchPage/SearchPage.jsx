@@ -2,8 +2,7 @@ import './style.css'
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchedData, setSearchPageAC } from '../../store/actions/searchPageActions';
-import { Input } from 'antd';
-import { Pagination } from 'antd';
+import { Input, Pagination } from 'antd';
 import { setSearchWordAC } from '../../store/actions/searchPageActions';
 import { SearchSider } from '../Layouts/Sider/SearchSider';
 import { moviesSpawner } from '../../helpers/moviesSpawner';

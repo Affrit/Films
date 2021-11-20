@@ -20,7 +20,7 @@ export const HeaderApp = () => {
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[currentLocation]}>
         {headerItems}
         <Menu.Item key='search'>
-          <Link to='/search/movies' >search</Link>
+          <Link to='/search/movie' >search</Link>
         </Menu.Item>
       </Menu>
     </Header>

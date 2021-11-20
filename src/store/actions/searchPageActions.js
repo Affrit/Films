@@ -37,21 +37,11 @@ export const setSearchPageAC = (newData) => {
   }
 }
 
-const typeChooser = (type) => {
-  const qweryMap = {
-    movies: 'movie',
-    shows: 'tv'
-  }
-  
-  return qweryMap[type]
-}
-
-export const getSearchedData = (page = 1, type = 'movies') => async (dispatch, getState) => {
+export const getSearchedData = (page = 1, type = 'movie') => async (dispatch, getState) => {
   try {
     dispatch(fetchingAC(true))
     const { searchPage: { searchWord } } = getState()
-    const searchType = typeChooser(type)
-    const response = await fetch(`${BASE_URL}/search/${searchType}?${API_KEY}&query=${searchWord}&page=${page}&include_adult=true`)
+    const response = await fetch(`${BASE_URL}/search/${type}?${API_KEY}&query=${searchWord}&page=${page}&include_adult=true`)
     const searchData = await response.json()
     if (!response.ok) {
       const { status_message, errors } = searchData
