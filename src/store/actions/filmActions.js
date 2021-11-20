@@ -31,7 +31,6 @@ export const getCurrentFilm = (filmId) => async (dispatch) => {
     if (data.errors) {
       throw new Error(data.errors[0])
     }
-    console.log(data)
     dispatch(setFilmDataAC(data))
   } catch (error) {
     console.warn(error)

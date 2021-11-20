@@ -19,7 +19,7 @@ export const MoviesPage = () => {
     if (isMoviesFetching) {
       dispatch(getMoviesPageData(page + 1))
     }
-  }, [isMoviesFetching])
+  }, [dispatch, isMoviesFetching])
 
   useEffect(() => {
     return () => {

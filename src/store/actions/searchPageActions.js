@@ -16,16 +16,9 @@ export const setSearchWordAC = (newData) => {
   }
 }
 
-export const setSearchMoviesAC = (newData) => {
+export const setSearchDataAC = (newData) => {
   return {
-      type: SEARCH_PAGE_TYPES.SET_SEARCH_MOVIES,
-      payload: newData
-  }
-}
-
-export const setSearchShowsAC = (newData) => {
-  return {
-      type: SEARCH_PAGE_TYPES.SET_SEARCH_SHOWS,
+      type: SEARCH_PAGE_TYPES.SET_SEARCH_DATA,
       payload: newData
   }
 }
@@ -37,30 +30,34 @@ export const setErrorAC = (newData) => {
   }
 }
 
-export const setMoviesPageAC = (newData) => {
+export const setSearchPageAC = (newData) => {
   return {
-      type: SEARCH_PAGE_TYPES.SET_MOVIES_PAGE,
+      type: SEARCH_PAGE_TYPES.SET_SEARCH_PAGE,
       payload: newData
   }
 }
 
-export const setShowsPageAC = (newData) => {
-  return {
-      type: SEARCH_PAGE_TYPES.SET_SHOWS_PAGE,
-      payload: newData
+const typeChooser = (type) => {
+  const qweryMap = {
+    movies: 'movie',
+    shows: 'tv'
   }
+  
+  return qweryMap[type]
 }
 
-export const getSearchedMoviesData = (page = 1) => async (dispatch, getState) => {
+export const getSearchedData = (page = 1, type = 'movies') => async (dispatch, getState) => {
   try {
     dispatch(fetchingAC(true))
     const { searchPage: { searchWord } } = getState()
-    const moviesFromServer = await fetch(`${BASE_URL}/search/movie?${API_KEY}&query=${searchWord}&page=${page}&include_adult=true`)
-    const moviesData = await moviesFromServer.json()
-    if (moviesData.errors) {
-      throw new Error(moviesData.errors[0])
+    const searchType = typeChooser(type)
+    const response = await fetch(`${BASE_URL}/search/${searchType}?${API_KEY}&query=${searchWord}&page=${page}&include_adult=true`)
+    const searchData = await response.json()
+    if (!response.ok) {
+      const { status_message, errors } = searchData
+      throw new Error(errors ?? status_message ?? 'unknown error')
     }
-    dispatch(setSearchMoviesAC(moviesData))
+    dispatch(setSearchDataAC(searchData))
   } catch (error) {
     console.warn(error)
     dispatch(setErrorAC(error.message))
@@ -68,22 +65,3 @@ export const getSearchedMoviesData = (page = 1) => async (dispatch, getState) =>
     dispatch(fetchingAC(false))
   }
 }
-
-export const getSearchedShowsData = (page = 1) => async (dispatch, getState) => {
-  try {
-    dispatch(fetchingAC(true))
-    const { searchPage: { searchWord } } = getState()
-    const tvShowsFromServer = await fetch(`${BASE_URL}/search/tv?${API_KEY}&query=${searchWord}&page=${page}&include_adult=true`)
-    const showsData = await tvShowsFromServer.json()
-    if (showsData.errors) {
-      throw new Error(showsData.errors[0])
-    }
-    dispatch(setSearchShowsAC(showsData))
-  } catch (error) {
-    console.warn(error)
-    dispatch(setErrorAC(error.message))
-  } finally {
-    dispatch(fetchingAC(false))
-  }
-}
-

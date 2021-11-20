@@ -13,8 +13,6 @@ import { CurrentFilmPage } from './components/CurrentFilmPage/CurrentFilmPage';
 import { SignUp } from './components/SignUpPage/SignUp';
 import { SignIn } from './components/SignInPage/SignIn';
 import { MoviesPage } from './components/MoviesPage/MoviesPage';
-import { SearchedMovies } from './components/SearchPage/SearchedMovies';
-import { SearchedShows } from './components/SearchPage/SearchedShows';
 
 function App() {
   return (
@@ -27,8 +25,8 @@ function App() {
               <Route path="/" element={<SignIn />} />
               <Route path="/movies" element={<MoviesPage />} />
               <Route path="/search" element={<SearchPage />} />
-              <Route path="/search/movies" element={<SearchedMovies />} />
-              <Route path="/search/shows" element={<SearchedShows />} />
+              <Route path="/search/movies" element={<SearchPage />} />
+              <Route path="/search/shows" element={<SearchPage />} />
               <Route path="/films/:film" element={<CurrentFilmPage />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/favorites" element={

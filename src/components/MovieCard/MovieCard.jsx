@@ -10,7 +10,6 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
 
   const onLoad = () => {
     setImgFetching(false)
-    console.log('LOADED')
   }
 
   return (

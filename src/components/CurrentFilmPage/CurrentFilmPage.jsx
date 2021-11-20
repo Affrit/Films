@@ -15,7 +15,7 @@ export const CurrentFilmPage = () => {
   useEffect(() => {
     const filmId = location.pathname.split('/').pop()
     dispatch(getCurrentFilm(filmId))
-  }, [])
+  }, [dispatch, location.pathname])
 
   const spawnImg = () => {
     if (!filmData.poster_path) return

@@ -1,13 +1,7 @@
 import { SEARCH_PAGE_TYPES } from "../actions/types";
 
 const initialState = {
-  moviesData: {
-    page: 1,
-    results: [],
-    total_pages: 0,
-    total_results: 0,
-  },
-  showsData: {
+  searchData: {
     page: 1,
     results: [],
     total_pages: 0,
@@ -20,18 +14,10 @@ const initialState = {
 
 export default function searchPageReducer(state = initialState, action) {
   switch (action.type) {
-    case SEARCH_PAGE_TYPES.SET_SEARCH_MOVIES:
+    case SEARCH_PAGE_TYPES.SET_SEARCH_DATA:
       return {
         ...state,
-        moviesData: {
-          ...action.payload
-        }
-      }
-
-    case SEARCH_PAGE_TYPES.SET_SEARCH_SHOWS:
-      return {
-        ...state,
-        showsData: {
+        searchData: {
           ...action.payload
         }
       }
@@ -54,20 +40,11 @@ export default function searchPageReducer(state = initialState, action) {
         error: action.payload
       }
 
-    case SEARCH_PAGE_TYPES.SET_MOVIES_PAGE:
+    case SEARCH_PAGE_TYPES.SET_SEARCH_PAGE:
       return {
         ...state,
-        moviesData: {
-          ...state.moviesData,
-          page: action.payload,
-        }
-      }
-
-    case SEARCH_PAGE_TYPES.SET_SHOWS_PAGE:
-      return {
-        ...state,
-        showsData: {
-          ...state.showsData,
+        searchData: {
+          ...state.searchData,
           page: action.payload,
         }
       }
