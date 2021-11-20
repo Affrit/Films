@@ -40,19 +40,23 @@ export const setSortParamAC = (newData) => {
 const getUrl = (page, sort) => {
   let url = `${BASE_URL}/discover/movie?${API_KEY}&page=${page}`
   if (sort) {
-    console.log('HERE')
     url = url + `&sort_by=${sort}`
   }
 
   return url
 }
 
+/*
+const req = await fetch(`https://api.themoviedb.org/3/genre/movie/list?${API_KEY}`)
+    const genre = await req.json()
+    console.log(genre)
+*/
+
 export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
   try {
     dispatch(setMoviesFetchingAC(true))
     const { moviesPage: { filtrationOptions: { sort_by } } } = getState()
     const url = getUrl(page, sort_by)
-    console.log(url)
     const dataFromServer = await fetch(url)
     const moviesData = await dataFromServer.json()
     if (moviesData.errors) {
