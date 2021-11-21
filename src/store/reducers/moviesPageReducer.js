@@ -9,7 +9,9 @@ const initialState = {
   },
   filtrationOptions: {
     sort_by: 'popularity.desc',
-    with_genres: [],
+    with_genres: '',
+    'release_date.gte': '',
+    'release_date.lte': '',
   },
   isMoviesFetching: true,
   error: '',
@@ -60,6 +62,24 @@ export default function moviesPageReducer(state = initialState, action) {
         filtrationOptions: {
           ...state.filtrationOptions,
           with_genres: action.payload
+        }
+      }
+
+    case MOVIES_PAGE_TYPES.SET_RELEASE_DATE_GTE:
+      return {
+        ...state,
+        filtrationOptions: {
+          ...state.filtrationOptions,
+          'release_date.gte': action.payload
+        }
+      }
+
+    case MOVIES_PAGE_TYPES.SET_RELEASE_DATE_LTE:
+      return {
+        ...state,
+        filtrationOptions: {
+          ...state.filtrationOptions,
+          'release_date.lte': action.payload
         }
       }
 

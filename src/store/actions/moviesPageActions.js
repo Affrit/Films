@@ -4,60 +4,73 @@ import { BASE_URL } from "../../constants/constants"
 
 export const setMoviesFetchingAC = (newData) => {
   return {
-      type: MOVIES_PAGE_TYPES.SET_MOVIES_FETCHING,
-      payload: newData
+    type: MOVIES_PAGE_TYPES.SET_MOVIES_FETCHING,
+    payload: newData
   }
 }
 
 export const setErrorAC = (newData) => {
   return {
-      type: MOVIES_PAGE_TYPES.SET_ERROR,
-      payload: newData
+    type: MOVIES_PAGE_TYPES.SET_ERROR,
+    payload: newData
   }
 }
 
 export const setMoviesAC = (newData) => {
   return {
-      type: MOVIES_PAGE_TYPES.SET_MOVIES_DATA,
-      payload: newData
+    type: MOVIES_PAGE_TYPES.SET_MOVIES_DATA,
+    payload: newData
   }
 }
 
 export const setMoviesPageAC = (newData) => {
   return {
-      type: MOVIES_PAGE_TYPES.SET_MOVIES_PAGE,
-      payload: newData
+    type: MOVIES_PAGE_TYPES.SET_MOVIES_PAGE,
+    payload: newData
   }
 }
 
 export const setSortParamAC = (newData) => {
   return {
-      type: MOVIES_PAGE_TYPES.SET_SORT_PARAM,
-      payload: newData
+    type: MOVIES_PAGE_TYPES.SET_SORT_PARAM,
+    payload: newData
   }
 }
 
 export const setGenreListAC = (newData) => {
   return {
-      type: MOVIES_PAGE_TYPES.SET_GENRE_LIST,
-      payload: newData
+    type: MOVIES_PAGE_TYPES.SET_GENRE_LIST,
+    payload: newData
+  }
+}
+
+export const setReleaseDateGteAC = (newData) => {
+  return {
+    type: MOVIES_PAGE_TYPES.SET_RELEASE_DATE_GTE,
+    payload: newData
+  }
+}
+
+export const setReleaseDateLteAC = (newData) => {
+  return {
+    type: MOVIES_PAGE_TYPES.SET_RELEASE_DATE_LTE,
+    payload: newData
   }
 }
 
 export const setClearFiltersAC = () => {
   return {
-      type: MOVIES_PAGE_TYPES.SET_CLEAR_FILTERS
+    type: MOVIES_PAGE_TYPES.SET_CLEAR_FILTERS
   }
 }
 
-const getUrl = (page, sort, genres) => {
+const getUrl = (page = 1, filtrationOptions) => {
   let url = `${BASE_URL}/discover/movie?${API_KEY}&page=${page}`
-  if (sort) {
-    url = url + `&sort_by=${sort}`
-  }
-  const genreStr = genres.join(',')
-  if (genreStr) {
-    url = url + `&with_genres=${genreStr}`
+  for (const key in filtrationOptions) {
+    if (filtrationOptions[key]) {
+      const qwery = `&${key}=${filtrationOptions[key]}`
+      url = url.concat(qwery)
+    }
   }
 
   return url
@@ -72,8 +85,8 @@ const req = await fetch(`https://api.themoviedb.org/3/genre/movie/list?${API_KEY
 export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
   try {
     dispatch(setMoviesFetchingAC(true))
-    const { moviesPage: { filtrationOptions: { sort_by, with_genres } } } = getState()
-    const url = getUrl(page, sort_by, with_genres)
+    const { moviesPage: { filtrationOptions } } = getState()
+    const url = getUrl(page, filtrationOptions)
     const dataFromServer = await fetch(url)
     const moviesData = await dataFromServer.json()
     if (moviesData.errors) {
