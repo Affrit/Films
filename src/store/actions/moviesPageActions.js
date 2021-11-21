@@ -44,6 +44,12 @@ export const setGenreListAC = (newData) => {
   }
 }
 
+export const setClearFiltersAC = () => {
+  return {
+      type: MOVIES_PAGE_TYPES.SET_CLEAR_FILTERS
+  }
+}
+
 const getUrl = (page, sort, genres) => {
   let url = `${BASE_URL}/discover/movie?${API_KEY}&page=${page}`
   if (sort) {

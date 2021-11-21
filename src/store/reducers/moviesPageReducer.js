@@ -63,6 +63,14 @@ export default function moviesPageReducer(state = initialState, action) {
         }
       }
 
+    case MOVIES_PAGE_TYPES.SET_CLEAR_FILTERS:
+      return {
+        ...state,
+        filtrationOptions: {
+          ...initialState.filtrationOptions
+        }
+      }
+
     default:
       return state
   }
