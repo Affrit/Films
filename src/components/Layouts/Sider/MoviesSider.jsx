@@ -2,7 +2,7 @@ import { Menu, Dropdown, Button } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { SiderApp } from './SiderApp';
 import { SearchOutlined } from '@ant-design/icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getMoviesPageData, setSortParamAC, setGenreListAC } from '../../../store/actions/moviesPageActions';
 import { Select } from 'antd';
 import { useState } from 'react';
@@ -38,16 +38,17 @@ for (const genre of genreList) {
 }
 
 export const MoviesSider = (props) => {
-  const dispatch = useDispatch()
+  const { with_genres, sort_by } = useSelector(({ moviesPage: { filtrationOptions: { with_genres, sort_by } } }) => ({
+    with_genres, sort_by
+  }))
 
+  const dispatch = useDispatch()
   const onApply = () => {
     dispatch(getMoviesPageData())
   }
-
   const onChangeSort = (value) => {
     dispatch(setSortParamAC(value))
   }
-
   const onChangeGenres = (selectedItems) => {
     console.log(selectedItems)
     dispatch(setGenreListAC(selectedItems))
@@ -62,11 +63,9 @@ export const MoviesSider = (props) => {
         style={{ height: '100%' }}
       >
 
-        <SubMenu key="sort" icon={<SearchOutlined />} title="Sort by" style={{
-
-        }}>
+        <SubMenu key="sort" icon={<SearchOutlined />} title="Sort by" style={{}}>
           <Menu.Item key="sort-select" style={{ width: '100%', padding: '10px' }}>
-            <Select defaultValue="popularity.desc" onChange={onChangeSort}>
+            <Select defaultValue={sort_by} onChange={onChangeSort}>
               <Option value="popularity.desc">Popularity(descending)</Option>
               <Option value="popularity.asc">Popularity(ascending)</Option>
               <Option value="vote_average.desc">Rating(descending)</Option>
@@ -80,11 +79,11 @@ export const MoviesSider = (props) => {
           //position: 'fixed',
           width: '200px'
         }}>
-          <Menu.Item style={{ height: '100%', padding: '0' }} key="drop5">
+          <Menu.Item style={{ height: '100%', padding: '10px' }} key="drop5">
             <div>
               <div style={{ textAlign: 'center' }}>genre</div>
               <div>
-                <Select mode="tags" style={{ width: '100%' }} placeholder="Tags Mode" onChange={onChangeGenres}>
+                <Select mode="tags" style={{ width: '100%' }} placeholder="Tags Mode" value={with_genres} onChange={onChangeGenres}>
                   {children}
                 </Select>
               </div>

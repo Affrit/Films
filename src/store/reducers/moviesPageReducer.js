@@ -8,7 +8,7 @@ const initialState = {
     total_results: 0,
   },
   filtrationOptions: {
-    sort_by: '',
+    sort_by: 'popularity.desc',
     with_genres: [],
   },
   isMoviesFetching: true,
