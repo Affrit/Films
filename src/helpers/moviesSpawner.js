@@ -9,7 +9,7 @@ export const moviesSpawner = (data) => {
   return data.results.map(film => {  ////////// film card will be return here
     const filmData = {
       Id: film.id,
-      title: film.original_title ?? film.original_name,
+      title: film.title ?? film.name,
       releaseDate: film.release_date ?? film.first_air_date,
       imgSrc: BASE_URL_IMG + film.poster_path,
       rating: film.vote_average

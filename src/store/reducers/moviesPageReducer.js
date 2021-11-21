@@ -12,6 +12,8 @@ const initialState = {
     with_genres: '',
     'release_date.gte': '',
     'release_date.lte': '',
+    'vote_average.gte': '',
+    'vote_average.lte': '',
   },
   isMoviesFetching: true,
   error: '',
@@ -80,6 +82,24 @@ export default function moviesPageReducer(state = initialState, action) {
         filtrationOptions: {
           ...state.filtrationOptions,
           'release_date.lte': action.payload
+        }
+      }
+
+    case MOVIES_PAGE_TYPES.SET_RATING_GTE:
+      return {
+        ...state,
+        filtrationOptions: {
+          ...state.filtrationOptions,
+          'vote_average.gte': action.payload
+        }
+      }
+
+    case MOVIES_PAGE_TYPES.SET_RATING_LTE:
+      return {
+        ...state,
+        filtrationOptions: {
+          ...state.filtrationOptions,
+          'vote_average.lte': action.payload
         }
       }
 

@@ -2,6 +2,7 @@ import { Menu, Dropdown, Button } from 'antd';
 import { DatePicker, Space } from 'antd';
 import { Divider } from 'antd';
 import { Select } from 'antd';
+import { Slider, Switch } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { SiderApp } from './SiderApp';
 import { SearchOutlined } from '@ant-design/icons';
@@ -9,7 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getMoviesPageData, setSortParamAC,
   setGenreListAC, setClearFiltersAC,
-  setReleaseDateGteAC, setReleaseDateLteAC
+  setReleaseDateGteAC, setReleaseDateLteAC,
+  setRatingGteAC, setRatingLteAC
 } from '../../../store/actions/moviesPageActions';
 import { useState } from 'react';
 import { GENRE_LIST, SORT_PARAMS } from '../../../constants/constants';
@@ -27,9 +29,10 @@ const genreOptions = optionsGenerator(GENRE_LIST)
 const sortOptions = optionsGenerator(SORT_PARAMS)
 
 export const MoviesSider = (props) => {
-  const { with_genres, sort_by } = useSelector(({ moviesPage: { filtrationOptions: { with_genres, sort_by } } }) => ({
-    with_genres, sort_by
+  const { filtrationOptions } = useSelector(({ moviesPage: { filtrationOptions } }) => ({
+    filtrationOptions
   }))
+  const { sort_by, with_genres} = filtrationOptions
 
   const dispatch = useDispatch()
   const onApplyFilters = () => {
@@ -46,11 +49,17 @@ export const MoviesSider = (props) => {
   }
   const onChangeFromDate = (_, dateString) => {
     dispatch(setReleaseDateGteAC(dateString))
-    console.log(dateString)
   }
   const onChangeToDate = (_, dateString) => {
     dispatch(setReleaseDateLteAC(dateString))
-    console.log(dateString)
+  }
+
+  const onRatingChange = (result) => {
+    const [from, to] = result
+    const voteGte = `${from / 10}`
+    const voteLte = `${to / 10}`
+    dispatch(setRatingGteAC(voteGte))
+    dispatch(setRatingLteAC(voteLte))
   }
 
   return (
@@ -79,8 +88,8 @@ export const MoviesSider = (props) => {
             <div>
               <Divider style={{ margin: '0' }} plain>genres</Divider>
               <div>
-                <Select mode="tags" style={{ width: '100%' }} placeholder="choose genres" 
-                value={with_genres ? with_genres.split(',') : []} onChange={onChangeGenres}>
+                <Select mode="tags" style={{ width: '100%' }} placeholder="choose genres"
+                  value={with_genres ? with_genres.split(',') : []} onChange={onChangeGenres}>
                   {genreOptions}
                 </Select>
               </div>
@@ -97,6 +106,11 @@ export const MoviesSider = (props) => {
               <div>To</div>
               <DatePicker style={{ padding: '5px' }} onChange={onChangeToDate} />
             </div>
+          </Menu.Item>
+
+          <Menu.Item style={{ height: '100%', padding: '0 15px' }} key="drop10">
+            <Divider style={{ margin: '0' }} plain>Rating</Divider>
+            <Slider range value={[+filtrationOptions['vote_average.gte'] * 10, +filtrationOptions['vote_average.lte'] * 10]} onAfterChange={onRatingChange} disabled={false} />
           </Menu.Item>
 
         </SubMenu>
