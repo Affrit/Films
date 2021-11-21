@@ -9,7 +9,7 @@ const initialState = {
   },
   filtrationOptions: {
     sort_by: '',
-    with_genres: []
+    with_genres: [],
   },
   isMoviesFetching: true,
   error: '',
@@ -51,6 +51,15 @@ export default function moviesPageReducer(state = initialState, action) {
         moviesPageData: {
           ...state.moviesPageData,
           page: action.payload
+        }
+      }
+
+    case MOVIES_PAGE_TYPES.SET_GENRE_LIST:
+      return {
+        ...state,
+        filtrationOptions: {
+          ...state.filtrationOptions,
+          with_genres: action.payload
         }
       }
 

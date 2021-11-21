@@ -37,10 +37,21 @@ export const setSortParamAC = (newData) => {
   }
 }
 
-const getUrl = (page, sort) => {
+export const setGenreListAC = (newData) => {
+  return {
+      type: MOVIES_PAGE_TYPES.SET_GENRE_LIST,
+      payload: newData
+  }
+}
+
+const getUrl = (page, sort, genres) => {
   let url = `${BASE_URL}/discover/movie?${API_KEY}&page=${page}`
   if (sort) {
     url = url + `&sort_by=${sort}`
+  }
+  const genreStr = genres.join(',')
+  if (genreStr) {
+    url = url + `&with_genres=${genreStr}`
   }
 
   return url
@@ -55,8 +66,8 @@ const req = await fetch(`https://api.themoviedb.org/3/genre/movie/list?${API_KEY
 export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
   try {
     dispatch(setMoviesFetchingAC(true))
-    const { moviesPage: { filtrationOptions: { sort_by } } } = getState()
-    const url = getUrl(page, sort_by)
+    const { moviesPage: { filtrationOptions: { sort_by, with_genres } } } = getState()
+    const url = getUrl(page, sort_by, with_genres)
     const dataFromServer = await fetch(url)
     const moviesData = await dataFromServer.json()
     if (moviesData.errors) {
