@@ -1,4 +1,5 @@
 import React, { useState, useEffect }  from 'react';
+import './style.scss'
 import { Menu, DatePicker, Button, Divider, Select, Slider  } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { SiderApp } from '../../Layouts/Sider/SiderApp';
@@ -65,7 +66,7 @@ export const MoviesSider = (props) => {
         theme="lite"
         mode="inline"
         defaultSelectedKeys={['sort']}
-        style={{ height: '100%' }}
+        className='sider-menu'
       >
 
         <SubMenu key="sort" icon={<SearchOutlined />} title="Sort by" style={{}}>

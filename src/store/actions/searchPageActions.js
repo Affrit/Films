@@ -37,11 +37,13 @@ export const setSearchPageAC = (newData) => {
   }
 }
 
+//&language=ru-RU
+
 export const getSearchedData = (page = 1, type = 'movie') => async (dispatch, getState) => {
   try {
     dispatch(fetchingAC(true))
     const { searchPage: { searchWord } } = getState()
-    const response = await fetch(`${BASE_URL}/search/${type}?${API_KEY}&query=${searchWord}&page=${page}&language=ru-RU`)
+    const response = await fetch(`${BASE_URL}/search/${type}?${API_KEY}&query=${searchWord}&page=${page}`)
     const searchData = await response.json()
     console.log(searchData)
     if (!response.ok) {

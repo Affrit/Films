@@ -1,0 +1,13 @@
+.sider-menu {
+  height: 100%;
+}
+
+.sub-menu {
+  &__item {
+    padding: 8px!important;
+  }
+
+  &__select {
+    width: 100%;
+  }
+}

@@ -10,9 +10,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
 
-.films__item {
-  width: 20%;
-  padding: 10px;
+  &__item {
+    padding: 10px;
+  }
 }

@@ -8,7 +8,7 @@ export const SiderApp = ({ children }) => {
   return (
     <Layout>
       <Sider
-        theme='dark'
+        theme='lite'
         width={200}
         className="site-layout-background"
         collapsible={false}

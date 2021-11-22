@@ -1,4 +1,5 @@
 import { Menu } from 'antd';
+import './style.scss'
 import { SearchOutlined } from '@ant-design/icons';
 import { SiderApp } from '../../Layouts/Sider/SiderApp';
 import { Link } from 'react-router-dom';
@@ -17,23 +18,19 @@ export const SearchSider = ({ currentLocation }) => {
   return (
     <SiderApp>
       <Menu
-        theme="dark"
+        theme="lite"
         mode="inline"
         defaultSelectedKeys={[currentLocation]}
         defaultOpenKeys={['sub1']}
-        style={{ height: '100%' }}
+        className='sider-menu'
       >
-        <SubMenu key="sub1" icon={<SearchOutlined />} title="Search results" style={{
-          overflow: 'auto',
-          height: '100vh',
-          position: 'fixed',
-        }}>
-          <Menu.Item key="movie" style={{ width: '200px' }}>
+        <SubMenu key="sub1" icon={<SearchOutlined />} title="Search results">
+          <Menu.Item key="movie">
             <Link to='/search/movie' onClick={handleClick}>
               <span>Movies</span>
             </Link>
           </Menu.Item>
-          <Menu.Item key="tv" style={{ width: '200px' }}>
+          <Menu.Item key="tv">
             <Link to='/search/tv' onClick={handleClick}>
               <span>Shows</span>
             </Link>
