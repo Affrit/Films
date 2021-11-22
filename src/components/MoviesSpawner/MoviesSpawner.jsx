@@ -13,9 +13,9 @@ export const MoviesSpawner = ({ data }) => {
       rating: film.vote_average
     }
     return (
-        <Link className='movies__inner' key={film.id} to={`/films/${film.id}`}>
-            <MovieCard isFetching={false} filmData={filmData} />
-        </Link>
+      <div className='movies__inner'>
+        <MovieCard isFetching={false} filmData={filmData} />
+      </div>
     )
   })
 

@@ -3,11 +3,12 @@ import './style.scss'
 import { Skeleton, Card, Button } from 'antd';
 import { Raiting } from '../Raiting/Raiting';
 import altImg from '../../img/default.png'
+import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
 
 export const MovieCard = ({ filmData, style, isFetching }) => {
-  const { imgSrc, title, releaseDate, rating } = filmData
+  const { id, imgSrc, title, releaseDate, rating } = filmData
   const [imgFetching, setImgFetching] = useState(true)
   const [isLoadError, setIsLoadError] = useState(false)
 
@@ -29,7 +30,7 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
       <Skeleton loading={imgFetching} active>
         <Meta
           avatar={<Raiting rating={rating} />}
-          title={title}
+          title={<Link key={id} to={`/films/${id}`}>{title}</Link>}
           description={releaseDate}
         />
       </Skeleton>
