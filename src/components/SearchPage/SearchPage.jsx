@@ -55,9 +55,7 @@ export const SearchPage = () => {
           />
         </div>
         {total_results > 0 ? <span>We found {total_results} results</span> : ''}
-        <div className='films'>
-          <MoviesSpawner data={results} />
-        </div>
+        <MoviesSpawner data={results} />
         <Pagination showQuickJumper showSizeChanger={false}
           current={page} pageSize={20} total={total_results}
           onChange={onChangePage}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './style.scss'
-import { Skeleton, Card } from 'antd';
+import { Skeleton, Card, Button } from 'antd';
 import { Raiting } from '../Raiting/Raiting';
 import altImg from '../../img/default.png'
 

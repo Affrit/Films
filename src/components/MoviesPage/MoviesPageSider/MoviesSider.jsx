@@ -70,7 +70,7 @@ export const MoviesSider = (props) => {
       >
 
         <SubMenu key="sort" icon={<SearchOutlined />} title="Sort by" style={{}}>
-          <Menu.Item key="sort-select" style={{ width: '100%', padding: '10px' }}>
+          <Menu.Item key="sort-select" style={{ width: '100%', padding: '8px' }}>
             <Select defaultValue={sort_by} onChange={onChangeSort}>
               {sortOptions}
             </Select>
