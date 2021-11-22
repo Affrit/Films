@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css'
+import './style.scss'
 
 export const Raiting = ({ rating }) => {
   const percent = rating * 10

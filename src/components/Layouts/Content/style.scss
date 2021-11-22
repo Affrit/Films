@@ -1,0 +1,9 @@
+.site-layout {
+  padding-top: 60px;
+
+  &__inner {
+    display: flex;
+    justify-content: center;
+    //background-color: rgb(13, 13, 70);
+  }
+}

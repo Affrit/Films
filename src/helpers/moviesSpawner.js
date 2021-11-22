@@ -17,7 +17,7 @@ export const moviesSpawner = (results) => {
     return (
       <Link key={film.id} to={`/films/${film.id}`}>
         <div className='films__item'>
-          <MovieCard isFetching={false} filmData={filmData} style={{ width: '200px' }} />
+          <MovieCard isFetching={false} filmData={filmData} />
         </div>
       </Link>
     )

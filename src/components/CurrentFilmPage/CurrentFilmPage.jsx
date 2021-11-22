@@ -1,3 +1,4 @@
+import './style.scss'
 import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
@@ -18,13 +19,13 @@ export const CurrentFilmPage = () => {
 
   const spawnImg = () => {
     if (!filmData.poster_path) return
-    return <img src={BASE_URL_IMG + filmData?.poster_path} style={{ width: '500px' }} alt="#" /> //full film info will be here
+    return <img src={BASE_URL_IMG + filmData?.poster_path} className='filmPage__img' alt="#" /> //full film info will be here
   }
 
   return (
-    <div>
-      FilmID {location.pathname}
-      <div>
+    <div className='filmPage-wrap'>
+      <div>FilmID {location.pathname}</div>
+      <div className='filmPage'>
         {isFetching ? <span>LOADING...</span> : spawnImg()}
       </div>
       <Link to='/movies'>to All Films</Link>

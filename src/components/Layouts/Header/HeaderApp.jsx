@@ -1,3 +1,5 @@
+import React from 'react';
+import './style.scss'
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
@@ -15,7 +17,7 @@ export const HeaderApp = () => {
   const currentLocation = location.pathname.split('/')[1]
 
   return (
-    <Header className="header" style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+    <Header className="header">
       <div className="logo" />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[currentLocation]}>
         {headerItems}

@@ -1,11 +1,13 @@
+import React from 'react';
+import './style.scss'
 import { Layout } from 'antd';
 
 const { Content } = Layout
 
 export const ContentApp = ({ children }) => {
   return (
-      <Content className="site-layout" style={{ paddingTop: '60px'}}>
-        <div className="site-layout-background" style={{ display: 'flex', justifyContent: 'center' }}>
+      <Content className="site-layout">
+        <div className="site-layout__inner">
           {children}
         </div>
       </Content>

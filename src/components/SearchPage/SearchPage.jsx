@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSearchedData, setSearchPageAC } from '../../store/actions/searchPageActions';
 import { Input, Pagination } from 'antd';
 import { setSearchWordAC } from '../../store/actions/searchPageActions';
-import { SearchSider } from '../Layouts/Sider/SearchSider';
+import { SearchSider } from './SearchPageSider/SearchSider';
 import { moviesSpawner } from '../../helpers/moviesSpawner';
 import { useLocation } from 'react-router';
 import { searchDataSelector } from '../../helpers/selector';

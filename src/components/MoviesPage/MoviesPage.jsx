@@ -1,7 +1,7 @@
-import './style.css'
+import './style.scss'
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MoviesSider } from '../Layouts/Sider/MoviesSider';
+import { MoviesSider } from './MoviesPageSider/MoviesSider';
 import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
 import { Button, Pagination } from 'antd';
 import { moviesSpawner } from '../../helpers/moviesSpawner';

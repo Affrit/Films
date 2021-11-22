@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './style.scss'
 import { Skeleton, Card } from 'antd';
 import { Raiting } from '../Raiting/Raiting';
 import altImg from '../../img/default.png'
@@ -22,7 +23,7 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
   return (
     <Card
       hoverable
-      style={style}
+      className='card'
       cover={<img alt='#' src={isLoadError ? altImg : imgSrc} onLoad={onLoad} onError={onError} />}
     >
       <Skeleton loading={imgFetching} active>

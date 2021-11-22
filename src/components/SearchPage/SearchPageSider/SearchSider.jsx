@@ -1,6 +1,6 @@
 import { Menu } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { SiderApp } from './SiderApp';
+import { SiderApp } from '../../Layouts/Sider/SiderApp';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setSearchPageAC } from '../../../store/actions/searchPageActions';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect }  from 'react';
 import { Menu, DatePicker, Button, Divider, Select, Slider  } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { SiderApp } from './SiderApp';
+import { SiderApp } from '../../Layouts/Sider/SiderApp';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getMoviesPageData, setSortParamAC,
