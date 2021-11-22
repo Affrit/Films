@@ -1,0 +1,34 @@
+.movies {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__inner {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+
+    @media (min-width: 320px) {
+      width: 50%;
+    }
+
+    @media (min-width: 576px) {
+      width: calc(100% / 3);
+    }
+
+    @media (min-width: 768px) {
+      width: 25%;
+    }
+
+    @media (min-width: 992px) {
+      width: 20%;
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    width: 100%;
+  }
+}

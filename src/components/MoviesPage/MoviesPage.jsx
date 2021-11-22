@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MoviesSider } from './MoviesPageSider/MoviesSider';
 import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
 import { Button, Pagination } from 'antd';
-import { moviesSpawner } from '../../helpers/moviesSpawner';
+import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
 import { moviesDataSelector } from '../../helpers/selector';
 
 export const MoviesPage = () => {
@@ -12,7 +12,7 @@ export const MoviesPage = () => {
   const { isMoviesFetching, page, total_results, results } = useSelector(moviesDataSelector)
 
   useEffect(() => {
-      dispatch(getMoviesPageData(page))
+    dispatch(getMoviesPageData(page))
   }, [dispatch, page])
 
   const onChangePage = (page) => {
@@ -35,9 +35,7 @@ export const MoviesPage = () => {
       <MoviesSider />
       <div className='movies-page'>
         Movies Page
-        <div className='movies'>
-          {moviesSpawner(results)}
-        </div>
+        <MoviesSpawner data={results} />
         <Pagination showQuickJumper showSizeChanger={false}
           current={page} pageSize={20} total={total_results}
           onChange={onChangePage}
@@ -84,14 +82,14 @@ const dispatch = useDispatch()
   }
 
   useEffect(() => {
-    
+
     const onScroll = (e) => {
       console.log(e)
       //console.log(e.wheelDelta < 0)
       console.log(window.scrollY)
     }
     window.addEventListener('wheel', onScroll)
-    
+
   }, [])
 
   const onLoadMore = () => {

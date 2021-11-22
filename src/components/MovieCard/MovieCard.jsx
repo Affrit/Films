@@ -23,7 +23,7 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
   return (
     <Card
       hoverable
-      className='card'
+      className='movies__card'
       cover={<img alt='#' src={isLoadError ? altImg : imgSrc} onLoad={onLoad} onError={onError} />}
     >
       <Skeleton loading={imgFetching} active>

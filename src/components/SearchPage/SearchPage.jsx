@@ -5,7 +5,7 @@ import { getSearchedData, setSearchPageAC } from '../../store/actions/searchPage
 import { Input, Pagination } from 'antd';
 import { setSearchWordAC } from '../../store/actions/searchPageActions';
 import { SearchSider } from './SearchPageSider/SearchSider';
-import { moviesSpawner } from '../../helpers/moviesSpawner';
+import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
 import { useLocation } from 'react-router';
 import { searchDataSelector } from '../../helpers/selector';
 
@@ -56,7 +56,7 @@ export const SearchPage = () => {
         </div>
         {total_results > 0 ? <span>We found {total_results} results</span> : ''}
         <div className='films'>
-          {moviesSpawner(results)}
+          <MoviesSpawner data={results} />
         </div>
         <Pagination showQuickJumper showSizeChanger={false}
           current={page} pageSize={20} total={total_results}
