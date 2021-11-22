@@ -1,11 +1,7 @@
-import { Menu, Dropdown, Button } from 'antd';
-import { DatePicker, Space } from 'antd';
-import { Divider } from 'antd';
-import { Select } from 'antd';
-import { Slider, Switch } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
-import { SiderApp } from './SiderApp';
+import React, { useState, useEffect }  from 'react';
+import { Menu, DatePicker, Button, Divider, Select, Slider  } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { SiderApp } from './SiderApp';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getMoviesPageData, setSortParamAC,
@@ -13,21 +9,11 @@ import {
   setReleaseDateGteAC, setReleaseDateLteAC,
   setRatingGteAC, setRatingLteAC
 } from '../../../store/actions/moviesPageActions';
-import { useState, useEffect } from 'react';
 import { GENRE_LIST, SORT_PARAMS } from '../../../constants/constants';
+import { optionsSelector } from '../../../helpers/selector';
 
 const { Option } = Select
 const { SubMenu } = Menu
-
-function debounce(f, ms) {
-  let isCooldown = false;
-  return function () {
-    if (isCooldown) return;
-    f.apply(this, arguments);
-    isCooldown = true;
-    setTimeout(() => isCooldown = false, ms);
-  }
-}
 
 const optionsGenerator = (itemsList) => {
   return itemsList.map(item => {
@@ -38,20 +24,16 @@ const genreOptions = optionsGenerator(GENRE_LIST)
 const sortOptions = optionsGenerator(SORT_PARAMS)
 
 export const MoviesSider = (props) => {
-  const [ratingVal, setRatingVal] = useState([0, 0]) 
-  const { filtrationOptions } = useSelector(({ moviesPage: { filtrationOptions } }) => ({
-    filtrationOptions
-  }))
-  const { sort_by, with_genres, ['vote_average.gte']: voteGte, ['vote_average.lte']: voteLte } = filtrationOptions
-  const ratingValue = [+voteGte * 10, +voteLte * 10]
-
+  const [ratingVal, setRatingVal] = useState([0, 100]) 
+  const { sort_by, with_genres } = useSelector(optionsSelector)
   const dispatch = useDispatch()
+
   const onApplyFilters = () => {
     dispatch(getMoviesPageData())
   }
   const onClearFilters = () => {
     dispatch(setClearFiltersAC())
-    setRatingVal([0, 0])
+    setRatingVal([0, 100])
   }
   const onChangeSort = (value) => {
     dispatch(setSortParamAC(value))
