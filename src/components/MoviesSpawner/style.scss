@@ -7,7 +7,7 @@
     padding: 10px;
     width: 100%;
 
-    @media (min-width: 320px) {
+    @media (min-width: 380px) {
       width: 50%;
     }
 
@@ -22,13 +22,5 @@
     @media (min-width: 992px) {
       width: 20%;
     }
-  }
-
-  &__card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    width: 100%;
   }
 }

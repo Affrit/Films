@@ -9,11 +9,11 @@ export const SiderApp = ({ children }) => {
     <Layout>
       <Sider
         theme='lite'
-        width={200}
+        width={'200px'}
         className="site-layout-background"
-        collapsible={false}
-        breakpoint="lg"
-        //collapsedWidth="0" 
+        //collapsible={true}
+        breakpoint="sm"
+        collapsedWidth="0" 
       >
         {children}
       </Sider>

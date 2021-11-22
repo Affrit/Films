@@ -21,16 +21,26 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
     setIsLoadError(true)
   }
 
+  const imgLink = <Link to={`/films/${id}`}>
+    <img
+      className='movie-card__img' alt='#'
+      src={isLoadError ? altImg : imgSrc}
+      onLoad={onLoad} onError={onError}
+    />
+  </Link>
+
+  const titleLink = <Link to={`/films/${id}`}>{title}</Link>
+
   return (
     <Card
       hoverable
-      className='movies__card'
-      cover={<img alt='#' src={isLoadError ? altImg : imgSrc} onLoad={onLoad} onError={onError} />}
+      className='movie-card'
+      cover={imgLink}
     >
       <Skeleton loading={imgFetching} active>
         <Meta
           avatar={<Raiting rating={rating} />}
-          title={<Link key={id} to={`/films/${id}`}>{title}</Link>}
+          title={titleLink}
           description={releaseDate}
         />
       </Skeleton>

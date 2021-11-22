@@ -13,7 +13,7 @@ export const MoviesSpawner = ({ data }) => {
       rating: film.vote_average
     }
     return (
-      <div className='movies__inner'>
+      <div key={film.id} className='movies__inner'>
         <MovieCard isFetching={false} filmData={filmData} />
       </div>
     )
