@@ -13,26 +13,37 @@ import {
   setReleaseDateGteAC, setReleaseDateLteAC,
   setRatingGteAC, setRatingLteAC
 } from '../../../store/actions/moviesPageActions';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { GENRE_LIST, SORT_PARAMS } from '../../../constants/constants';
 
-const { Option } = Select;
+const { Option } = Select
 const { SubMenu } = Menu
+
+function debounce(f, ms) {
+  let isCooldown = false;
+  return function () {
+    if (isCooldown) return;
+    f.apply(this, arguments);
+    isCooldown = true;
+    setTimeout(() => isCooldown = false, ms);
+  }
+}
 
 const optionsGenerator = (itemsList) => {
   return itemsList.map(item => {
     return <Option key={item.id}>{item.name}</Option>
   })
 }
-
 const genreOptions = optionsGenerator(GENRE_LIST)
 const sortOptions = optionsGenerator(SORT_PARAMS)
 
 export const MoviesSider = (props) => {
+  const [ratingVal, setRatingVal] = useState([0, 0]) 
   const { filtrationOptions } = useSelector(({ moviesPage: { filtrationOptions } }) => ({
     filtrationOptions
   }))
-  const { sort_by, with_genres} = filtrationOptions
+  const { sort_by, with_genres, ['vote_average.gte']: voteGte, ['vote_average.lte']: voteLte } = filtrationOptions
+  const ratingValue = [+voteGte * 10, +voteLte * 10]
 
   const dispatch = useDispatch()
   const onApplyFilters = () => {
@@ -40,6 +51,7 @@ export const MoviesSider = (props) => {
   }
   const onClearFilters = () => {
     dispatch(setClearFiltersAC())
+    setRatingVal([0, 0])
   }
   const onChangeSort = (value) => {
     dispatch(setSortParamAC(value))
@@ -55,6 +67,10 @@ export const MoviesSider = (props) => {
   }
 
   const onRatingChange = (result) => {
+    setRatingVal(result)
+  }
+
+  const afterChangeRating = (result) => {
     const [from, to] = result
     const voteGte = `${from / 10}`
     const voteLte = `${to / 10}`
@@ -110,7 +126,7 @@ export const MoviesSider = (props) => {
 
           <Menu.Item style={{ height: '100%', padding: '0 15px' }} key="drop10">
             <Divider style={{ margin: '0' }} plain>Rating</Divider>
-            <Slider range value={[+filtrationOptions['vote_average.gte'] * 10, +filtrationOptions['vote_average.lte'] * 10]} onAfterChange={onRatingChange} disabled={false} />
+            <Slider range value={ratingVal} onChange={onRatingChange} onAfterChange={afterChangeRating} />
           </Menu.Item>
 
         </SubMenu>

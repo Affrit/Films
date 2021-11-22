@@ -77,7 +77,6 @@ export const setClearFiltersAC = () => {
     type: MOVIES_PAGE_TYPES.SET_CLEAR_FILTERS
   }
 }
-//&vote_average.gte=9.5
 //&language=ru-RU
 const getUrl = (page = 1, filtrationOptions) => {
   let url = `${BASE_URL}/discover/movie?${API_KEY}&page=${page}`
