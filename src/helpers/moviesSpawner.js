@@ -2,11 +2,11 @@ import { MovieCard } from '../components/MovieCard/MovieCard';
 import { BASE_URL_IMG } from '../constants/constants';
 import { Link } from "react-router-dom";
 
-export const moviesSpawner = (data) => {
-  if (!data.results) return
-  if (data.results.length === 0) return <span>Films not Found</span>
+export const moviesSpawner = (results) => {
+  if (!results) return
+  if (results.length === 0) return <span>Films not Found</span>
 
-  return data.results.map(film => {  ////////// film card will be return here
+  return results.map(film => { 
     const filmData = {
       Id: film.id,
       title: film.title ?? film.name,

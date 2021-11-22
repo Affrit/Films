@@ -47,7 +47,6 @@ export const MoviesSider = (props) => {
   const onChangeToDate = (_, dateString) => {
     dispatch(setReleaseDateLteAC(dateString))
   }
-
   const onRatingChange = (result) => {
     setRatingVal(result)
   }

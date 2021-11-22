@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentFilm } from '../../store/actions/filmActions';
 import { useLocation } from 'react-router-dom';
 import { BASE_URL_IMG } from '../../constants/constants';
+import { currentFilmSelector } from '../../helpers/selector';
 
 export const CurrentFilmPage = () => {
   const dispatch = useDispatch()
   const location = useLocation()
-  const { filmData, isFetching  } = useSelector(({ currentFilmPage: { filmData, isFetching  } }) => ({
-    filmData, isFetching 
-  }))
+  const { filmData, isFetching  } = useSelector(currentFilmSelector)
   
   useEffect(() => {
     const filmId = location.pathname.split('/').pop()

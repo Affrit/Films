@@ -7,17 +7,13 @@ import { setSearchWordAC } from '../../store/actions/searchPageActions';
 import { SearchSider } from '../Layouts/Sider/SearchSider';
 import { moviesSpawner } from '../../helpers/moviesSpawner';
 import { useLocation } from 'react-router';
+import { searchDataSelector } from '../../helpers/selector';
 
 const { Search } = Input;
 
 export const SearchPage = () => {
   const [inputValue, setInputValue] = useState('')
-  const { isFetching, searchWord, searchData } = useSelector(({ searchPage: { isFetching, searchWord, searchData } }) => ({
-    isFetching, searchWord, searchData
-  }))
-  const { page, total_results } = useSelector(({ searchPage: { searchData: { page, total_results } } }) => ({
-    page, total_results
-  }))
+  const { isFetching, searchWord, page, total_results, results } = useSelector(searchDataSelector)
   const dispatch = useDispatch()
   const location = useLocation()
   const currentLocation = location.pathname.split('/').pop()
@@ -60,7 +56,7 @@ export const SearchPage = () => {
         </div>
         {total_results > 0 ? <span>We found {total_results} results</span> : ''}
         <div className='films'>
-          {moviesSpawner(searchData)}
+          {moviesSpawner(results)}
         </div>
         <Pagination showQuickJumper showSizeChanger={false}
           current={page} pageSize={20} total={total_results}

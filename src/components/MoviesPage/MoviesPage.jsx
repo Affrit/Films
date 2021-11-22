@@ -5,15 +5,11 @@ import { MoviesSider } from '../Layouts/Sider/MoviesSider';
 import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
 import { Button, Pagination } from 'antd';
 import { moviesSpawner } from '../../helpers/moviesSpawner';
+import { moviesDataSelector } from '../../helpers/selector';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
-  const { moviesPageData, isMoviesFetching } = useSelector(({ moviesPage: { moviesPageData, isMoviesFetching } }) => ({
-    moviesPageData, isMoviesFetching
-  }))
-  const { page, total_results } = useSelector(({ moviesPage: { moviesPageData: { page, total_results } } }) => ({
-    page, total_results
-  }))
+  const { isMoviesFetching, page, total_results, results } = useSelector(moviesDataSelector)
 
   useEffect(() => {
       dispatch(getMoviesPageData(page))
@@ -40,7 +36,7 @@ export const MoviesPage = () => {
       <div className='movies-page'>
         Movies Page
         <div className='movies'>
-          {moviesSpawner(moviesPageData)}
+          {moviesSpawner(results)}
         </div>
         <Pagination showQuickJumper showSizeChanger={false}
           current={page} pageSize={20} total={total_results}
