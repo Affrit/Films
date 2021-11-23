@@ -1,3 +1,4 @@
+import React from 'react';
 import { Menu } from 'antd';
 import './style.scss'
 import { SearchOutlined } from '@ant-design/icons';
@@ -24,17 +25,24 @@ export const SearchSider = ({ currentLocation }) => {
         defaultOpenKeys={['sub1']}
         className='sider-menu'
       >
-        <SubMenu key="sub1" icon={<SearchOutlined />} title="Search results">
+        <SubMenu
+          key="sub1"
+          icon={<SearchOutlined />}
+          title="Search results"
+        >
+
           <Menu.Item key="movie">
             <Link to='/search/movie' onClick={handleClick}>
               <span>Movies</span>
             </Link>
           </Menu.Item>
+
           <Menu.Item key="tv">
             <Link to='/search/tv' onClick={handleClick}>
               <span>Shows</span>
             </Link>
           </Menu.Item>
+
         </SubMenu>
       </Menu>
     </SiderApp>

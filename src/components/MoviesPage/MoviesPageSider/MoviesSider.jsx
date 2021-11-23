@@ -1,6 +1,6 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss'
-import { Menu, DatePicker, Button, Divider, Select, Slider  } from 'antd';
+import { Menu, DatePicker, Button, Divider, Select, Slider } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { SiderApp } from '../../Layouts/Sider/SiderApp';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,7 +25,7 @@ const genreOptions = optionsGenerator(GENRE_LIST)
 const sortOptions = optionsGenerator(SORT_PARAMS)
 
 export const MoviesSider = (props) => {
-  const [ratingVal, setRatingVal] = useState([0, 100]) 
+  const [ratingVal, setRatingVal] = useState([0, 100])
   const { sort_by, with_genres } = useSelector(optionsSelector)
   const dispatch = useDispatch()
 
@@ -69,7 +69,11 @@ export const MoviesSider = (props) => {
         className='sider-menu'
       >
 
-        <SubMenu key="sort" icon={<SearchOutlined />} title="Sort by" style={{}}>
+        <SubMenu
+          key="sort"
+          icon={<SearchOutlined />}
+          title="Sort by"
+        >
           <Menu.Item key="sort-select" style={{ width: '100%', padding: '8px' }}>
             <Select defaultValue={sort_by} onChange={onChangeSort}>
               {sortOptions}
@@ -77,48 +81,72 @@ export const MoviesSider = (props) => {
           </Menu.Item>
         </SubMenu>
 
-        <SubMenu key="filters" icon={<SearchOutlined />} title="Filters by" style={{
-          //height: '100vh',
-          //position: 'fixed',
-          width: '200px'
-        }}>
+        <SubMenu
+          key="filters"
+          icon={<SearchOutlined />}
+          title="Filters by" style={{ width: '200px' }}
+        >
           <Menu.Item style={{ height: '100%', padding: '0 10px' }} key="drop5">
-            <div>
-              <Divider style={{ margin: '0' }} plain>genres</Divider>
-              <div>
-                <Select mode="tags" style={{ width: '100%' }} placeholder="choose genres"
-                  value={with_genres ? with_genres.split(',') : []} onChange={onChangeGenres}>
-                  {genreOptions}
-                </Select>
-              </div>
-            </div>
+            <Divider style={{ margin: '0' }} plain>genres</Divider>
+            <Select
+              mode="tags" style={{ width: '100%' }}
+              placeholder="choose genres"
+              value={with_genres ? with_genres.split(',') : []}
+              onChange={onChangeGenres}
+            >
+              {genreOptions}
+            </Select>
           </Menu.Item>
 
           <Menu.Item style={{ height: '100%', padding: '0 10px' }} key="drop9">
             <Divider style={{ margin: '0' }} plain>Release dates</Divider>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
               <div>From</div>
-              <DatePicker style={{ padding: '5px' }} onChange={onChangeFromDate} />
+              <DatePicker
+                style={{ padding: '5px' }}
+                onChange={onChangeFromDate}
+              />
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
               <div>To</div>
-              <DatePicker style={{ padding: '5px' }} onChange={onChangeToDate} />
+              <DatePicker
+                style={{ padding: '5px' }}
+                onChange={onChangeToDate}
+              />
             </div>
           </Menu.Item>
 
           <Menu.Item style={{ height: '100%', padding: '0 15px' }} key="drop10">
             <Divider style={{ margin: '0' }} plain>Rating</Divider>
-            <Slider range value={ratingVal} onChange={onRatingChange} onAfterChange={afterChangeRating} />
+            <Slider
+              range value={ratingVal}
+              onChange={onRatingChange}
+              onAfterChange={afterChangeRating}
+            />
           </Menu.Item>
 
         </SubMenu>
 
         <Menu.Item key="btn1" >
-          <Button onClick={onApplyFilters} style={{ width: '100%', margin: '10px 0' }} size='small' type="primary">Apply</Button>
+          <Button
+            onClick={onApplyFilters}
+            style={{ width: '100%', margin: '10px 0' }}
+            size='small' type="primary"
+          >
+            Apply
+          </Button>
         </Menu.Item>
+
         <Menu.Item key="btn2" >
-          <Button onClick={onClearFilters} style={{ width: '100%', margin: '10px 0' }} size='small' type="primary">Clear</Button>
+          <Button
+            onClick={onClearFilters}
+            style={{ width: '100%', margin: '10px 0' }}
+            size='small' type="primary"
+          >
+            Clear
+          </Button>
         </Menu.Item>
+
       </Menu>
     </SiderApp>
   )

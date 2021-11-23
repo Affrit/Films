@@ -18,35 +18,33 @@ export const MoviesPage = () => {
   const onChangePage = (page) => {
     dispatch(setMoviesPageAC(page))
   }
-
-  useEffect(() => {
-    /*
-    const onScroll = (e) => {
-      console.log(e)
-      //console.log(e.wheelDelta < 0)
-      console.log(window.scrollY)
-    }
-    window.addEventListener('wheel', onScroll)
-    */
-  }, [])
-
+  /*
+    useEffect(() => {
+      const onScroll = (e) => {
+        console.log(e)
+        //console.log(e.wheelDelta < 0)
+        console.log(window.scrollY)
+      }
+      window.addEventListener('wheel', onScroll)
+    }, [])
+  */
   return (
     <>
       <MoviesSider />
       <div className='movies-page'>
         Movies Page
         <MoviesSpawner data={results} />
-        <Pagination showQuickJumper showSizeChanger={false}
-          current={page} pageSize={20} total={total_results}
+        <Pagination
+          showQuickJumper
+          showSizeChanger={false}
+          current={page} pageSize={20}
+          total={total_results}
           onChange={onChangePage}
         />
       </div>
     </>
   )
 }
-
-
-
 
 
 

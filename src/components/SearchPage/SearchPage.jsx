@@ -25,11 +25,9 @@ export const SearchPage = () => {
   const onChangePage = (page) => {
     dispatch(setSearchPageAC(page))
   }
-
   const onInputChange = ({ target: { value } }) => {
     setInputValue(value)
   }
-
   const onSearch = () => {
     if (inputValue.length < 1) return
     dispatch(setSearchWordAC(inputValue))
@@ -54,10 +52,15 @@ export const SearchPage = () => {
             loading={isFetching}
           />
         </div>
-        {total_results > 0 ? <span>We found {total_results} results</span> : ''}
-        <MoviesSpawner data={results} />
-        <Pagination showQuickJumper showSizeChanger={false}
-          current={page} pageSize={20} total={total_results}
+        {total_results && <span>We found {total_results} results</span>}
+        <MoviesSpawner
+          data={results}
+        />
+        <Pagination
+          showQuickJumper
+          showSizeChanger={false}
+          current={page} pageSize={20}
+          total={total_results}
           onChange={onChangePage}
         />
       </div>

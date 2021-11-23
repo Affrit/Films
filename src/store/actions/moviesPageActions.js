@@ -95,7 +95,7 @@ const req = await fetch(`https://api.themoviedb.org/3/genre/movie/list?${API_KEY
     const genre = await req.json()
     console.log(genre)
 */
-//&vote_average.gte=
+
 export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
   try {
     dispatch(setMoviesFetchingAC(true))

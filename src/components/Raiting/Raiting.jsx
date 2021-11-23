@@ -5,7 +5,11 @@ export const Raiting = ({ rating }) => {
   const percent = rating * 10
   return (
     <div className='raiting'>
-      {percent ? <span className='raiting__value'>{percent}<sup>%</sup></span> : <span>NR</span>}
+      {
+        percent ?
+          <span className='raiting__value'>{percent}<sup>%</sup></span> :
+          <span>NR</span>
+      }
     </div>
   )
 }
