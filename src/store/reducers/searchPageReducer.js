@@ -14,6 +14,18 @@ const initialState = {
 
 export default function searchPageReducer(state = initialState, action) {
   switch (action.type) {
+    case SEARCH_PAGE_TYPES.SET_FETCHING:
+      return {
+        ...state,
+        isFetching: action.payload
+      }
+
+    case SEARCH_PAGE_TYPES.SET_SEARCH_PAGE_ERROR:
+      return {
+        ...state,
+        errors: [...state.errors, action.payload]
+      }
+
     case SEARCH_PAGE_TYPES.SET_SEARCH_DATA:
       return {
         ...state,
@@ -26,18 +38,6 @@ export default function searchPageReducer(state = initialState, action) {
       return {
         ...state,
         searchWord: action.payload
-      }
-
-    case SEARCH_PAGE_TYPES.SET_FETCHING:
-      return {
-        ...state,
-        isFetching: action.payload
-      }
-
-    case SEARCH_PAGE_TYPES.SET_SEARCH_PAGE_ERROR:
-      return {
-        ...state,
-        errors: [...state.errors, action.payload]
       }
 
     case SEARCH_PAGE_TYPES.SET_SEARCH_PAGE:

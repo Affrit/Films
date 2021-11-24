@@ -6,11 +6,11 @@ import { SiderApp } from '../../Layouts/Sider/SiderApp';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getMoviesPageData, setSortParamAC,
-  setGenreListAC, setClearFiltersAC,
+  setSelectedGenres, setClearFiltersAC,
   setReleaseDateGteAC, setReleaseDateLteAC,
   setRatingGteAC, setRatingLteAC
 } from '../../../store/actions/moviesPageActions';
-import { GENRE_LIST, SORT_PARAMS } from '../../../constants/constants';
+import { SORT_PARAMS } from '../../../constants/constants';
 import { optionsSelector } from './selector';
 
 const { Option } = Select
@@ -21,31 +21,41 @@ const optionsGenerator = (itemsList) => {
     return <Option key={item.id}>{item.name}</Option>
   })
 }
-const genreOptions = optionsGenerator(GENRE_LIST)
-const sortOptions = optionsGenerator(SORT_PARAMS)
 
-export const MoviesSider = (props) => {
+export const MoviesSider = ({ contentType }) => {
   const [ratingVal, setRatingVal] = useState([0, 100])
-  const { sort_by, with_genres } = useSelector(optionsSelector)
+  const [dateFrom, setDateFrom] = useState('')
+  const [dateTo, setDateTo] = useState('')
+  const { isGenreFetching, genreList, sort_by, with_genres } = useSelector(optionsSelector)
   const dispatch = useDispatch()
+  const genreOptions = optionsGenerator(genreList)
+  const sortOptions = optionsGenerator(SORT_PARAMS)
+
+  useEffect(() => {
+    onClearFilters()
+  }, [contentType])
 
   const onApplyFilters = () => {
-    dispatch(getMoviesPageData())
+    dispatch(getMoviesPageData(1, contentType))
   }
   const onClearFilters = () => {
     dispatch(setClearFiltersAC())
     setRatingVal([0, 100])
+    setDateTo('')
+    setDateFrom('')
   }
   const onChangeSort = (value) => {
     dispatch(setSortParamAC(value))
   }
   const onChangeGenres = (selectedItems) => {
-    dispatch(setGenreListAC(selectedItems.join(',')))
+    dispatch(setSelectedGenres(selectedItems.join(',')))
   }
-  const onChangeFromDate = (_, dateString) => {
+  const onChangeFromDate = (date, dateString) => {
+    setDateFrom(date)
     dispatch(setReleaseDateGteAC(dateString))
   }
-  const onChangeToDate = (_, dateString) => {
+  const onChangeToDate = (date, dateString) => {
+    setDateTo(date)
     dispatch(setReleaseDateLteAC(dateString))
   }
   const onRatingChange = (result) => {
@@ -61,7 +71,7 @@ export const MoviesSider = (props) => {
   }
 
   return (
-    <SiderApp {...props} >
+    <SiderApp >
       <Menu
         theme="lite"
         mode="inline"
@@ -75,7 +85,7 @@ export const MoviesSider = (props) => {
           title="Sort by"
         >
           <Menu.Item key="sort-select" style={{ width: '100%', padding: '8px' }}>
-            <Select defaultValue={sort_by} onChange={onChangeSort}>
+            <Select value={sort_by} onChange={onChangeSort}>
               {sortOptions}
             </Select>
           </Menu.Item>
@@ -89,6 +99,7 @@ export const MoviesSider = (props) => {
           <Menu.Item style={{ height: '100%', padding: '0 10px' }} key="drop5">
             <Divider style={{ margin: '0' }} plain>genres</Divider>
             <Select
+              loading={isGenreFetching}
               mode="tags" style={{ width: '100%' }}
               placeholder="choose genres"
               value={with_genres ? with_genres.split(',') : []}
@@ -105,6 +116,7 @@ export const MoviesSider = (props) => {
               <DatePicker
                 style={{ padding: '5px' }}
                 onChange={onChangeFromDate}
+                value={dateFrom}
               />
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
@@ -112,6 +124,7 @@ export const MoviesSider = (props) => {
               <DatePicker
                 style={{ padding: '5px' }}
                 onChange={onChangeToDate}
+                value={dateTo}
               />
             </div>
           </Menu.Item>

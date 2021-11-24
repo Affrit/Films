@@ -20,7 +20,7 @@ export const SearchPage = () => {
   useEffect(() => {
     dispatch(getSearchedData(page, contentType))
   }, [searchWord, page, contentType, dispatch])
-
+  
   const onChangePage = (page) => {
     dispatch(setSearchPageAC(page))
   }

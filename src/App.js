@@ -23,7 +23,8 @@ function App() {
           <ContentApp>
             <Routes>
               <Route path="/" element={<SignIn />} />
-              <Route path="/movies" element={<MoviesPage />} />
+              <Route path="/movie" element={<MoviesPage />} />
+              <Route path="/tv" element={<MoviesPage />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/search/:type" element={<SearchPage />} />
               <Route path="/movie/:film" element={<CurrentFilmPage />} />

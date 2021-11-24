@@ -10,12 +10,14 @@ const initialState = {
   filtrationOptions: {
     sort_by: 'popularity.desc',
     with_genres: '',
-    'release_date.gte': '',
-    'release_date.lte': '',
+    'primary_release_date.gte': '',
+    'primary_release_date.lte': '',
     'vote_average.gte': '',
     'vote_average.lte': '',
   },
-  isMoviesFetching: true,
+  genreList: [],
+  isGenreFetching: false,
+  isMoviesFetching: false,
   errors: [],
 }
 
@@ -25,6 +27,12 @@ export default function moviesPageReducer(state = initialState, action) {
       return {
         ...state,
         isMoviesFetching: action.payload
+      }
+
+    case MOVIES_PAGE_TYPES.SET_GENRES_FETCHING:
+      return {
+        ...state,
+        isGenreFetching: action.payload
       }
 
     case MOVIES_PAGE_TYPES.SET_MOVIES_PAGE_ERROR:
@@ -58,7 +66,7 @@ export default function moviesPageReducer(state = initialState, action) {
         }
       }
 
-    case MOVIES_PAGE_TYPES.SET_GENRE_LIST:
+    case MOVIES_PAGE_TYPES.SET_GENRE:
       return {
         ...state,
         filtrationOptions: {
@@ -72,7 +80,7 @@ export default function moviesPageReducer(state = initialState, action) {
         ...state,
         filtrationOptions: {
           ...state.filtrationOptions,
-          'release_date.gte': action.payload
+          'primary_release_date.gte': action.payload
         }
       }
 
@@ -81,7 +89,7 @@ export default function moviesPageReducer(state = initialState, action) {
         ...state,
         filtrationOptions: {
           ...state.filtrationOptions,
-          'release_date.lte': action.payload
+          'primary_release_date.lte': action.payload
         }
       }
 
@@ -109,6 +117,12 @@ export default function moviesPageReducer(state = initialState, action) {
         filtrationOptions: {
           ...initialState.filtrationOptions
         }
+      }
+
+    case MOVIES_PAGE_TYPES.SET_GENRE_LIST:
+      return {
+        ...state,
+        genreList: action.payload
       }
 
     default:

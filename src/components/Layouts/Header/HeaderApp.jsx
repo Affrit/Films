@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 
 const { Header } = Layout
-const headerLinks = ['sign-up', 'movies', 'favorites']
+const headerLinks = ['sign-up', 'movie', 'tv', 'favorites']
 const headerItems = headerLinks.map(item => {
   return <Menu.Item key={item}>
     <Link to={`/${item}`} >{item}</Link>

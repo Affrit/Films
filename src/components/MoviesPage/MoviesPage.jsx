@@ -3,21 +3,32 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MoviesSider } from './MoviesPageSider/MoviesSider';
 import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
-import { Button, Pagination } from 'antd';
+import { Pagination } from 'antd';
 import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
 import { moviesDataSelector } from './selector';
+import { useLocation } from 'react-router';
+import { getCurrentLocation } from '../../helpers/helpers';
+import { getGenreList } from '../../store/actions/moviesPageActions';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
   const { isMoviesFetching, page, total_results, results } = useSelector(moviesDataSelector)
+  const location = useLocation()
+  const contentType = getCurrentLocation(location.pathname)
 
   useEffect(() => {
-    dispatch(getMoviesPageData(page))
+    dispatch(getMoviesPageData(page, contentType))
   }, [dispatch, page])
+
+  useEffect(() => {
+    dispatch(getMoviesPageData(1, contentType))
+    dispatch(getGenreList(contentType))
+  }, [dispatch, contentType])
 
   const onChangePage = (page) => {
     dispatch(setMoviesPageAC(page))
   }
+
   /*
     useEffect(() => {
       const onScroll = (e) => {
@@ -30,12 +41,12 @@ export const MoviesPage = () => {
   */
   return (
     <>
-      <MoviesSider />
+      <MoviesSider contentType={contentType} />
       <div className='movies-page'>
         Movies Page
         <MoviesSpawner
           data={results}
-          contentType={'movie'}
+          contentType={contentType}
         />
         <Pagination
           showQuickJumper

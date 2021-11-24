@@ -32,7 +32,7 @@ export const SearchSider = ({ currentLocation }) => {
         >
 
           <Menu.Item key="movie">
-            <Link to='/search/movie' onClick={handleClick}>
+            <Link to='/search/movie' onClick={()=>{}/*handleClick*/}>
               <span>Movies</span>
             </Link>
           </Menu.Item>

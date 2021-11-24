@@ -17,7 +17,7 @@ export const CurrentFilmPage = () => {
   
   useEffect(() => {
     dispatch(getCurrentFilm(filmId, contentType))
-  }, [dispatch, filmId])
+  }, [dispatch, filmId, contentType])
 
   const spawnImg = () => {
     if (!filmData.poster_path) return
