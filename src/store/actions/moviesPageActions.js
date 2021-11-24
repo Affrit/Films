@@ -88,11 +88,12 @@ export const getMoviesPageData = (page = 1) => async (dispatch, getState) => {
     dispatch(setMoviesFetchingAC(true))
     const { moviesPage: { filtrationOptions } } = getState()
     const url = getUrl(page, filtrationOptions)
-    const dataFromServer = await fetch(url)
-    const moviesData = await dataFromServer.json()
+    const response = await fetch(url)
+    const moviesData = await response.json()
     console.log(moviesData)
-    if (moviesData.errors) {
-      throw new Error(moviesData.errors[0])
+    if (!response.ok) {
+      const { status_message } = moviesData
+      throw new Error(status_message || 'bad response')
     }
     dispatch(setMoviesAC(moviesData))
   } catch (error) {

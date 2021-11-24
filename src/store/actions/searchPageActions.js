@@ -45,10 +45,9 @@ export const getSearchedData = (page = 1, type = 'movie') => async (dispatch, ge
     const { searchPage: { searchWord } } = getState()
     const response = await fetch(`${BASE_URL}/search/${type}?${API_KEY}&query=${searchWord}&page=${page}`)
     const searchData = await response.json()
-    console.log(searchData)
     if (!response.ok) {
-      const { status_message, errors } = searchData
-      throw new Error(errors ?? status_message ?? 'unknown error')
+      const { status_message } = searchData
+      throw new Error(status_message || 'bad response')
     }
     dispatch(setSearchDataAC(searchData))
   } catch (error) {
