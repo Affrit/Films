@@ -9,7 +9,7 @@ const initialState = {
   },
   searchWord: '',
   isFetching: false,
-  error: '',
+  errors: [],
 }
 
 export default function searchPageReducer(state = initialState, action) {
@@ -34,10 +34,10 @@ export default function searchPageReducer(state = initialState, action) {
         isFetching: action.payload
       }
 
-    case SEARCH_PAGE_TYPES.SET_ERROR:
+    case SEARCH_PAGE_TYPES.SET_SEARCH_PAGE_ERROR:
       return {
         ...state,
-        error: action.payload
+        errors: [...state.errors, action.payload]
       }
 
     case SEARCH_PAGE_TYPES.SET_SEARCH_PAGE:

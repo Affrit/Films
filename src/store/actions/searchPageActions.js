@@ -25,7 +25,7 @@ export const setSearchDataAC = (newData) => {
 
 export const setErrorAC = (newData) => {
   return {
-      type: SEARCH_PAGE_TYPES.SET_ERROR,
+      type: SEARCH_PAGE_TYPES.SET_SEARCH_PAGE_ERROR,
       payload: newData
   }
 }

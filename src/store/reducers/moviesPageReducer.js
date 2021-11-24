@@ -16,7 +16,7 @@ const initialState = {
     'vote_average.lte': '',
   },
   isMoviesFetching: true,
-  error: '',
+  errors: [],
 }
 
 export default function moviesPageReducer(state = initialState, action) {
@@ -27,10 +27,10 @@ export default function moviesPageReducer(state = initialState, action) {
         isMoviesFetching: action.payload
       }
 
-    case MOVIES_PAGE_TYPES.SET_ERROR:
+    case MOVIES_PAGE_TYPES.SET_MOVIES_PAGE_ERROR:
       return {
         ...state,
-        error: action.payload
+        errors: [...state.errors, action.payload]
       }
 
     case MOVIES_PAGE_TYPES.SET_MOVIES_DATA:

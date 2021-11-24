@@ -1,6 +1,5 @@
 import { MOVIES_PAGE_TYPES } from "./types"
-import { API_KEY } from "../../constants/constants"
-import { BASE_URL } from "../../constants/constants"
+import { getUrl } from "../../helpers/getUrl"
 
 export const setMoviesFetchingAC = (newData) => {
   return {
@@ -11,7 +10,7 @@ export const setMoviesFetchingAC = (newData) => {
 
 export const setErrorAC = (newData) => {
   return {
-    type: MOVIES_PAGE_TYPES.SET_ERROR,
+    type: MOVIES_PAGE_TYPES.SET_MOVIES_PAGE_ERROR,
     payload: newData
   }
 }
@@ -76,18 +75,6 @@ export const setClearFiltersAC = () => {
   return {
     type: MOVIES_PAGE_TYPES.SET_CLEAR_FILTERS
   }
-}
-//&language=ru-RU
-const getUrl = (page = 1, filtrationOptions) => {
-  let url = `${BASE_URL}/discover/movie?${API_KEY}&page=${page}`
-  for (const key in filtrationOptions) {
-    if (filtrationOptions[key] && filtrationOptions.hasOwnProperty(key)) {
-      const qwery = `&${key}=${filtrationOptions[key]}`
-      url = url.concat(qwery)
-    }
-  }
-
-  return url
 }
 
 /*

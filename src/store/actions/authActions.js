@@ -7,3 +7,10 @@ export const authToggle = (newData) => {
       payload: newData
   }
 }
+
+export const setAuthError = (newData) => {
+  return {
+      type: LOGIN_TYPES.SET_AUTH_ERROR,
+      payload: newData
+  }
+}

@@ -3,7 +3,7 @@ import { CURRENT_FILM_PAGE_TYPES } from "../actions/types";
 const initialState = {
   filmData: {},
   isFetching: false,
-  error: '',
+  errors: [],
 }
 
 export default function currentFilmPageReducer(state = initialState, action) {
@@ -25,7 +25,7 @@ export default function currentFilmPageReducer(state = initialState, action) {
     case CURRENT_FILM_PAGE_TYPES.SET_ERROR:
       return {
         ...state,
-        error: action.payload
+        errors: [...state.errors, action.payload]
       }
 
     default:
