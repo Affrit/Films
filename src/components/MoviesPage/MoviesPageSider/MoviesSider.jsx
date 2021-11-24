@@ -12,15 +12,9 @@ import {
 } from '../../../store/actions/moviesPageActions';
 import { SORT_PARAMS } from '../../../constants/constants';
 import { optionsSelector } from './selector';
+import { optionsGenerator } from '../../../helpers/optionsGenerator'
 
-const { Option } = Select
 const { SubMenu } = Menu
-
-const optionsGenerator = (itemsList) => {
-  return itemsList.map(item => {
-    return <Option key={item.id}>{item.name}</Option>
-  })
-}
 
 export const MoviesSider = ({ contentType }) => {
   const [ratingVal, setRatingVal] = useState([0, 100])

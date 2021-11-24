@@ -7,12 +7,12 @@ import { Pagination } from 'antd';
 import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
 import { moviesDataSelector } from './selector';
 import { useLocation } from 'react-router';
-import { getCurrentLocation } from '../../helpers/helpers';
+import { getCurrentLocation } from '../../helpers/getLocation';
 import { getGenreList } from '../../store/actions/moviesPageActions';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
-  const { isMoviesFetching, page, total_results, results } = useSelector(moviesDataSelector)
+  const { page, total_results, results } = useSelector(moviesDataSelector)
   const location = useLocation()
   const contentType = getCurrentLocation(location.pathname)
 

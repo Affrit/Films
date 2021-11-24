@@ -6,7 +6,7 @@ import { getCurrentFilm } from '../../store/actions/filmActions';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { currentFilmSelector } from './selector';
 import { useLocation, useParams } from 'react-router';
-
+import { Spin } from 'antd';
 
 export const CurrentFilmPage = () => {
   const dispatch = useDispatch()
@@ -28,7 +28,7 @@ export const CurrentFilmPage = () => {
     <div className='filmPage-wrap'>
       <div>FilmID {filmId}</div>
       <div className='filmPage'>
-        {isFetching ? <span>LOADING...</span> : spawnImg()}
+        {isFetching ? <Spin size="large" /> : spawnImg()}
       </div>
       <Link to='/movies'>to All Films</Link>
     </div>
