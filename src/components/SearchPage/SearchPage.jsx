@@ -54,6 +54,7 @@ export const SearchPage = () => {
         {total_results ? <span>We found {total_results} results</span> : ''}
         <MoviesSpawner
           data={results}
+          contentType={contentType}
         />
         <Pagination
           showQuickJumper

@@ -23,10 +23,10 @@ export const setFilmDataAC = (newData) => {
   }
 }
 
-export const getCurrentFilm = (filmId) => async (dispatch) => {
+export const getCurrentFilm = (filmId, type) => async (dispatch) => {
   try {
     dispatch(fetchingCurrentAC(true))
-    const dataFromServer = await fetch(`${BASE_URL}/movie/${filmId}?${API_KEY}`)
+    const dataFromServer = await fetch(`${BASE_URL}/${type}/${filmId}?${API_KEY}`)
     const data = await dataFromServer.json()
     if (data.errors) {
       throw new Error(data.errors[0])

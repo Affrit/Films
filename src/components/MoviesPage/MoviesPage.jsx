@@ -33,7 +33,10 @@ export const MoviesPage = () => {
       <MoviesSider />
       <div className='movies-page'>
         Movies Page
-        <MoviesSpawner data={results} />
+        <MoviesSpawner
+          data={results}
+          contentType={'movie'}
+        />
         <Pagination
           showQuickJumper
           showSizeChanger={false}

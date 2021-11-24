@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const { Meta } = Card;
 
 export const MovieCard = ({ filmData, style, isFetching }) => {
-  const { id, imgSrc, title, releaseDate, rating } = filmData
+  const { id, imgSrc, title, releaseDate, rating, contentType } = filmData
   const [imgFetching, setImgFetching] = useState(true)
   const [isLoadError, setIsLoadError] = useState(false)
 
@@ -21,7 +21,7 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
     setIsLoadError(true)
   }
 
-  const imgLink = <Link to={`/films/${id}`}>
+  const imgLink = <Link to={`/${contentType}/${id}`}>
     <img
       className='movie-card__img' alt='#'
       src={isLoadError ? altImg : imgSrc}
@@ -29,7 +29,7 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
     />
   </Link>
 
-  const titleLink = <Link to={`/films/${id}`}>{title}</Link>
+  const titleLink = <Link to={`/${contentType}/${id}`}>{title}</Link>
 
   return (
     <Card

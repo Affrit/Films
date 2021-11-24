@@ -5,15 +5,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentFilm } from '../../store/actions/filmActions';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { currentFilmSelector } from './selector';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
+
 
 export const CurrentFilmPage = () => {
   const dispatch = useDispatch()
   const { film: filmId } = useParams()
   const { filmData, isFetching  } = useSelector(currentFilmSelector)
+  const location = useLocation()
+  const contentType = location.pathname.split('/')[1]
   
   useEffect(() => {
-    dispatch(getCurrentFilm(filmId))
+    dispatch(getCurrentFilm(filmId, contentType))
   }, [dispatch, filmId])
 
   const spawnImg = () => {

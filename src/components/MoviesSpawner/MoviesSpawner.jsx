@@ -3,9 +3,10 @@ import { MovieCard } from '../MovieCard/MovieCard';
 import { BASE_URL_IMG } from '../../constants/constants';
 import './style.scss'
 
-export const MoviesSpawner = ({ data }) => {
+export const MoviesSpawner = ({ data, contentType }) => {
   const filmCards = data.map(film => {
     const filmData = {
+      contentType: contentType,
       id: film.id,
       title: film.title ?? film.name,
       releaseDate: film.release_date ?? film.first_air_date,
