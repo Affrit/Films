@@ -6,9 +6,8 @@ import { Input, Pagination } from 'antd';
 import { setSearchWordAC } from '../../store/actions/searchPageActions';
 import { SearchSider } from './SearchPageSider/SearchSider';
 import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
-import { useLocation } from 'react-router';
 import { searchDataSelector } from '../../helpers/selector';
-import { getCurrentLocation } from '../../helpers/helpers';
+import { useParams } from 'react-router';
 
 const { Search } = Input;
 
@@ -16,12 +15,11 @@ export const SearchPage = () => {
   const [inputValue, setInputValue] = useState('')
   const { isFetching, searchWord, page, total_results, results } = useSelector(searchDataSelector)
   const dispatch = useDispatch()
-  const location = useLocation()
-  const currentLocation = getCurrentLocation(location.pathname)
+  const { type: contentType } = useParams()
 
   useEffect(() => {
-    dispatch(getSearchedData(page, currentLocation))
-  }, [searchWord, page, currentLocation, dispatch])
+    dispatch(getSearchedData(page, contentType))
+  }, [searchWord, page, contentType, dispatch])
 
   const onChangePage = (page) => {
     dispatch(setSearchPageAC(page))
@@ -37,7 +35,7 @@ export const SearchPage = () => {
 
   return (
     <>
-      <SearchSider currentLocation={currentLocation} />
+      <SearchSider currentLocation={contentType} />
       <div className='search-page'>
         <div>
           SearchPage

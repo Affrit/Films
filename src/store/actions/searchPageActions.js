@@ -49,6 +49,7 @@ export const getSearchedData = (page = 1, type = 'movie') => async (dispatch, ge
       const { status_message } = searchData
       throw new Error(status_message || 'bad response')
     }
+    console.log(searchData)
     dispatch(setSearchDataAC(searchData))
   } catch (error) {
     console.warn(error)

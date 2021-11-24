@@ -3,20 +3,18 @@ import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentFilm } from '../../store/actions/filmActions';
-import { useLocation } from 'react-router-dom';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { currentFilmSelector } from '../../helpers/selector';
-import { getCurrentLocation } from '../../helpers/helpers';
+import { useParams } from 'react-router';
 
 export const CurrentFilmPage = () => {
   const dispatch = useDispatch()
-  const location = useLocation()
+  const { film: filmId } = useParams()
   const { filmData, isFetching  } = useSelector(currentFilmSelector)
   
   useEffect(() => {
-    const filmId = getCurrentLocation(location.pathname)
     dispatch(getCurrentFilm(filmId))
-  }, [dispatch, location.pathname])
+  }, [dispatch, filmId])
 
   const spawnImg = () => {
     if (!filmData.poster_path) return
@@ -25,7 +23,7 @@ export const CurrentFilmPage = () => {
 
   return (
     <div className='filmPage-wrap'>
-      <div>FilmID {location.pathname}</div>
+      <div>FilmID {filmId}</div>
       <div className='filmPage'>
         {isFetching ? <span>LOADING...</span> : spawnImg()}
       </div>
