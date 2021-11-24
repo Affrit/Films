@@ -6,6 +6,7 @@ import { getCurrentFilm } from '../../store/actions/filmActions';
 import { useLocation } from 'react-router-dom';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { currentFilmSelector } from '../../helpers/selector';
+import { getCurrentLocation } from '../../helpers/helpers';
 
 export const CurrentFilmPage = () => {
   const dispatch = useDispatch()
@@ -13,7 +14,7 @@ export const CurrentFilmPage = () => {
   const { filmData, isFetching  } = useSelector(currentFilmSelector)
   
   useEffect(() => {
-    const filmId = location.pathname.split('/').pop()
+    const filmId = getCurrentLocation(location.pathname)
     dispatch(getCurrentFilm(filmId))
   }, [dispatch, location.pathname])
 

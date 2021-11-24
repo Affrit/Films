@@ -1,5 +1,5 @@
 import { MOVIES_PAGE_TYPES } from "./types"
-import { getUrl } from "../../helpers/getUrl"
+import { getUrl } from "../../helpers/helpers"
 
 export const setMoviesFetchingAC = (newData) => {
   return {

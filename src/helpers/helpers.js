@@ -13,5 +13,11 @@ export const getUrl = (page = 1, filtrationOptions) => {
   return url
 }
 
-
 //&language=ru-RU
+
+export const getCurrentLocation = (pathName) => {
+  const arr = pathName.split('/')
+  const currentLocation = arr[arr.length - 1]
+
+  return currentLocation
+}

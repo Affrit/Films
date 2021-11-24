@@ -8,6 +8,7 @@ import { SearchSider } from './SearchPageSider/SearchSider';
 import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
 import { useLocation } from 'react-router';
 import { searchDataSelector } from '../../helpers/selector';
+import { getCurrentLocation } from '../../helpers/helpers';
 
 const { Search } = Input;
 
@@ -16,7 +17,7 @@ export const SearchPage = () => {
   const { isFetching, searchWord, page, total_results, results } = useSelector(searchDataSelector)
   const dispatch = useDispatch()
   const location = useLocation()
-  const currentLocation = location.pathname.split('/').pop()
+  const currentLocation = getCurrentLocation(location.pathname)
 
   useEffect(() => {
     dispatch(getSearchedData(page, currentLocation))
