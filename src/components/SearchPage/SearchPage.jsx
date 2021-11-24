@@ -6,7 +6,7 @@ import { Input, Pagination } from 'antd';
 import { setSearchWordAC } from '../../store/actions/searchPageActions';
 import { SearchSider } from './SearchPageSider/SearchSider';
 import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
-import { searchDataSelector } from '../../helpers/selector';
+import { searchDataSelector } from './selector';
 import { useParams } from 'react-router';
 
 const { Search } = Input;
@@ -28,7 +28,7 @@ export const SearchPage = () => {
     setInputValue(value)
   }
   const onSearch = () => {
-    if (inputValue.length < 1) return
+    if (inputValue.length < 1) return;
     dispatch(setSearchWordAC(inputValue))
     dispatch(setSearchPageAC(1))
   }

@@ -11,7 +11,7 @@ import {
   setRatingGteAC, setRatingLteAC
 } from '../../../store/actions/moviesPageActions';
 import { GENRE_LIST, SORT_PARAMS } from '../../../constants/constants';
-import { optionsSelector } from '../../../helpers/selector';
+import { optionsSelector } from './selector';
 
 const { Option } = Select
 const { SubMenu } = Menu

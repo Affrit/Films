@@ -3,7 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import store from './store/store.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { PrivateRoute } from './HOC/PrivateRoute';
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 import { Layout } from 'antd';
 
 import { HeaderApp } from './components/Layouts/Header/HeaderApp';

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentFilm } from '../../store/actions/filmActions';
 import { BASE_URL_IMG } from '../../constants/constants';
-import { currentFilmSelector } from '../../helpers/selector';
+import { currentFilmSelector } from './selector';
 import { useParams } from 'react-router';
 
 export const CurrentFilmPage = () => {

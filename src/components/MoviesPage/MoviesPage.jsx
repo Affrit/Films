@@ -5,7 +5,7 @@ import { MoviesSider } from './MoviesPageSider/MoviesSider';
 import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
 import { Button, Pagination } from 'antd';
 import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
-import { moviesDataSelector } from '../../helpers/selector';
+import { moviesDataSelector } from './selector';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
