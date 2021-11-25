@@ -1,10 +1,10 @@
 import './style.scss'
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { MoviesSider } from './MoviesPageSider/MoviesSider';
 import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
 import { Pagination } from 'antd';
-import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
+import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 import { moviesDataSelector } from './selector';
 import { useLocation } from 'react-router';
 import { getCurrentLocation } from '../../helpers/getLocation';
@@ -15,14 +15,18 @@ export const MoviesPage = () => {
   const { page, total_results, results } = useSelector(moviesDataSelector)
   const location = useLocation()
   const contentType = getCurrentLocation(location.pathname)
+  const [savedLocation, setSavedLocation] = useState(contentType)
 
   useEffect(() => {
     dispatch(getMoviesPageData(page, contentType))
   }, [dispatch, page])
 
   useEffect(() => {
-    dispatch(getMoviesPageData(1, contentType))
-    dispatch(getGenreList(contentType))
+    if (contentType !== savedLocation) {
+      dispatch(getMoviesPageData(1, contentType))
+      dispatch(getGenreList(contentType))
+      setSavedLocation(contentType)
+    }
   }, [dispatch, contentType])
 
   const onChangePage = (page) => {

@@ -5,7 +5,7 @@ import { getSearchedData, setSearchPageAC } from '../../store/actions/searchPage
 import { Input, Pagination } from 'antd';
 import { setSearchWordAC } from '../../store/actions/searchPageActions';
 import { SearchSider } from './SearchPageSider/SearchSider';
-import { MoviesSpawner } from '../MoviesSpawner/MoviesSpawner';
+import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 import { searchDataSelector } from './selector';
 import { useParams } from 'react-router';
 

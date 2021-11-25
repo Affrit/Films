@@ -3,7 +3,7 @@ import { MovieCard } from '../MovieCard/MovieCard';
 import { BASE_URL_IMG } from '../../constants/constants';
 import './style.scss'
 
-export const MoviesSpawner = ({ data, contentType }) => {
+const MoviesSpawner = ({ data, contentType }) => {
   const filmCards = data.map(film => {
     const filmData = {
       contentType: contentType,
@@ -26,3 +26,5 @@ export const MoviesSpawner = ({ data, contentType }) => {
     </div>
   )
 }
+
+export default React.memo(MoviesSpawner)
