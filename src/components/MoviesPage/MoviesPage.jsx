@@ -9,6 +9,7 @@ import { moviesDataSelector } from './selector';
 import { useLocation } from 'react-router';
 import { getCurrentLocation } from '../../helpers/getLocation';
 import { getGenreList } from '../../store/actions/moviesPageActions';
+import { setClearFiltersAC } from '../../store/actions/moviesPageActions';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
@@ -25,6 +26,7 @@ export const MoviesPage = () => {
     if (contentType !== savedLocation) {
       dispatch(getMoviesPageData(1, contentType))
       setSavedLocation(contentType)
+      dispatch(setClearFiltersAC())
     }
     dispatch(getGenreList(contentType))
   }, [dispatch, contentType])
@@ -45,7 +47,7 @@ export const MoviesPage = () => {
   */
   return (
     <>
-      <MoviesSider contentType={contentType} />
+      <MoviesSider />
       <div className='movies-page'>
         Movies Page
         <MoviesSpawner

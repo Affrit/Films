@@ -13,6 +13,8 @@ import { SORT_PARAMS } from '../../../constants/constants';
 import { optionsSelector } from './selector';
 import { optionsGenerator } from '../../../helpers/optionsGenerator'
 import './style.scss'
+import { useLocation } from 'react-router';
+import { getCurrentLocation } from '../../../helpers/getLocation';
 
 const { SubMenu } = Menu
 
@@ -24,10 +26,6 @@ export const MoviesSider = ({ contentType }) => {
   const dispatch = useDispatch()
   const genreOptions = optionsGenerator(genreList)
   const sortOptions = optionsGenerator(SORT_PARAMS)
-
-  useEffect(() => {
-    onClearFilters()
-  }, [contentType])
 
   const onApplyFilters = () => {
     dispatch(getMoviesPageData(1, contentType))
@@ -155,7 +153,7 @@ export const MoviesSider = ({ contentType }) => {
             <Button
               onClick={onApplyFilters}
               className='controls__btn'
-              size='small' 
+              size='small'
               type="primary"
             >
               Apply
@@ -164,7 +162,7 @@ export const MoviesSider = ({ contentType }) => {
             <Button
               onClick={onClearFilters}
               className='controls__btn'
-              size='small' 
+              size='small'
               type="primary"
             >
               Clear
