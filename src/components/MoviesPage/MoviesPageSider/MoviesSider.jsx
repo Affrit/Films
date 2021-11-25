@@ -116,7 +116,7 @@ export const MoviesSider = ({ contentType }) => {
               <div className='date-wrap'>
                 <span>From</span>
                 <DatePicker
-                  style={{ padding: '5px' }}
+                  className='date-picker'
                   onChange={onChangeFromDate}
                   value={dateFrom}
                 />
@@ -124,7 +124,7 @@ export const MoviesSider = ({ contentType }) => {
               <div className='date-wrap'>
                 <span>To</span>
                 <DatePicker
-                  style={{ padding: '5px' }}
+                  className='date-picker'
                   onChange={onChangeToDate}
                   value={dateTo}
                 />
@@ -149,24 +149,28 @@ export const MoviesSider = ({ contentType }) => {
 
         </SubMenu>
 
-        <Menu.Item key="btn1" >
-          <Button
-            onClick={onApplyFilters}
-            style={{ width: '100%', margin: '10px 0' }}
-            size='small' type="primary"
-          >
-            Apply
-          </Button>
-        </Menu.Item>
+        <Menu.Item className='controls' key="btn" >
+          <Divider className='filters-divider' plain>controls</Divider>
+          <div className='controls__wrap'>
+            <Button
+              onClick={onApplyFilters}
+              className='controls__btn'
+              size='small' 
+              type="primary"
+            >
+              Apply
+            </Button>
 
-        <Menu.Item key="btn2" >
-          <Button
-            onClick={onClearFilters}
-            style={{ width: '100%', margin: '10px 0' }}
-            size='small' type="primary"
-          >
-            Clear
-          </Button>
+            <Button
+              onClick={onClearFilters}
+              className='controls__btn'
+              size='small' 
+              type="primary"
+            >
+              Clear
+            </Button>
+          </div>
+          <Divider className='filters-divider'></Divider>
         </Menu.Item>
 
       </Menu>
