@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './style.scss'
 import { Menu, DatePicker, Button, Divider, Select, Slider } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { SiderApp } from '../../Layouts/Sider/SiderApp';
@@ -13,6 +12,7 @@ import {
 import { SORT_PARAMS } from '../../../constants/constants';
 import { optionsSelector } from './selector';
 import { optionsGenerator } from '../../../helpers/optionsGenerator'
+import './style.scss'
 
 const { SubMenu } = Menu
 
@@ -77,59 +77,74 @@ export const MoviesSider = ({ contentType }) => {
           key="sort"
           icon={<SearchOutlined />}
           title="Sort by"
+          className='sub-menu'
         >
-          <Menu.Item key="sort-select" style={{ width: '100%', padding: '8px' }}>
-            <Select value={sort_by} onChange={onChangeSort}>
-              {sortOptions}
-            </Select>
+          <Menu.Item className='sub-menu__item' key="sort-select">
+            <div className='select-wrap'>
+              <Select className='sub-menu__select' value={sort_by} onChange={onChangeSort}>
+                {sortOptions}
+              </Select>
+            </div>
           </Menu.Item>
         </SubMenu>
 
         <SubMenu
           key="filters"
           icon={<SearchOutlined />}
-          title="Filters by" style={{ width: '200px' }}
+          title="Filters by"
+          className='sub-menu'
         >
-          <Menu.Item style={{ height: '100%', padding: '0 10px' }} key="drop5">
-            <Divider style={{ margin: '0' }} plain>genres</Divider>
-            <Select
-              loading={isGenreFetching}
-              mode="tags" style={{ width: '100%' }}
-              placeholder="choose genres"
-              value={with_genres ? with_genres.split(',') : []}
-              onChange={onChangeGenres}
-            >
-              {genreOptions}
-            </Select>
-          </Menu.Item>
-
-          <Menu.Item style={{ height: '100%', padding: '0 10px' }} key="drop9">
-            <Divider style={{ margin: '0' }} plain>Release dates</Divider>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <div>From</div>
-              <DatePicker
-                style={{ padding: '5px' }}
-                onChange={onChangeFromDate}
-                value={dateFrom}
-              />
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <div>To</div>
-              <DatePicker
-                style={{ padding: '5px' }}
-                onChange={onChangeToDate}
-                value={dateTo}
-              />
+          <Menu.Item className='sub-menu__item' key="drop5">
+            <Divider className='filters-divider' plain>genres</Divider>
+            <div className='select-wrap'>
+              <Select
+                loading={isGenreFetching}
+                mode="tags"
+                className='sub-menu__select'
+                placeholder="choose genres"
+                value={with_genres ? with_genres.split(',') : []}
+                onChange={onChangeGenres}
+              >
+                {genreOptions}
+              </Select>
             </div>
           </Menu.Item>
 
-          <Menu.Item style={{ height: '100%', padding: '0 15px' }} key="drop10">
-            <Divider style={{ margin: '0' }} plain>Rating</Divider>
-            <Slider
-              range value={ratingVal}
-              onChange={onRatingChange}
-              onAfterChange={afterChangeRating}
-            />
+          <Menu.Item className='sub-menu__item' key="drop9">
+            <Divider className='filters-divider' plain>Release dates</Divider>
+            <div className='select-wrap'>
+              <div className='date-wrap'>
+                <span>From</span>
+                <DatePicker
+                  style={{ padding: '5px' }}
+                  onChange={onChangeFromDate}
+                  value={dateFrom}
+                />
+              </div>
+              <div className='date-wrap'>
+                <span>To</span>
+                <DatePicker
+                  style={{ padding: '5px' }}
+                  onChange={onChangeToDate}
+                  value={dateTo}
+                />
+              </div>
+            </div>
+          </Menu.Item>
+
+          <Menu.Item className='sub-menu__item' key="drop10">
+            <Divider className='filters-divider' plain>Rating</Divider>
+            <div className='slider-wrap'>
+              <Slider
+                range value={ratingVal}
+                onChange={onRatingChange}
+                onAfterChange={afterChangeRating}
+              />
+              <div className='slider-info'>
+                <span>from</span>
+                <span>to</span>
+              </div>
+            </div>
           </Menu.Item>
 
         </SubMenu>

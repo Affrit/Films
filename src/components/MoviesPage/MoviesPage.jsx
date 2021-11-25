@@ -24,9 +24,9 @@ export const MoviesPage = () => {
   useEffect(() => {
     if (contentType !== savedLocation) {
       dispatch(getMoviesPageData(1, contentType))
-      dispatch(getGenreList(contentType))
       setSavedLocation(contentType)
     }
+    dispatch(getGenreList(contentType))
   }, [dispatch, contentType])
 
   const onChangePage = (page) => {
