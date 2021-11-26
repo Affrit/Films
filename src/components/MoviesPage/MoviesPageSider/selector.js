@@ -7,7 +7,7 @@ export const optionsSelector = ({
       'vote_average.gte': voteGte, 
       'vote_average.lte': voteLte, 
       'primary_release_date.gte': releaseGte, 
-      'primary_release_date.gte': releaseLte 
+      'primary_release_date.lte': releaseLte 
     }
   } }) => ({
     isGenreFetching,

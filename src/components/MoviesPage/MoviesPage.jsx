@@ -9,7 +9,6 @@ import { moviesDataSelector } from './selector';
 import { useLocation } from 'react-router';
 import { getCurrentLocation } from '../../helpers/getLocation';
 import { getGenreList } from '../../store/actions/moviesPageActions';
-import { setClearFiltersAC } from '../../store/actions/moviesPageActions';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()

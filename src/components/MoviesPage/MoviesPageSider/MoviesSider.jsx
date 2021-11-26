@@ -28,19 +28,14 @@ export const MoviesSider = () => {
   const contentType = getCurrentLocation(location.pathname)
   const [savedLocation, setSavedLocation] = useState(contentType)
   const [ratingVal, setRatingVal] = useState([voteGte * 10, voteLte * 10 || 100])
-  const [dateFrom, setDateFrom] = useState(() => {
-    return releaseGte && moment(releaseGte)
-  })
-  const [dateTo, setDateTo] = useState(() => {
-    return releaseLte && moment(releaseLte)
-  })
 
   useEffect(() => {
     if (contentType !== savedLocation) {
-      onClearFilters()
+      dispatch(setClearFiltersAC())
+      setRatingVal([0, 100])
       setSavedLocation(contentType)
     }
-  }, [contentType])
+  }, [contentType, dispatch])
 
   const onApplyFilters = () => {
     dispatch(getMoviesPageData(1, contentType))
@@ -48,8 +43,6 @@ export const MoviesSider = () => {
   const onClearFilters = () => {
     dispatch(setClearFiltersAC())
     setRatingVal([0, 100])
-    setDateTo('')
-    setDateFrom('')
   }
   const onChangeSort = (value) => {
     dispatch(setSortParamAC(value))
@@ -57,12 +50,10 @@ export const MoviesSider = () => {
   const onChangeGenres = (selectedItems) => {
     dispatch(setSelectedGenres(selectedItems.join(',')))
   }
-  const onChangeFromDate = (date, dateString) => {
-    setDateFrom(date)
+  const onChangeFromDate = (_, dateString) => {
     dispatch(setReleaseDateGteAC(dateString))
   }
-  const onChangeToDate = (date, dateString) => {
-    setDateTo(date)
+  const onChangeToDate = (_, dateString) => {
     dispatch(setReleaseDateLteAC(dateString))
   }
   const onRatingChange = (result) => {
@@ -131,7 +122,7 @@ export const MoviesSider = () => {
                 <DatePicker
                   className='date-picker'
                   onChange={onChangeFromDate}
-                  value={dateFrom}
+                  value={releaseGte && moment(releaseGte)}
                 />
               </div>
               <div className='date-wrap'>
@@ -139,7 +130,7 @@ export const MoviesSider = () => {
                 <DatePicker
                   className='date-picker'
                   onChange={onChangeToDate}
-                  value={dateTo}
+                  value={releaseLte && moment(releaseLte)}
                 />
               </div>
             </div>
