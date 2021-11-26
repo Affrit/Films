@@ -18,14 +18,26 @@ import { getCurrentLocation } from '../../../helpers/getLocation';
 
 const { SubMenu } = Menu
 
-export const MoviesSider = ({ contentType }) => {
+export const MoviesSider = () => {
   const [ratingVal, setRatingVal] = useState([0, 100])
   const [dateFrom, setDateFrom] = useState('')
   const [dateTo, setDateTo] = useState('')
-  const { isGenreFetching, genreList, sort_by, with_genres } = useSelector(optionsSelector)
+  const { isGenreFetching, genreList, sort_by, with_genres, voteGte, voteLte, releaseGte, releaseLte } = useSelector(optionsSelector)
   const dispatch = useDispatch()
   const genreOptions = optionsGenerator(genreList)
   const sortOptions = optionsGenerator(SORT_PARAMS)
+  const location = useLocation()
+  const contentType = getCurrentLocation(location.pathname)
+  const [savedLocation, setSavedLocation] = useState(contentType)
+
+  useEffect(() => {
+    setRatingVal([+voteGte * 10, +voteLte * 10])
+    if (contentType !== savedLocation) {
+      dispatch(setClearFiltersAC())
+      setRatingVal([0, 100])
+      setSavedLocation(contentType)
+    }
+  }, [contentType])
 
   const onApplyFilters = () => {
     dispatch(getMoviesPageData(1, contentType))
