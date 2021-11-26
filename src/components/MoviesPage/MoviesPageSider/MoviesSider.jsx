@@ -20,14 +20,18 @@ import moment from 'moment'
 const { SubMenu } = Menu
 
 export const MoviesSider = () => {
-  const { isGenreFetching, genreList, sort_by, with_genres, voteGte, voteLte, releaseGte, releaseLte } = useSelector(optionsSelector)
+  const { 
+    isGenreFetching, genreList, sort_by, 
+    with_genres, voteGte, voteLte, 
+    releaseGte, releaseLte 
+  } = useSelector(optionsSelector)
   const dispatch = useDispatch()
-  const genreOptions = optionsGenerator(genreList)
-  const sortOptions = optionsGenerator(SORT_PARAMS)
   const location = useLocation()
   const contentType = getCurrentLocation(location.pathname)
   const [savedLocation, setSavedLocation] = useState(contentType)
   const [ratingVal, setRatingVal] = useState([voteGte * 10, voteLte * 10 || 100])
+  const genreOptions = optionsGenerator(genreList)
+  const sortOptions = optionsGenerator(SORT_PARAMS)
 
   useEffect(() => {
     if (contentType !== savedLocation) {
@@ -59,7 +63,6 @@ export const MoviesSider = () => {
   const onRatingChange = (result) => {
     setRatingVal(result)
   }
-
   const afterChangeRating = (result) => {
     const [from, to] = result
     const voteGte = `${from / 10}`
