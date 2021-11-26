@@ -24,7 +24,6 @@ export const MoviesPage = () => {
 
   useEffect(() => {
     if (contentType !== savedLocation) {
-      dispatch(setClearFiltersAC())
       dispatch(getMoviesPageData(1, contentType))
       setSavedLocation(contentType)
     }
@@ -47,7 +46,7 @@ export const MoviesPage = () => {
   */
   return (
     <>
-      <MoviesSider contentType={contentType} />
+      <MoviesSider />
       <div className='movies-page'>
         Movies Page
         <MoviesSpawner

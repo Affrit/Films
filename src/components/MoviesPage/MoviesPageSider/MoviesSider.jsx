@@ -15,13 +15,11 @@ import { optionsGenerator } from '../../../helpers/optionsGenerator'
 import './style.scss'
 import { useLocation } from 'react-router';
 import { getCurrentLocation } from '../../../helpers/getLocation';
+import moment from 'moment'
 
 const { SubMenu } = Menu
 
 export const MoviesSider = () => {
-  const [ratingVal, setRatingVal] = useState([0, 100])
-  const [dateFrom, setDateFrom] = useState('')
-  const [dateTo, setDateTo] = useState('')
   const { isGenreFetching, genreList, sort_by, with_genres, voteGte, voteLte, releaseGte, releaseLte } = useSelector(optionsSelector)
   const dispatch = useDispatch()
   const genreOptions = optionsGenerator(genreList)
@@ -29,12 +27,17 @@ export const MoviesSider = () => {
   const location = useLocation()
   const contentType = getCurrentLocation(location.pathname)
   const [savedLocation, setSavedLocation] = useState(contentType)
+  const [ratingVal, setRatingVal] = useState([voteGte * 10, voteLte * 10 || 100])
+  const [dateFrom, setDateFrom] = useState(() => {
+    return releaseGte && moment(releaseGte)
+  })
+  const [dateTo, setDateTo] = useState(() => {
+    return releaseLte && moment(releaseLte)
+  })
 
   useEffect(() => {
-    setRatingVal([+voteGte * 10, +voteLte * 10])
     if (contentType !== savedLocation) {
-      dispatch(setClearFiltersAC())
-      setRatingVal([0, 100])
+      onClearFilters()
       setSavedLocation(contentType)
     }
   }, [contentType])
@@ -146,7 +149,8 @@ export const MoviesSider = () => {
             <Divider className='filters-divider' plain>Rating</Divider>
             <div className='slider-wrap'>
               <Slider
-                range value={ratingVal}
+                range 
+                value={ratingVal}
                 onChange={onRatingChange}
                 onAfterChange={afterChangeRating}
               />
