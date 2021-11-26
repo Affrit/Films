@@ -20,7 +20,7 @@ export const SearchPage = () => {
   useEffect(() => {
     dispatch(getSearchedData(page, contentType))
   }, [searchWord, page, contentType, dispatch])
-  
+
   const onChangePage = (page) => {
     dispatch(setSearchPageAC(page))
   }
@@ -56,13 +56,16 @@ export const SearchPage = () => {
           data={results}
           contentType={contentType}
         />
-        <Pagination
-          showQuickJumper
-          showSizeChanger={false}
-          current={page} pageSize={20}
-          total={total_results}
-          onChange={onChangePage}
-        />
+        {
+          total_results > 20 &&
+          <Pagination
+            showQuickJumper
+            showSizeChanger={false}
+            current={page} pageSize={20}
+            total={total_results}
+            onChange={onChangePage}
+          />
+        }
       </div>
     </>
   )

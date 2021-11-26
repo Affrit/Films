@@ -101,7 +101,7 @@ export const MoviesSider = () => {
           title="Filters by"
           className='sub-menu'
         >
-          <Menu.Item className='sub-menu__item' key="drop5">
+          <Menu.Item className='sub-menu__item' key="genre-filter">
             <Divider className='filters-divider' plain>genres</Divider>
             <div className='select-wrap'>
               <Select
@@ -117,7 +117,7 @@ export const MoviesSider = () => {
             </div>
           </Menu.Item>
 
-          <Menu.Item className='sub-menu__item' key="drop9">
+          <Menu.Item className='sub-menu__item' key="date-filter">
             <Divider className='filters-divider' plain>Release dates</Divider>
             <div className='select-wrap'>
               <div className='date-wrap'>
@@ -139,7 +139,7 @@ export const MoviesSider = () => {
             </div>
           </Menu.Item>
 
-          <Menu.Item className='sub-menu__item' key="drop10">
+          <Menu.Item className='sub-menu__item' key="rating-filter">
             <Divider className='filters-divider' plain>Rating</Divider>
             <div className='slider-wrap'>
               <Slider
@@ -157,7 +157,7 @@ export const MoviesSider = () => {
 
         </SubMenu>
 
-        <Menu.Item className='controls' key="btn" >
+        <Menu.Item className='controls' key="controls" >
           <Divider className='filters-divider' plain>controls</Divider>
           <div className='controls__wrap'>
             <Button

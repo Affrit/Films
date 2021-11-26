@@ -52,13 +52,16 @@ export const MoviesPage = () => {
           data={results}
           contentType={contentType}
         />
-        <Pagination
-          showQuickJumper
-          showSizeChanger={false}
-          current={page} pageSize={20}
-          total={total_results}
-          onChange={onChangePage}
-        />
+        {
+          total_results > 20 &&
+          <Pagination
+            showQuickJumper
+            showSizeChanger={false}
+            current={page} pageSize={20}
+            total={total_results}
+            onChange={onChangePage}
+          />
+        }
       </div>
     </>
   )
