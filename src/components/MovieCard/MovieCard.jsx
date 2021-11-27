@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 const { Meta } = Card;
 
 export const MovieCard = ({ filmData, style, isFetching }) => {
-  const { id, imgSrc, title, releaseDate, rating, contentType } = filmData
+  const { id, imgSrc, title, releaseDate, rating, vote_count, contentType } = filmData
   const [imgFetching, setImgFetching] = useState(true)
   const [isLoadError, setIsLoadError] = useState(false)
 
@@ -39,7 +39,7 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
     >
       <Skeleton loading={imgFetching} active>
         <Meta
-          avatar={<Rating rating={rating} />}
+          avatar={<div className='movie-card__rating'><Rating rating={rating} vote_count={vote_count} /></div>}
           title={titleLink}
           description={releaseDate}
         />

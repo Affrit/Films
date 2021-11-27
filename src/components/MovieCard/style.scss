@@ -2,10 +2,24 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  text-align: center;
   width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
 
   &__img {
     width: 100%;
+    position: relative;
   }
+
+  &__rating {
+    border-radius: 50%;
+    background-color: rgb(8, 6, 36);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+
+.ant-card-body {
+  padding: 20px 15px;
 }

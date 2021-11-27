@@ -123,6 +123,7 @@ export const getMoviesPageData = (page = 1, contentType = 'movie') => async (dis
       throw new Error(status_message || 'bad response')
     }
     dispatch(setMoviesAC(moviesData))
+    console.log(moviesData)
   } catch (error) {
     console.warn(error)
     dispatch(setErrorAC(error.message))

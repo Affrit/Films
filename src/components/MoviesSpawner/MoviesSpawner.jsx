@@ -11,7 +11,8 @@ const MoviesSpawner = ({ data, contentType }) => {
       title: film.title ?? film.name,
       releaseDate: film.release_date ?? film.first_air_date,
       imgSrc: BASE_URL_IMG + film.poster_path,
-      rating: film.vote_average
+      rating: film.vote_average,
+      vote_count: film.vote_count,
     }
     return (
       <div key={film.id} className='movies__inner'>

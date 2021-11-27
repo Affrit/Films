@@ -46,7 +46,7 @@ export const MoviesPage = () => {
   return (
     <>
       <MoviesSider />
-      <div className='movies-page'>
+      <div className='movies-page' >
         Movies Page
         <MoviesSpawner
           data={results}

@@ -17,7 +17,7 @@ export const FilmDetalisPage = () => {
   const { film: filmId } = useParams()
   const { isFetching, backdrop_path, poster_path, title,
     overview, tagline, vote_average, release_date, genres,
-    runtime, homepage, budget, revenue, status, name, first_air_date,
+    runtime, homepage, budget, revenue, status, name, first_air_date, vote_count
   } = useSelector(filmDetalisSelector)
   const location = useLocation()
   const navigate = useNavigate()
@@ -129,7 +129,7 @@ export const FilmDetalisPage = () => {
               </div>
               <span>{convertRuntime(runtime)}</span>
               <div className='filmPage__rating'>
-                <Rating rating={vote_average} />
+                <Rating rating={vote_average} vote_count={vote_count} />
                 <span className='filmPage__rating-name'>User Score</span>
               </div>
               {budget ? <span>Budget: {budget}</span> : ''}

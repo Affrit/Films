@@ -1,15 +1,12 @@
 import React from 'react';
+import { Tooltip, Progress } from 'antd';
 import './style.scss'
 
-export const Rating = ({ rating }) => {
+export const Rating = ({ rating, vote_count }) => {
   const percent = rating * 10
   return (
-    <div className='raiting'>
-      {
-        percent ?
-          <span className='raiting__value'>{percent}<sup>%</sup></span> :
-          <span>NR</span>
-      }
-    </div>
+      <Tooltip title={vote_count ? `based on ${vote_count} votes` : ''}>
+        <Progress percent={percent} success={{ percent: percent }} type="circle" width={50}  />
+      </Tooltip>
   )
 }
