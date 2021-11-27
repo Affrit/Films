@@ -13,6 +13,8 @@ import { FilmDetalisPage } from './components/FilmDetalisPage/FilmDetalisPage';
 import { SignUp } from './components/SignUpPage/SignUp';
 import { SignIn } from './components/SignInPage/SignIn';
 import { MoviesPage } from './components/MoviesPage/MoviesPage';
+import { Page404 } from './components/Page404/Page404';
+import { Page403 } from './components/Page403/Page403';
 
 function App() {
   return (
@@ -30,12 +32,13 @@ function App() {
               <Route path="/movie/:film" element={<FilmDetalisPage />} />
               <Route path="/tv/:film" element={<FilmDetalisPage />} />
               <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/403" element={<Page403 />} />
               <Route path="/favorites" element={
                 <PrivateRoute>
 
                 </PrivateRoute>
               } />
-              <Route path="*" element={'404 page'} />
+              <Route path="*" element={<Page404 />} />
             </Routes>
           </ContentApp>
         </Layout>
