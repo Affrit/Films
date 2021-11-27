@@ -29,10 +29,11 @@ export const SearchSider = ({ currentLocation }) => {
           key="sub1"
           icon={<SearchOutlined />}
           title="Search results"
+          className='sub-menu'
         >
 
           <Menu.Item key="movie">
-            <Link to='/search/movie' onClick={()=>{}/*handleClick*/}>
+            <Link to='/search/movie' onClick={handleClick}>
               <span>Movies</span>
             </Link>
           </Menu.Item>

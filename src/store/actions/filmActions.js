@@ -2,14 +2,14 @@ import { CURRENT_FILM_PAGE_TYPES } from "./types"
 import { API_KEY } from "../../constants/constants"
 import { BASE_URL } from "../../constants/constants"
 
-export const fetchingCurrentAC = (newData) => {
+export const fetchingFilmAC = (newData) => {
   return {
       type: CURRENT_FILM_PAGE_TYPES.SET_FETCHING,
       payload: newData
   }
 }
 
-export const setErrorCurrentAC = (newData) => {
+export const setErrorFilmAC = (newData) => {
   return {
       type: CURRENT_FILM_PAGE_TYPES.SET_ERROR,
       payload: newData
@@ -23,9 +23,9 @@ export const setFilmDataAC = (newData) => {
   }
 }
 
-export const getCurrentFilm = (filmId, type) => async (dispatch) => {
+export const getFilmDetalis = (filmId, type) => async (dispatch) => {
   try {
-    dispatch(fetchingCurrentAC(true))
+    dispatch(fetchingFilmAC(true))
     const dataFromServer = await fetch(`${BASE_URL}/${type}/${filmId}?${API_KEY}`)
     const data = await dataFromServer.json()
     if (data.errors) {
@@ -34,8 +34,8 @@ export const getCurrentFilm = (filmId, type) => async (dispatch) => {
     dispatch(setFilmDataAC(data))
   } catch (error) {
     console.warn(error)
-    dispatch(setErrorCurrentAC(error.message))
+    dispatch(setErrorFilmAC(error.message))
   } finally {
-    dispatch(fetchingCurrentAC(false))
+    dispatch(fetchingFilmAC(false))
   }
 }

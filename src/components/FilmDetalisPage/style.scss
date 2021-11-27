@@ -1,8 +1,10 @@
 .filmPage-wrap {
   width: 100%;
+  height: calc(100vh - 60px);
+  overflow: hidden;
   background: 50% 50% no-repeat;
   background-size: cover;
-  background-color: rgb(4, 4, 39);
+  background-color: #040427;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,30 +25,41 @@
 
 .filmPage {
   z-index: 2;
-  width: 50%;
+  width: 100%;
+  max-width: 1200px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   color: white;
   font-size: 16px;
-  //min-height: calc(100vh - 82px);
 
-  &__col {
-    width: 50%;
+  &__lcol, 
+  &__rcol {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
-    padding: 50px 10px;
+    padding: 20px 0;
+  }
+
+  &__lcol {
+    width: 40%;
+  }
+
+  &__rcol {
+    width: 60%;
   }
 
   &__visual {
-    
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
   }
 
   &__info {
     width: 100%;
+    padding: 10px;
     display: flex;
+    //justify-content: center;
+    align-items: flex-start;
     flex-direction: column;
   }
 
@@ -55,6 +68,13 @@
     font-size: 20px;
     font-weight: bold;
     color: white;
+  }
+
+  &__suptitle {
+    vertical-align: super;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 5px;
   }
 
   &__img {

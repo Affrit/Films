@@ -9,7 +9,7 @@ import { Layout } from 'antd';
 import { HeaderApp } from './components/Layouts/Header/HeaderApp';
 import { ContentApp } from './components/Layouts/Content/ContentApp';
 import { SearchPage } from './components/SearchPage/SearchPage';
-import { CurrentFilmPage } from './components/CurrentFilmPage/CurrentFilmPage';
+import { FilmDetalisPage } from './components/FilmDetalisPage/FilmDetalisPage';
 import { SignUp } from './components/SignUpPage/SignUp';
 import { SignIn } from './components/SignInPage/SignIn';
 import { MoviesPage } from './components/MoviesPage/MoviesPage';
@@ -27,8 +27,8 @@ function App() {
               <Route path="/tv" element={<MoviesPage />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/search/:type" element={<SearchPage />} />
-              <Route path="/movie/:film" element={<CurrentFilmPage />} />
-              <Route path="/tv/:film" element={<CurrentFilmPage />} />
+              <Route path="/movie/:film" element={<FilmDetalisPage />} />
+              <Route path="/tv/:film" element={<FilmDetalisPage />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/favorites" element={
                 <PrivateRoute>

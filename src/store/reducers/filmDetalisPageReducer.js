@@ -6,7 +6,7 @@ const initialState = {
   errors: [],
 }
 
-export default function currentFilmPageReducer(state = initialState, action) {
+export default function filmDetalisPageReducer(state = initialState, action) {
   switch (action.type) {
     case CURRENT_FILM_PAGE_TYPES.SET_FILM_DATA:
       return {
