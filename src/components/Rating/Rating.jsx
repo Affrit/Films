@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.scss'
 
-export const Raiting = ({ rating }) => {
+export const Rating = ({ rating }) => {
   const percent = rating * 10
   return (
     <div className='raiting'>

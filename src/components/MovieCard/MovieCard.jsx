@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.scss'
 import { Skeleton, Card } from 'antd';
-import { Raiting } from '../Raiting/Raiting';
+import { Rating } from '../Rating/Rating';
 import altImg from '../../img/default.png'
 import { Link } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
     >
       <Skeleton loading={imgFetching} active>
         <Meta
-          avatar={<Raiting rating={rating} />}
+          avatar={<Rating rating={rating} />}
           title={titleLink}
           description={releaseDate}
         />

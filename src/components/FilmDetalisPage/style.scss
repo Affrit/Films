@@ -1,6 +1,6 @@
 .filmPage-wrap {
   width: 100%;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
   overflow: hidden;
   background: 50% 50% no-repeat;
   background-size: cover;
@@ -29,29 +29,61 @@
   max-width: 1200px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
   color: white;
   font-size: 16px;
+  padding: 0 15px;
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: stretch;
+    }
+  }
 
   &__lcol, 
   &__rcol {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding: 20px 0;
   }
 
   &__lcol {
-    width: 40%;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: 40%;
+    }
   }
 
   &__rcol {
-    width: 60%;
+    width: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    @media (min-width: 768px) {
+      width: 60%;
+    }
   }
 
   &__visual {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    flex-direction: column; // collapse img
+    align-items: center;
     padding: 10px;
+
+    @media (min-width: 768px) {
+      align-items: flex-end;
+    }
   }
 
   &__info {
@@ -63,11 +95,17 @@
     flex-direction: column;
   }
 
+  &__title-block {
+    margin-bottom: 10px;
+  }
+
   &__title {
     text-transform: uppercase;
     font-size: 20px;
     font-weight: bold;
     color: white;
+    margin-bottom: 0;
+    line-height: 1;
   }
 
   &__suptitle {
@@ -77,17 +115,62 @@
     padding: 5px;
   }
 
-  &__img {
-    width: 300px;
+  &__tag {
+    vertical-align: super;
   }
 
-  &__back {
+  &__img {
+    width: 380px;
+
+    @media (min-width: 768px) {
+      width: 280px;
+    }
+  }
+
+  &__genre {
+    padding-right: 5px;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+  }
+
+  &__rating-name {
+    padding: 10px;
+  }
+
+  &__bottom {
+    padding-bottom: 20px;
     width: 100%;
-    height: 500px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__back-btn {
+    background: transparent;
+    color: #fff;
+    width: 300px;
+    border-radius: 10px;
   }
 }
 
 .img-wrap {
   border-radius: 20px;
   overflow: hidden;
+}
+
+.filmPage-overview {
+  
+  &__title {
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  &__text {
+    max-height: 250px;
+    overflow-y: auto;
+  }
 }
