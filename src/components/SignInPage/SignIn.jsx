@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input, Button, Checkbox } from 'antd';
-import { setUserData, loginUser } from '../../store/actions/authActions';
+import { loginUser } from '../../store/actions/authActions';
 import './style.scss'
 import { useNavigate } from 'react-router';
 import { authSelector } from '../PrivateRoute/selector';
 import { Navigate } from 'react-router';
 import { Alert } from 'antd';
 import { setClearError } from '../../store/actions/authActions';
+import { Link } from 'react-router-dom';
+import { spawnErorrsText } from '../../helpers/spawnErrorsText';
 
 export const SignIn = (props) => {
   const dispatch = useDispatch()
@@ -26,11 +28,6 @@ export const SignIn = (props) => {
 
   const onAlertClose = () => {
     dispatch(setClearError())
-  }
-
-  const spawnErorrsText = () => {
-    const errorsText = errors.reduce((error, acc) => `${error}, ${acc}`)
-    return errorsText
   }
 
   return (
@@ -70,11 +67,15 @@ export const SignIn = (props) => {
           </Button>
         </Form.Item>
 
+        <div className='signIn__info'>
+          <span>didn't have an account? </span><Link to="sign-up">sign up</Link>
+        </div>
+
         <div className='signIn__alert'>
           {errors.length ?
             <Alert
               message="Login error"
-              description={spawnErorrsText()}
+              description={spawnErorrsText(errors)}
               onClose={onAlertClose}
               type="error"
               className='signIn__error'
