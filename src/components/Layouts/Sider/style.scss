@@ -1,0 +1,11 @@
+.ant-layout .ant-layout-has-sider {
+  @media (max-width: 576px) {
+    width: 0;
+    position: relative;
+    z-index: 1000;
+  }
+}
+
+.ant-layout-sider-zero-width-trigger {
+  top: 10px
+}

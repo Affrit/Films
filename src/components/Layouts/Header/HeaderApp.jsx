@@ -9,12 +9,6 @@ import logo from '../../../img/logo.png';
 import { User } from '../../User/User';
 
 const { Header } = Layout
-const headerLinks = ['sign-up', 'movie', 'tv', 'favorites']
-const headerItems = headerLinks.map(item => {
-  return <Menu.Item key={item}>
-    <Link to={`/${item}`} >{item}</Link>
-  </Menu.Item>
-})
 
 export const HeaderApp = () => {
   const location = useLocation()
@@ -28,7 +22,15 @@ export const HeaderApp = () => {
       </div>
 
       <Menu className="header__menu" theme="dark" mode="horizontal" defaultSelectedKeys={[currentLocation]}>
-        {headerItems}
+        <Menu.Item key='movie'>
+          <Link to='/movie'>movies</Link>
+        </Menu.Item>
+        <Menu.Item key='tv'>
+          <Link to='/tv'>tv shows</Link>
+        </Menu.Item>
+        <Menu.Item key='favorites'>
+          <Link to='/favorites'>favorites</Link>
+        </Menu.Item>
         <Menu.Item key='search'>
           <Link to='/search/movie'>search</Link>
         </Menu.Item>
@@ -44,4 +46,3 @@ export const HeaderApp = () => {
     </Header>
   )
 }
-
