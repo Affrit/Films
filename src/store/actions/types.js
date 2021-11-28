@@ -3,6 +3,7 @@ export const LOGIN_TYPES = Object.freeze({
   SET_USER_DATA: 'SET_USER_DATA',
   SET_AUTH_ERROR: 'SET_AUTH_ERROR',
   SET_CLEAR_ERRORS: 'SET_CLEAR_ERRORS',
+  SET_LOGOUT: 'SET_LOGOUT'
 })
 
 export const MOVIES_PAGE_TYPES = Object.freeze({

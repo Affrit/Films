@@ -3,6 +3,16 @@
   width: 100%;
   z-index: 1;
   display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+
+  @media (min-width: 576px) {
+    padding: 0 25px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0 50px;
+  }
 
   &__logo {
     
@@ -15,12 +25,16 @@
   }
 
   &__menu {
-    width: 100%;
+    width: 70%;
   }
 
   &__user {
-    width: 70px;
-    height: 60px;
-    background-color: chartreuse;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+    padding: 5px;
+    color: #fff;
   }
 }

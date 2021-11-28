@@ -49,6 +49,11 @@ export default function loginReducer(state = initialState, action) {
         errors: []
       }
 
+    case LOGIN_TYPES.SET_LOGOUT:
+      return {
+        ...initialState
+      }
+
     default:
       return state
   }

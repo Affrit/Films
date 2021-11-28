@@ -21,6 +21,12 @@ export const setClearError = () => {
   }
 }
 
+export const setLogOut = () => {
+  return {
+    type: LOGIN_TYPES.SET_LOGOUT
+  }
+}
+
 export const setUserData = (newData) => {
   return {
     type: LOGIN_TYPES.SET_USER_DATA,

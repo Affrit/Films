@@ -1,5 +1,5 @@
 export const authSelector = ({
-  login: { isAuth, errors }
+  login: { isAuth, errors, userData: { username } }
 }) => ({
-  isAuth, errors
+  isAuth, errors, username
 })
