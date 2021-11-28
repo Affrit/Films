@@ -60,6 +60,7 @@ export const MoviesPage = () => {
             current={page} pageSize={20}
             total={total_results}
             onChange={onChangePage}
+            className='pagination'
           />
         }
       </div>

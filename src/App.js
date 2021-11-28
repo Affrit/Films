@@ -13,6 +13,7 @@ import { FilmDetalisPage } from './components/FilmDetalisPage/FilmDetalisPage';
 import { SignUp } from './components/SignUpPage/SignUp';
 import { SignIn } from './components/SignInPage/SignIn';
 import { MoviesPage } from './components/MoviesPage/MoviesPage';
+import { FavoritesPage } from './components/FavoritesPage/FavoritesPage'
 import { Page404 } from './components/Page404/Page404';
 import { Page403 } from './components/Page403/Page403';
 
@@ -35,7 +36,7 @@ function App() {
               <Route path="/403" element={<Page403 />} />
               <Route path="/favorites" element={
                 <PrivateRoute>
-
+                  <FavoritesPage />
                 </PrivateRoute>
               } />
               <Route path="*" element={<Page404 />} />

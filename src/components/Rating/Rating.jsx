@@ -6,7 +6,7 @@ export const Rating = ({ rating, vote_count }) => {
   const percent = rating * 10
   return (
       <Tooltip title={vote_count ? `based on ${vote_count} votes` : ''}>
-        <Progress percent={percent} success={{ percent: percent }} type="circle" width={50}  />
+        <Progress percent={percent} success={{ percent: percent }} type="circle" width={45}  />
       </Tooltip>
   )
 }

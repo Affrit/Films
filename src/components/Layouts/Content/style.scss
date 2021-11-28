@@ -4,6 +4,7 @@
   &__inner {
     display: flex;
     justify-content: center;
+    min-height: calc(100vh - 60px);
     //background-color: rgb(13, 13, 70);
   }
 }

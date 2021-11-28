@@ -51,7 +51,7 @@ export const SearchPage = () => {
             loading={isFetching}
           />
         </div>
-        {total_results ? <span>We found {total_results} results</span> : ''}
+        {total_results ? <span className='search-result'>We found {total_results} results</span> : ''}
         <MoviesSpawner
           data={results}
           contentType={contentType}
@@ -64,6 +64,7 @@ export const SearchPage = () => {
             current={page} pageSize={20}
             total={total_results}
             onChange={onChangePage}
+            className='pagination'
           />
         }
       </div>
