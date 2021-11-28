@@ -4,13 +4,25 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
-}
 
-.login-form {
-  padding: 20px;
-  width: 400px;
-}
+  &__alert {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    padding: 10px 50px;
+  }
 
-.login-error {
-  text-align: center;
+  &__error {
+    text-align: center;
+  }
+
+  &__form {
+    position: relative;
+    padding: 20px;
+    width: 450px;
+    background-color: rgba(255, 255, 255, 0.705);
+    border: 2px solid black;
+    border-radius: 10px;
+  }
 }

@@ -35,17 +35,6 @@ export const SignIn = (props) => {
 
   return (
     <div className='signIn'>
-      {errors.length ?
-        <Alert
-          message="Login error"
-          description={spawnErorrsText()}
-          onClose={onAlertClose}
-          type="error"
-          className='login-error'
-          closable
-        /> : ''
-      }
-
       <Form
         name="basic"
         labelCol={{ span: 8 }}
@@ -53,7 +42,7 @@ export const SignIn = (props) => {
         initialValues={{ remember: true }}
         onFinish={onFinish}
         autoComplete="off"
-        className='login-form'
+        className='signIn__form'
       >
         <Form.Item
           label="Username"
@@ -80,6 +69,19 @@ export const SignIn = (props) => {
             Submit
           </Button>
         </Form.Item>
+
+        <div className='signIn__alert'>
+          {errors.length ?
+            <Alert
+              message="Login error"
+              description={spawnErorrsText()}
+              onClose={onAlertClose}
+              type="error"
+              className='signIn__error'
+              closable
+            /> : ''
+          }
+        </div>
       </Form>
     </div>
   )

@@ -3,6 +3,8 @@ import './style.scss'
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
+import { useSelector } from 'react-redux';
+import logo from '../../../img/logo.png';
 
 const { Header } = Layout
 const headerLinks = ['sign-up', 'movie', 'tv', 'favorites']
@@ -18,13 +20,16 @@ export const HeaderApp = () => {
 
   return (
     <Header className="header">
-      <div className="logo" />
-      <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[currentLocation]}>
+      <div className="header__logo">
+        <Link to='/'><img className="header__img" src={logo} alt="" /></Link>
+      </div>
+      <Menu className="header__menu" theme="dark" mode="horizontal" defaultSelectedKeys={[currentLocation]}>
         {headerItems}
         <Menu.Item key='search'>
-          <Link to='/search/movie' >search</Link>
+          <Link to='/search/movie'>search</Link>
         </Menu.Item>
       </Menu>
+      <div className='header__user'>User Yesr</div>
     </Header>
   )
 }
