@@ -1,0 +1,14 @@
+.user-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+  padding: 5px;
+  color: #fff;
+
+  &__title {
+    color: rgba(255, 255, 255, 0.65);
+    padding-right: 5px;
+  }
+}

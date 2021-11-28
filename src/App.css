@@ -1,5 +1,9 @@
 @import '~antd/dist/antd.css';
 
+body {
+  overflow-x: hidden;
+}
+
 .app {
   min-height: 100vh;
 }

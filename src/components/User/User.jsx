@@ -3,7 +3,8 @@ import { DownOutlined } from '@ant-design/icons';
 import { setLogOut } from "../../store/actions/authActions";
 import { Button, Menu, Dropdown } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { authSelector } from "../PrivateRoute/selector"; 
+import { authSelector } from "../PrivateRoute/selector";
+import './style.scss'
 
 export const User = () => {
   const dispatch = useDispatch()
@@ -22,8 +23,11 @@ export const User = () => {
   )
 
   return (
-    <div className='header__user'>
-      <span>{`user: ${username}`}</span>
+    <div className='user-block'>
+      <div>
+        <span className='user-block__title' >user:</span>
+        <span>{username}</span>
+      </div>
       <Dropdown overlay={menu}>
         <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
           settings <DownOutlined />

@@ -2,17 +2,9 @@ import { LOGIN_TYPES } from "../actions/types";
 
 const users = JSON.stringify([
   {
-    username: 'Bobby',
-    password: 'bbbbb'
+    username: 'admin',
+    password: 'admin'
   },
-  {
-    username: 'Lolly',
-    password: 'lllll'
-  },
-  {
-    username: 'Vally',
-    password: 'vvvvv'
-  }
 ])
 
 localStorage.setItem('filmsUsers', users)

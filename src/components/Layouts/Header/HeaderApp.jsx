@@ -3,7 +3,7 @@ import './style.scss'
 import { Button, Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { authSelector } from '../../PrivateRoute/selector';
 import logo from '../../../img/logo.png';
 import { User } from '../../User/User';
@@ -18,9 +18,8 @@ const headerItems = headerLinks.map(item => {
 
 export const HeaderApp = () => {
   const location = useLocation()
-  const dispatch = useDispatch()
   const currentLocation = location.pathname.split('/')[1]
-  const { username, isAuth } = useSelector(authSelector)
+  const { isAuth } = useSelector(authSelector)
 
   return (
     <Header className="header">
