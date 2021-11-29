@@ -1,24 +1,24 @@
-import { CURRENT_FILM_PAGE_TYPES } from "./types"
+import { FILM_DETALIS_PAGE_TYPES } from "./types"
 import { API_KEY } from "../../constants/constants"
 import { BASE_URL } from "../../constants/constants"
 
 export const fetchingFilmAC = (newData) => {
   return {
-      type: CURRENT_FILM_PAGE_TYPES.SET_FETCHING,
+      type: FILM_DETALIS_PAGE_TYPES.SET_FETCHING,
       payload: newData
   }
 }
 
 export const setErrorFilmAC = (newData) => {
   return {
-      type: CURRENT_FILM_PAGE_TYPES.SET_ERROR,
+      type: FILM_DETALIS_PAGE_TYPES.SET_ERROR,
       payload: newData
   }
 }
 
 export const setFilmDataAC = (newData) => {
   return {
-      type: CURRENT_FILM_PAGE_TYPES.SET_FILM_DATA,
+      type: FILM_DETALIS_PAGE_TYPES.SET_FILM_DATA,
       payload: newData
   }
 }

@@ -30,8 +30,13 @@ export const SEARCH_PAGE_TYPES = Object.freeze({
   SET_SEARCH_PAGE: 'SET_SEARCH_PAGE',
 })
 
-export const CURRENT_FILM_PAGE_TYPES = Object.freeze({
+export const FILM_DETALIS_PAGE_TYPES = Object.freeze({
   SET_FETCHING: 'SET_FETCHING',
   SET_ERROR: 'SET_ERROR',
   SET_FILM_DATA: 'SET_FILM_DATA',
+})
+
+export const FAVORITES_PAGE_TYPES = Object.freeze({
+  SET_FAVORITES: 'SET_FAVORITES',
+  SET_FAVORITES_ERROR: 'SET_FAVORITES_ERROR',
 })

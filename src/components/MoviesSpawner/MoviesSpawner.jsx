@@ -6,12 +6,12 @@ import './style.scss'
 const MoviesSpawner = ({ data, contentType }) => {
   const filmCards = data.map(film => {
     const filmData = {
-      contentType: contentType,
+      contentType: contentType ?? film.contentType,
       id: film.id,
       title: film.title ?? film.name,
-      releaseDate: film.release_date ?? film.first_air_date,
-      imgSrc: BASE_URL_IMG + film.poster_path,
-      rating: film.vote_average,
+      release_date: film.release_date ?? film.first_air_date,
+      poster_path: film.poster_path,
+      vote_average: film.vote_average,
       vote_count: film.vote_count,
     }
     return (
