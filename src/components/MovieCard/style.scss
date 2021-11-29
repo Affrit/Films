@@ -18,6 +18,17 @@
     bottom: 0;
     right: 0;
   }
+
+  &__cover {
+    position: relative;
+  }
+
+  &__like {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    z-index: 1;
+  }
 }
 
 .ant-card-body {

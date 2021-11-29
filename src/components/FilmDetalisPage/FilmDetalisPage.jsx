@@ -21,10 +21,10 @@ export const FilmDetalisPage = () => {
   } = useSelector(filmDetalisSelector)
   const location = useLocation()
   const navigate = useNavigate()
-  const posterSrc = BASE_URL_IMG + poster_path
-  const bgSrc = BASE_URL_IMG + backdrop_path
   const contentType = location.pathname.split('/')[1]
   const releaseYear = release_date?.split('-')[0] ?? first_air_date?.split('-')[0]
+  const bgSrc = backdrop_path ? BASE_URL_IMG + backdrop_path : ''
+  const posterSrc = poster_path ? BASE_URL_IMG + poster_path : ''
 
   const [imgFetching, setImgFetching] = useState(true)
   const [isLoadError, setIsLoadError] = useState(false)

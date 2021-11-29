@@ -1,21 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.scss'
 import { Skeleton, Card, Button } from 'antd';
 import { Rating } from '../Rating/Rating';
 import altImg from '../../img/default.png'
 import { Link } from 'react-router-dom';
 import { favoritesToggle } from '../../store/actions/favoritesPageActions';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BASE_URL_IMG } from '../../constants/constants';
+import { Rate } from 'antd';
+import { isInFavorites } from '../../helpers/isInFavorites';
+import { favoritesSelector } from '../FavoritesPage/selector';
 
 const { Meta } = Card;
 
-export const MovieCard = ({ filmData, style, isFetching }) => {
+export const MovieCard = ({ filmData, isFetching }) => {
   const { id, poster_path, title, release_date, vote_average, vote_count, contentType } = filmData
   const [imgFetching, setImgFetching] = useState(true)
   const [isLoadError, setIsLoadError] = useState(false)
+  const [isLiked, setIsLiked] = useState(false)
   const dispatch = useDispatch()
+  const { favoritesData } = useSelector(favoritesSelector)
   const imgSrc = BASE_URL_IMG + poster_path
+
+  useEffect(() => {
+    if (isInFavorites(filmData, favoritesData)) {
+      setIsLiked(true)
+    } else {
+      setIsLiked(false)
+    }
+  }, [favoritesData])
 
   const onLoad = () => {
     setImgFetching(false)
@@ -28,24 +41,32 @@ export const MovieCard = ({ filmData, style, isFetching }) => {
 
   const onLikeClicked = () => {
     dispatch(favoritesToggle(filmData))
-    console.log('LIKE')
   }
 
-  const imgLink = <Link to={`/${contentType}/${id}`}>
-    <img
-      className='movie-card__img' alt='#'
-      src={isLoadError ? altImg : imgSrc}
-      onLoad={onLoad} onError={onError}
-    />
-  </Link>
+  const cardCover = (
+    <div className='movie-card__cover'>
+      <Rate
+        className='movie-card__like'
+        count={1}
+        onChange={onLikeClicked}
+        value={isLiked}
+      />
+      <Link to={`/${contentType}/${id}`}>
+        <img
+          className='movie-card__img' alt='#'
+          src={isLoadError ? altImg : imgSrc}
+          onLoad={onLoad} onError={onError}
+        />
+      </Link>
+    </div>
+  )
   const titleLink = <Link to={`/${contentType}/${id}`}>{title}</Link>
 
   return (
     <Card
-      extra={<Button onClick={onLikeClicked}>TEST</Button>}
       hoverable
       className='movie-card'
-      cover={imgLink}
+      cover={cardCover}
     >
       <Skeleton loading={imgFetching} active>
         <Meta

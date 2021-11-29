@@ -3,7 +3,7 @@ import { Tooltip, Progress } from 'antd';
 import './style.scss'
 
 export const Rating = ({ rating, vote_count }) => {
-  const percent = rating * 10
+  const percent = rating * 10 || 'NR'
   return (
     <Tooltip title={vote_count ? `based on ${vote_count} votes` : ''}>
       <Progress
