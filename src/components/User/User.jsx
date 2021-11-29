@@ -16,7 +16,7 @@ export const User = () => {
 
   const menu = (
     <Menu>
-      <Menu.Item>
+      <Menu.Item key='log-out'>
         <Button onClick={onLogOut} size="small">Log out</Button>
       </Menu.Item>
     </Menu>
@@ -29,9 +29,9 @@ export const User = () => {
         <span>{username}</span>
       </div>
       <Dropdown overlay={menu}>
-        <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+        <span className="ant-dropdown-link" onClick={e => e.preventDefault()}>
           settings <DownOutlined />
-        </a>
+        </span>
       </Dropdown>
     </div>
   )

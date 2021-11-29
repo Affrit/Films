@@ -1,13 +1,12 @@
 import './style.scss'
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilmDetalis } from '../../store/actions/filmActions';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { filmDetalisSelector } from './selector';
 import { useLocation, useNavigate, useParams } from 'react-router';
 import { Spin } from 'antd';
-import { Button, Tooltip } from 'antd';
+import { Button } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import altImg from '../../img/default.png'
 import { Rating } from '../Rating/Rating';

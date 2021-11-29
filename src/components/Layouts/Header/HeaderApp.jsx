@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.scss'
-import { Button, Layout, Menu } from 'antd';
+import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { useSelector } from 'react-redux';

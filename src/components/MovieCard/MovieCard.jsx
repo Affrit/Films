@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './style.scss'
-import { Skeleton, Card, Button } from 'antd';
+import { Skeleton, Card } from 'antd';
 import { Rating } from '../Rating/Rating';
 import altImg from '../../img/default.png'
 import { Link } from 'react-router-dom';
@@ -20,7 +20,7 @@ export const MovieCard = ({ filmData, isFetching }) => {
   const [isLiked, setIsLiked] = useState(false)
   const dispatch = useDispatch()
   const { favoritesData } = useSelector(favoritesSelector)
-  const imgSrc = BASE_URL_IMG + poster_path
+  const imgSrc = poster_path ? BASE_URL_IMG + poster_path : ''
 
   useEffect(() => {
     if (isInFavorites(filmData, favoritesData)) {
@@ -28,7 +28,7 @@ export const MovieCard = ({ filmData, isFetching }) => {
     } else {
       setIsLiked(false)
     }
-  }, [favoritesData])
+  }, [favoritesData, filmData])
 
   const onLoad = () => {
     setImgFetching(false)

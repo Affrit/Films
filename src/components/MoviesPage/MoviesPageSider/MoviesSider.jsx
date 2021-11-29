@@ -39,7 +39,7 @@ export const MoviesSider = () => {
       setRatingVal([0, 100])
       setSavedLocation(contentType)
     }
-  }, [contentType, dispatch])
+  }, [contentType, savedLocation, dispatch])
 
   const onApplyFilters = () => {
     dispatch(getMoviesPageData(1, contentType))

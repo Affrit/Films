@@ -1,6 +1,5 @@
 import React from 'react';
 import { MovieCard } from '../MovieCard/MovieCard';
-import { BASE_URL_IMG } from '../../constants/constants';
 import './style.scss'
 
 const MoviesSpawner = ({ data, contentType }) => {

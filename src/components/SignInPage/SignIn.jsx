@@ -5,7 +5,6 @@ import { loginUser } from '../../store/actions/authActions';
 import './style.scss'
 import { useNavigate } from 'react-router';
 import { authSelector } from '../PrivateRoute/selector';
-import { Navigate } from 'react-router';
 import { Alert } from 'antd';
 import { setClearError } from '../../store/actions/authActions';
 import { Link } from 'react-router-dom';
@@ -20,7 +19,7 @@ export const SignIn = (props) => {
     if (isAuth) {
       navigate('/movie')
     }
-  }, [isAuth])
+  }, [isAuth, navigate])
 
   const onFinish = (values) => {
     dispatch(loginUser(values))
