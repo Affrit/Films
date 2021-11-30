@@ -35,6 +35,7 @@
 
   &__menu {
     width: 60%;
+    z-index: 2;
 
     @media (min-width: 576px) {
       width: 70%;
@@ -62,4 +63,18 @@
     height: auto;
     vertical-align: top;
   }
+}
+
+.search,
+.search_hide {
+    position: absolute;
+    top: 65px;
+    left: calc(50% - 250px);
+    width: 500px;
+    z-index: 1;
+    transition: all 0.3s;
+}
+
+.search_hide {
+  top: -100px;
 }

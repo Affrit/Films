@@ -4,6 +4,12 @@
   align-items: center;
   padding: 10px;
   width: 100%;
+  color: #fff;
+
+  &__title {
+    color: #fff;
+    margin: 0;
+  }
 }
 
 .films {

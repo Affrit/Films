@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.scss'
 import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux';
 import { authSelector } from '../../PrivateRoute/selector';
 import logo from '../../../img/logo.png';
 import { User } from '../../User/User';
+import { SearchOutlined } from '@ant-design/icons';
+import { SearchComponent } from '../../SearchComponent/SearchComponent';
 
 const { Header } = Layout
 
@@ -14,6 +16,19 @@ export const HeaderApp = () => {
   const location = useLocation()
   const currentLocation = location.pathname.split('/')[1]
   const { isAuth } = useSelector(authSelector)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+
+  useEffect(() => {
+    setIsSearchOpen(false)
+  }, [currentLocation])
+
+  const onSearchClicked = () => {
+    setIsSearchOpen(prevState => !prevState)
+  }
+  
+  const onSearched = () => {
+    setIsSearchOpen(false)
+  }
 
   return (
     <Header className="header">
@@ -31,10 +46,14 @@ export const HeaderApp = () => {
         <Menu.Item key='favorites'>
           <Link to='/favorites'>favorites</Link>
         </Menu.Item>
-        <Menu.Item key='search'>
-          <Link to='/search/movie'>search</Link>
+        <Menu.Item onClick={onSearchClicked} key='search'>
+          <SearchOutlined />
         </Menu.Item>
       </Menu>
+
+      <div className={isSearchOpen ? 'search' : 'search_hide'}>
+        <SearchComponent onSearched={onSearched} />
+      </div>
 
       {isAuth ?
         <User /> :
