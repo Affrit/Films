@@ -19,6 +19,11 @@ export default function favoritesPageReducer(state = initialState, action) {
         errors: [...state.errors, action.payload]
       }
 
+    case FAVORITES_PAGE_TYPES.SET_CLEAR_FAVORITES:
+      return {
+        ...initialState
+      }
+
     default:
       return state
   }

@@ -6,6 +6,7 @@ import { DownOutlined } from '@ant-design/icons';
 import { Button, Menu, Dropdown } from 'antd';
 // other
 import { setLogOut } from "../../store/actions/authActions";
+import { setClearFavorites } from "../../store/actions/favoritesPageActions";
 import { authSelector } from "../PrivateRoute/selector";
 import './style.scss';
 
@@ -15,6 +16,7 @@ export const User = () => {
 
   const onLogOut = () => {
     dispatch(setLogOut(false))
+    dispatch(setClearFavorites())
   }
 
   const menu = (

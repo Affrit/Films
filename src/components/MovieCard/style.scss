@@ -32,6 +32,14 @@
   }
 }
 
+.card-alert {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 3;
+}
+
 .ant-card-body {
   padding: 10px 20px 15px;
 }

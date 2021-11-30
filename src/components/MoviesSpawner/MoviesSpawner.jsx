@@ -1,5 +1,6 @@
 import React from 'react';
 import { MovieCard } from '../MovieCard/MovieCard';
+import { Empty } from 'antd';
 import './style.scss';
 
 const MoviesSpawner = ({ data, contentType }) => {
@@ -22,7 +23,7 @@ const MoviesSpawner = ({ data, contentType }) => {
 
   return (
     <div className='movies'>
-      {data.length > 0 ? filmCards : <span>Films not Found</span>}
+      {data.length > 0 ? filmCards : <Empty />}
     </div>
   )
 }

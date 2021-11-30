@@ -1,5 +1,5 @@
 import { LOGIN_TYPES } from "./types"
-
+import { isDataCorrect } from "../../helpers/isDataCorrect"
 
 export const authToggle = (newData) => {
   return {
@@ -32,14 +32,6 @@ export const setUserData = (newData) => {
     type: LOGIN_TYPES.SET_USER_DATA,
     payload: newData
   }
-}
-
-const isDataCorrect = (user) => {
-  const allUsers = JSON.parse(localStorage.getItem('filmsUsers'))
-  const res = allUsers.some(ArrUser => {
-    return ArrUser.name === user.name && ArrUser.password === user.password
-  })
-  return res
 }
 
 export const loginUser = (userData) => async (dispatch, getState) => {

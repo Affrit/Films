@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // components
-import { Skeleton, Card, Rate } from 'antd';
+import { Skeleton, Card, Rate, Alert } from 'antd';
 import { Rating } from '../Rating/Rating';
 // other
 import { favoritesToggle } from '../../store/actions/favoritesPageActions';
 import { BASE_URL_IMG } from '../../constants/constants';
 import { isInFavorites } from '../../helpers/isInFavorites';
 import { favoritesSelector } from '../FavoritesPage/selector';
+import { authSelector } from '../PrivateRoute/selector';
 import altImg from '../../img/default.png';
 import './style.scss';
 
@@ -19,8 +20,10 @@ export const MovieCard = ({ filmData, isFetching }) => {
   const { id, poster_path, title, release_date, vote_average, vote_count, contentType } = filmData
   const [imgFetching, setImgFetching] = useState(true)
   const [isLoadError, setIsLoadError] = useState(false)
+  const [isAuthError, setIsError] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
   const dispatch = useDispatch()
+  const { isAuth } = useSelector(authSelector)
   const { favoritesData } = useSelector(favoritesSelector)
   const imgSrc = poster_path ? BASE_URL_IMG + poster_path : ''
 
@@ -42,7 +45,15 @@ export const MovieCard = ({ filmData, isFetching }) => {
   }
 
   const onLikeClicked = () => {
-    dispatch(favoritesToggle(filmData))
+    if (isAuth) {
+      dispatch(favoritesToggle(filmData))
+    } else {
+      setIsError(true)
+    }
+  }
+
+  const onAlertClose = () => {
+    setIsError(false)
   }
 
   const cardCover = (
@@ -62,22 +73,35 @@ export const MovieCard = ({ filmData, isFetching }) => {
       </Link>
     </div>
   )
-  
+
   const titleLink = <Link to={`/${contentType}/${id}`}>{title}</Link>
 
   return (
-    <Card
-      hoverable
-      className='movie-card'
-      cover={cardCover}
-    >
-      <Skeleton loading={imgFetching} active>
-        <Meta
-          avatar={<div className='movie-card__rating'><Rating rating={vote_average} vote_count={vote_count} /></div>}
-          title={titleLink}
-          description={release_date}
-        />
-      </Skeleton>
-    </Card>
+    <>
+      <Card
+        hoverable
+        className='movie-card'
+        cover={cardCover}
+      >
+        <Skeleton loading={imgFetching} active>
+          <Meta
+            avatar={<div className='movie-card__rating'><Rating rating={vote_average} vote_count={vote_count} /></div>}
+            title={titleLink}
+            description={release_date}
+          />
+        </Skeleton>
+
+        {isAuthError &&
+          <div className='card-alert'>
+            <Alert
+              message="You must be autorized"
+              type="warning"
+              closable
+              onClose={onAlertClose}
+            />
+          </div>
+        }
+      </Card>
+    </>
   )
 }

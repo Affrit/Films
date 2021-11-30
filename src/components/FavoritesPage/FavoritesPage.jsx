@@ -12,7 +12,7 @@ export const FavoritesPage = () => {
 
   return (
     <div className='favoritePage'>
-      FavoritesPage
+      <h1 className='favoritePage__title'>Favorites</h1>
       <MoviesSpawner
         data={favoritesData}
       />

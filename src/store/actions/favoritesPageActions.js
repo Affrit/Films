@@ -8,6 +8,12 @@ export const setFavoritesError = (newData) => {
   }
 }
 
+export const setClearFavorites = () => {
+  return {
+      type: FAVORITES_PAGE_TYPES.SET_CLEAR_FAVORITES
+  }
+}
+
 export const setFavorites = (newData) => {
   return {
       type: FAVORITES_PAGE_TYPES.SET_FAVORITES,
