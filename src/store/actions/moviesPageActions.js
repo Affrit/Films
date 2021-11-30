@@ -93,6 +93,12 @@ export const setGenreList = (newData) => {
   }
 }
 
+export const setClearData = () => {
+  return {
+    type: MOVIES_PAGE_TYPES.SET_CLEAR_MOVIES_PAGE_DATA
+  }
+}
+
 export const getGenreList = (contentType = 'movie') => async (dispatch, getState) => {
   try {
     dispatch(setGenreFetching(true))

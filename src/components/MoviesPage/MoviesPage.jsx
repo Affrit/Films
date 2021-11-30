@@ -7,8 +7,7 @@ import { Pagination } from 'antd';
 import { MoviesSider } from './MoviesPageSider/MoviesSider';
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 // other
-import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
-import { getGenreList } from '../../store/actions/moviesPageActions';
+import { getMoviesPageData, setMoviesPageAC, getGenreList, setClearData } from '../../store/actions/moviesPageActions';
 import { moviesDataSelector } from './selector';
 import { getCurrentLocation } from '../../helpers/getLocation';
 import './style.scss';
@@ -21,16 +20,14 @@ export const MoviesPage = () => {
   const [savedLocation, setSavedLocation] = useState(contentType)
 
   useEffect(() => {
-    dispatch(getMoviesPageData(page, contentType))
-  }, [dispatch, page])
-
-  useEffect(() => {
     if (contentType !== savedLocation) {
-      dispatch(getMoviesPageData(1, contentType))
+      dispatch(setClearData())
       setSavedLocation(contentType)
+    } else {
+      dispatch(getMoviesPageData(page, contentType))
+      dispatch(getGenreList(contentType))
     }
-    dispatch(getGenreList(contentType))
-  }, [dispatch, contentType])
+  }, [dispatch, page, contentType, savedLocation])
 
   const onChangePage = (page) => {
     dispatch(setMoviesPageAC(page))
@@ -62,6 +59,20 @@ export const MoviesPage = () => {
     </>
   )
 }
+
+/* working good but have wornings
+useEffect(() => {
+    dispatch(getMoviesPageData(page, contentType))
+  }, [dispatch, page])
+
+  useEffect(() => {
+    if (contentType !== savedLocation) {
+      dispatch(getMoviesPageData(1, contentType))
+      setSavedLocation(contentType)
+    }
+    dispatch(getGenreList(contentType))
+  }, [dispatch, contentType])
+*/
 
 
 

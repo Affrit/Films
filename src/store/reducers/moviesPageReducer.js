@@ -23,6 +23,11 @@ const initialState = {
 
 export default function moviesPageReducer(state = initialState, action) {
   switch (action.type) {
+    case MOVIES_PAGE_TYPES.SET_CLEAR_MOVIES_PAGE_DATA:
+      return {
+        ...initialState
+      }
+
     case MOVIES_PAGE_TYPES.SET_MOVIES_FETCHING:
       return {
         ...state,
