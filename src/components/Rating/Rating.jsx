@@ -1,6 +1,6 @@
 import React from 'react';
 import { Tooltip, Progress } from 'antd';
-import './style.scss'
+import './style.scss';
 
 export const Rating = ({ rating, vote_count }) => {
   const percent = rating * 10 || 'NR'

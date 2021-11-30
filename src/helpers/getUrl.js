@@ -12,5 +12,3 @@ export const getUrl = (page = 1, filtrationOptions, contentType) => {
 
   return url
 }
-
-//&language=ru-RU

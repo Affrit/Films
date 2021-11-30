@@ -1,6 +1,6 @@
 import React from 'react';
-import './style.scss'
 import { Layout } from 'antd';
+import './style.scss';
 
 const { Sider } = Layout
 

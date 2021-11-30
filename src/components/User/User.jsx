@@ -1,10 +1,13 @@
-import React from "react"
-import { DownOutlined } from '@ant-design/icons';
-import { setLogOut } from "../../store/actions/authActions";
-import { Button, Menu, Dropdown } from 'antd';
+// libs
+import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
+// components
+import { DownOutlined } from '@ant-design/icons';
+import { Button, Menu, Dropdown } from 'antd';
+// other
+import { setLogOut } from "../../store/actions/authActions";
 import { authSelector } from "../PrivateRoute/selector";
-import './style.scss'
+import './style.scss';
 
 export const User = () => {
   const dispatch = useDispatch()

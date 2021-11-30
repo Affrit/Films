@@ -1,11 +1,14 @@
+// libs
 import React from 'react';
-import { Menu } from 'antd';
-import './style.scss'
-import { SearchOutlined } from '@ant-design/icons';
-import { SiderApp } from '../../Layouts/Sider/SiderApp';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+// components
+import { Menu } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { SiderApp } from '../../Layouts/Sider/SiderApp';
+// other
 import { setSearchPageAC } from '../../../store/actions/searchPageActions';
+import './style.scss';
 
 const { SubMenu } = Menu
 

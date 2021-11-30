@@ -1,12 +1,15 @@
-import './style.scss'
+// libs
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSearchedData, setSearchPageAC } from '../../store/actions/searchPageActions';
+import { useParams } from 'react-router';
+//components
 import { Pagination } from 'antd';
 import { SearchSider } from './SearchPageSider/SearchSider';
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
+// other
+import { getSearchedData, setSearchPageAC } from '../../store/actions/searchPageActions';
 import { searchDataSelector } from './selector';
-import { useParams } from 'react-router';
+import './style.scss';
 
 export const SearchPage = () => {
   const { searchWord, page, total_results, results } = useSelector(searchDataSelector)

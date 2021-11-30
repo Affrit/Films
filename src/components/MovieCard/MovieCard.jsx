@@ -1,15 +1,17 @@
+// libs
 import React, { useEffect, useState } from 'react';
-import './style.scss'
-import { Skeleton, Card } from 'antd';
-import { Rating } from '../Rating/Rating';
-import altImg from '../../img/default.png'
 import { Link } from 'react-router-dom';
-import { favoritesToggle } from '../../store/actions/favoritesPageActions';
 import { useDispatch, useSelector } from 'react-redux';
+// components
+import { Skeleton, Card, Rate } from 'antd';
+import { Rating } from '../Rating/Rating';
+// other
+import { favoritesToggle } from '../../store/actions/favoritesPageActions';
 import { BASE_URL_IMG } from '../../constants/constants';
-import { Rate } from 'antd';
 import { isInFavorites } from '../../helpers/isInFavorites';
 import { favoritesSelector } from '../FavoritesPage/selector';
+import altImg from '../../img/default.png';
+import './style.scss';
 
 const { Meta } = Card;
 
@@ -60,6 +62,7 @@ export const MovieCard = ({ filmData, isFetching }) => {
       </Link>
     </div>
   )
+  
   const titleLink = <Link to={`/${contentType}/${id}`}>{title}</Link>
 
   return (

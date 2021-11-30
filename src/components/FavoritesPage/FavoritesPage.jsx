@@ -1,8 +1,11 @@
+// libs
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { favoritesSelector } from './selector';
+// components
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
-import './style.scss'
+// other
+import { favoritesSelector } from './selector';
+import './style.scss';
 
 export const FavoritesPage = () => {
   const { favoritesData } = useSelector(favoritesSelector)

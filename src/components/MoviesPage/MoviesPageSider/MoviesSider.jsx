@@ -1,8 +1,13 @@
+// libs
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
+import moment from 'moment'
+// components
 import { Menu, DatePicker, Button, Divider, Select, Slider } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { SiderApp } from '../../Layouts/Sider/SiderApp';
-import { useDispatch, useSelector } from 'react-redux';
+// other
 import {
   getMoviesPageData, setSortParamAC,
   setSelectedGenres, setClearFiltersAC,
@@ -12,10 +17,8 @@ import {
 import { SORT_PARAMS } from '../../../constants/constants';
 import { optionsSelector } from './selector';
 import { optionsGenerator } from '../../../helpers/optionsGenerator'
-import './style.scss'
-import { useLocation } from 'react-router';
 import { getCurrentLocation } from '../../../helpers/getLocation';
-import moment from 'moment'
+import './style.scss';
 
 const { SubMenu } = Menu
 
@@ -44,25 +47,32 @@ export const MoviesSider = () => {
   const onApplyFilters = () => {
     dispatch(getMoviesPageData(1, contentType))
   }
+
   const onClearFilters = () => {
     dispatch(setClearFiltersAC())
     setRatingVal([0, 100])
   }
+
   const onChangeSort = (value) => {
     dispatch(setSortParamAC(value))
   }
+
   const onChangeGenres = (selectedItems) => {
     dispatch(setSelectedGenres(selectedItems.join(',')))
   }
+
   const onChangeFromDate = (_, dateString) => {
     dispatch(setReleaseDateGteAC(dateString))
   }
+
   const onChangeToDate = (_, dateString) => {
     dispatch(setReleaseDateLteAC(dateString))
   }
+
   const onRatingChange = (result) => {
     setRatingVal(result)
   }
+  
   const afterChangeRating = (result) => {
     const [from, to] = result
     const voteGte = `${from / 10}`

@@ -1,14 +1,17 @@
-import './style.scss'
+// libs
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { MoviesSider } from './MoviesPageSider/MoviesSider';
-import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
-import { Pagination } from 'antd';
-import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
-import { moviesDataSelector } from './selector';
 import { useLocation } from 'react-router';
-import { getCurrentLocation } from '../../helpers/getLocation';
+// components
+import { Pagination } from 'antd';
+import { MoviesSider } from './MoviesPageSider/MoviesSider';
+import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
+// other
+import { getMoviesPageData, setMoviesPageAC } from '../../store/actions/moviesPageActions';
 import { getGenreList } from '../../store/actions/moviesPageActions';
+import { moviesDataSelector } from './selector';
+import { getCurrentLocation } from '../../helpers/getLocation';
+import './style.scss';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
@@ -33,21 +36,13 @@ export const MoviesPage = () => {
     dispatch(setMoviesPageAC(page))
   }
 
-  /*
-    useEffect(() => {
-      const onScroll = (e) => {
-        console.log(e)
-        //console.log(e.wheelDelta < 0)
-        console.log(window.scrollY)
-      }
-      window.addEventListener('wheel', onScroll)
-    }, [])
-  */
+  const title = contentType === 'movie' ? 'All movies' : 'All TV shows'
+
   return (
     <>
       <MoviesSider />
       <div className='movies-page' >
-        Movies Page
+        <h1 className='movies-page__title'>{title}</h1>
         <MoviesSpawner
           data={results}
           contentType={contentType}
@@ -78,6 +73,15 @@ const dispatch = useDispatch()
   const { page } = useSelector(({ moviesPage: { moviesPageData: { page } } }) => ({
     page
   }))
+
+    useEffect(() => {
+      const onScroll = (e) => {
+        console.log(e)
+        //console.log(e.wheelDelta < 0)
+        console.log(window.scrollY)
+      }
+      window.addEventListener('wheel', onScroll)
+    }, [])
 
   useEffect(() => {
     if (isMoviesFetching) {

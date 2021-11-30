@@ -1,16 +1,17 @@
+// libs
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Input, Button, Checkbox } from 'antd';
-import { loginUser } from '../../store/actions/authActions';
-import './style.scss'
 import { useNavigate } from 'react-router';
-import { authSelector } from '../PrivateRoute/selector';
-import { Alert } from 'antd';
-import { setClearError } from '../../store/actions/authActions';
 import { Link } from 'react-router-dom';
+// components
+import { Form, Input, Button, Checkbox, Alert } from 'antd';
+// other
+import { loginUser, setClearError } from '../../store/actions/authActions';
+import { authSelector } from '../PrivateRoute/selector';
 import { spawnErorrsText } from '../../helpers/spawnErrorsText';
+import './style.scss';
 
-export const SignIn = (props) => {
+export const SignIn = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isAuth, errors } = useSelector(authSelector)

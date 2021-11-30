@@ -1,11 +1,12 @@
-import React from "react";
-import { Input } from 'antd';
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { setSearchWordAC, setSearchPageAC } from "../../store/actions/searchPageActions";
-import { useSelector } from "react-redux";
-import { searchDataSelector } from "../SearchPage/selector";
+// libs
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+// components
+import { Input } from 'antd';
+// other
+import { setSearchWordAC, setSearchPageAC } from "../../store/actions/searchPageActions";
+import { searchDataSelector } from "../SearchPage/selector";
 
 const { Search } = Input;
 

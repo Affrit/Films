@@ -1,6 +1,6 @@
 import React from 'react';
 import { MovieCard } from '../MovieCard/MovieCard';
-import './style.scss'
+import './style.scss';
 
 const MoviesSpawner = ({ data, contentType }) => {
   const filmCards = data.map(film => {

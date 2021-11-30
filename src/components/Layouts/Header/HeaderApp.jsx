@@ -1,14 +1,17 @@
+// libs
 import React, { useState, useEffect } from 'react';
-import './style.scss'
-import { Layout, Menu } from 'antd';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
-import { authSelector } from '../../PrivateRoute/selector';
-import logo from '../../../img/logo.png';
+// components
+import { Layout, Menu } from 'antd';
 import { User } from '../../User/User';
 import { SearchOutlined } from '@ant-design/icons';
 import { SearchComponent } from '../../SearchComponent/SearchComponent';
+// other
+import { authSelector } from '../../PrivateRoute/selector';
+import logo from '../../../img/logo.png';
+import './style.scss';
 
 const { Header } = Layout
 
