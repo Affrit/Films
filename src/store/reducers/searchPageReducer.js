@@ -26,6 +26,12 @@ export default function searchPageReducer(state = initialState, action) {
         errors: [...state.errors, action.payload]
       }
 
+    case SEARCH_PAGE_TYPES.SET_CLEAR_SEARCH_PAGE_ERRORS:
+      return {
+        ...state,
+        errors: []
+      }
+
     case SEARCH_PAGE_TYPES.SET_SEARCH_DATA:
       return {
         ...state,

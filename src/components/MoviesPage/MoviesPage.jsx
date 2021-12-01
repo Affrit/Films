@@ -3,18 +3,22 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 // components
-import { Pagination } from 'antd';
+import { Pagination, Alert } from 'antd';
 import { MoviesSider } from './MoviesPageSider/MoviesSider';
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 // other
-import { getMoviesPageData, setMoviesPageAC, getGenreList, setClearData } from '../../store/actions/moviesPageActions';
+import {
+  getMoviesPageData, setMoviesPageAC,
+  getGenreList, setClearData, setClearMoviesErrors
+} from '../../store/actions/moviesPageActions';
 import { moviesDataSelector } from './selector';
 import { getCurrentLocation } from '../../helpers/getLocation';
+import { spawnErorrsText } from '../../helpers/spawnErrorsText';
 import './style.scss';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
-  const { page, total_results, results } = useSelector(moviesDataSelector)
+  const { page, total_results, results, errors } = useSelector(moviesDataSelector)
   const location = useLocation()
   const contentType = getCurrentLocation(location.pathname)
   const [savedLocation, setSavedLocation] = useState(contentType)
@@ -31,6 +35,10 @@ export const MoviesPage = () => {
 
   const onChangePage = (page) => {
     dispatch(setMoviesPageAC(page))
+  }
+
+  const onAlertClose = () => {
+    dispatch(setClearMoviesErrors())
   }
 
   const title = contentType === 'movie' ? 'All movies' : 'All TV shows'
@@ -54,6 +62,16 @@ export const MoviesPage = () => {
             onChange={onChangePage}
             className='pagination'
           />
+        }
+        {errors.length ?
+          <Alert
+            message="Search error"
+            description={spawnErorrsText(errors)}
+            onClose={onAlertClose}
+            type="error"
+            className='search-page__error'
+            closable
+          /> : ''
         }
       </div>
     </>

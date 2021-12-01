@@ -10,7 +10,7 @@ import { searchDataSelector } from "../SearchPage/selector";
 
 const { Search } = Input;
 
-export const SearchComponent = ({ onSearched }) => {
+export const SearchComponent = () => {
   const [inputValue, setInputValue] = useState('')
   const { isFetching } = useSelector(searchDataSelector)
   const dispatch = useDispatch()
@@ -21,7 +21,6 @@ export const SearchComponent = ({ onSearched }) => {
   }
   const onSearch = () => {
     if (inputValue.length < 1) return;
-    onSearched()
     dispatch(setSearchWordAC(inputValue))
     dispatch(setSearchPageAC(1))
     navigate("/search/movie")

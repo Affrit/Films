@@ -30,14 +30,18 @@ export const setErrorAC = (newData) => {
   }
 }
 
+export const setClearSerchErrors = () => {
+  return {
+      type: SEARCH_PAGE_TYPES.SET_CLEAR_SEARCH_PAGE_ERRORS
+  }
+}
+
 export const setSearchPageAC = (newData) => {
   return {
       type: SEARCH_PAGE_TYPES.SET_SEARCH_PAGE,
       payload: newData
   }
 }
-
-//&language=ru-RU
 
 export const getSearchedData = (page = 1, contentType = 'movie') => async (dispatch, getState) => {
   try {
@@ -49,8 +53,8 @@ export const getSearchedData = (page = 1, contentType = 'movie') => async (dispa
       const { status_message } = searchData
       throw new Error(status_message || 'bad response')
     }
-    console.log(searchData)
     dispatch(setSearchDataAC(searchData))
+    dispatch(setClearSerchErrors())
   } catch (error) {
     console.warn(error)
     dispatch(setErrorAC(error.message))

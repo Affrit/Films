@@ -99,6 +99,12 @@ export const setClearData = () => {
   }
 }
 
+export const setClearMoviesErrors = () => {
+  return {
+    type: MOVIES_PAGE_TYPES.SET_CLEAR_MOVIES_PAGE_ERRORS
+  }
+}
+
 export const getGenreList = (contentType = 'movie') => async (dispatch, getState) => {
   try {
     dispatch(setGenreFetching(true))
@@ -129,6 +135,7 @@ export const getMoviesPageData = (page = 1, contentType = 'movie') => async (dis
       throw new Error(status_message || 'bad response')
     }
     dispatch(setMoviesAC(moviesData))
+    dispatch(setClearMoviesErrors())
   } catch (error) {
     console.warn(error)
     dispatch(setErrorAC(error.message))

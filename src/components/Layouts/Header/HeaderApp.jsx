@@ -28,10 +28,6 @@ export const HeaderApp = () => {
   const onSearchClicked = () => {
     setIsSearchOpen(prevState => !prevState)
   }
-  
-  const onSearched = () => {
-    setIsSearchOpen(false)
-  }
 
   return (
     <Header className="header">
@@ -55,7 +51,7 @@ export const HeaderApp = () => {
       </Menu>
 
       <div className={isSearchOpen ? 'search' : 'search_hide'}>
-        <SearchComponent onSearched={onSearched} />
+        <SearchComponent />
       </div>
 
       {isAuth ?

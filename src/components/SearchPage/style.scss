@@ -10,6 +10,13 @@
     color: #fff;
     margin: 0;
   }
+
+  &__error {
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    text-align: center;
+  }
 }
 
 .films {
@@ -31,7 +38,11 @@
 .pagination {
   color: #ffffff;
   background-color: #001529;
-  padding: 10px 20px;
+  padding: 0;
+
+  @media (min-width: 576px) {
+    padding: 10px 20px;
+  }
 }
 
 .ant-pagination-item-ellipsis {

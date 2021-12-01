@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment'
 // components
 import { Menu, DatePicker, Button, Divider, Select, Slider } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { FilterOutlined, SortAscendingOutlined } from '@ant-design/icons';
 import { SiderApp } from '../../Layouts/Sider/SiderApp';
 // other
 import {
@@ -83,7 +83,7 @@ export const MoviesSider = ({ contentType }) => {
 
         <SubMenu
           key="sort"
-          icon={<SearchOutlined />}
+          icon={<SortAscendingOutlined />}
           title="Sort by"
           className='sub-menu'
         >
@@ -98,7 +98,7 @@ export const MoviesSider = ({ contentType }) => {
 
         <SubMenu
           key="filters"
-          icon={<SearchOutlined />}
+          icon={<FilterOutlined />}
           title="Filters by"
           className='sub-menu'
         >

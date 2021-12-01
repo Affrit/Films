@@ -3,16 +3,17 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 //components
-import { Pagination } from 'antd';
+import { Pagination, Alert } from 'antd';
 import { SearchSider } from './SearchPageSider/SearchSider';
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 // other
-import { getSearchedData, setSearchPageAC } from '../../store/actions/searchPageActions';
+import { getSearchedData, setClearSerchErrors, setSearchPageAC } from '../../store/actions/searchPageActions';
 import { searchDataSelector } from './selector';
+import { spawnErorrsText } from '../../helpers/spawnErrorsText';
 import './style.scss';
 
 export const SearchPage = () => {
-  const { searchWord, page, total_results, results } = useSelector(searchDataSelector)
+  const { searchWord, page, total_results, results, errors } = useSelector(searchDataSelector)
   const dispatch = useDispatch()
   const { type: contentType } = useParams()
 
@@ -24,6 +25,10 @@ export const SearchPage = () => {
     dispatch(setSearchPageAC(page))
   }
 
+  const onAlertClose = () => {
+    dispatch(setClearSerchErrors())
+  }
+
   return (
     <>
       <SearchSider currentLocation={contentType} />
@@ -31,13 +36,15 @@ export const SearchPage = () => {
         <div>
           <h1 className='search-page__title'>Search Result</h1>
         </div>
+
         {total_results ? <span className='search-result'>We found {total_results} results</span> : ''}
+
         <MoviesSpawner
           data={results}
           contentType={contentType}
         />
-        {
-          total_results > 20 &&
+
+        {total_results > 20 &&
           <Pagination
             showQuickJumper
             showSizeChanger={false}
@@ -46,6 +53,16 @@ export const SearchPage = () => {
             onChange={onChangePage}
             className='pagination'
           />
+        }
+        {errors.length ?
+          <Alert
+            message="Search error"
+            description={spawnErorrsText(errors)}
+            onClose={onAlertClose}
+            type="error"
+            className='search-page__error'
+            closable
+          /> : ''
         }
       </div>
     </>

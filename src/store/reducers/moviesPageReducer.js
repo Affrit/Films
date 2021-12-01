@@ -46,6 +46,12 @@ export default function moviesPageReducer(state = initialState, action) {
         errors: [...state.errors, action.payload]
       }
 
+    case MOVIES_PAGE_TYPES.SET_CLEAR_MOVIES_PAGE_ERRORS:
+      return {
+        ...state,
+        errors: []
+      }
+
     case MOVIES_PAGE_TYPES.SET_MOVIES_DATA:
       return {
         ...state,
