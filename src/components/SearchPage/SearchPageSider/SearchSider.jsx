@@ -22,7 +22,7 @@ export const SearchSider = ({ currentLocation }) => {
   return (
     <SiderApp>
       <Menu
-        theme="lite"
+        theme="dark"
         mode="inline"
         defaultSelectedKeys={[currentLocation]}
         defaultOpenKeys={['sub1']}

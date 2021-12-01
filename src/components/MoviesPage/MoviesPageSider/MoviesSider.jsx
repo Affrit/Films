@@ -75,9 +75,8 @@ export const MoviesSider = ({ contentType }) => {
   return (
     <SiderApp >
       <Menu
-        theme="lite"
+        theme="dark"
         mode="inline"
-        defaultSelectedKeys={['sort']}
         className='sider-menu'
       >
 
