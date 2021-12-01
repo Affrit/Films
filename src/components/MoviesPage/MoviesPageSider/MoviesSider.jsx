@@ -1,7 +1,6 @@
 // libs
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
 import moment from 'moment'
 // components
 import { Menu, DatePicker, Button, Divider, Select, Slider } from 'antd';
@@ -17,32 +16,24 @@ import {
 import { SORT_PARAMS } from '../../../constants/constants';
 import { optionsSelector } from './selector';
 import { optionsGenerator } from '../../../helpers/optionsGenerator'
-import { getCurrentLocation } from '../../../helpers/getLocation';
+import { ratingValTransform } from '../../../helpers/ratingValTransform';
 import './style.scss';
 
 const { SubMenu } = Menu
 
-export const MoviesSider = () => {
+export const MoviesSider = ({ contentType }) => {
   const { 
-    isGenreFetching, genreList, sort_by, 
-    with_genres, voteGte, voteLte, 
-    releaseGte, releaseLte 
+    isGenreFetching, genreList, sort_by, with_genres,
+    voteGte, voteLte, releaseGte, releaseLte 
   } = useSelector(optionsSelector)
-  const dispatch = useDispatch()
-  const location = useLocation()
-  const contentType = getCurrentLocation(location.pathname)
-  const [savedLocation, setSavedLocation] = useState(contentType)
-  const [ratingVal, setRatingVal] = useState([voteGte * 10, voteLte * 10 || 100])
+  const [ratingVal, setRatingVal] = useState(ratingValTransform(voteGte, voteLte))
   const genreOptions = optionsGenerator(genreList)
   const sortOptions = optionsGenerator(SORT_PARAMS)
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    if (contentType !== savedLocation) {
-      dispatch(setClearFiltersAC())
-      setRatingVal([0, 100])
-      setSavedLocation(contentType)
-    }
-  }, [contentType, savedLocation, dispatch])
+      setRatingVal(ratingValTransform(voteGte, voteLte))
+  }, [voteGte, voteLte])
 
   const onApplyFilters = () => {
     dispatch(getMoviesPageData(1, contentType))

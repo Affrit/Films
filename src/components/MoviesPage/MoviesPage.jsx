@@ -37,7 +37,7 @@ export const MoviesPage = () => {
 
   return (
     <>
-      <MoviesSider />
+      <MoviesSider contentType={savedLocation} />
       <div className='movies-page' >
         <h1 className='movies-page__title'>{title}</h1>
         <MoviesSpawner
