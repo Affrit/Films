@@ -23,7 +23,7 @@ export const HeaderApp = () => {
 
   useEffect(() => {
     setIsSearchOpen(false)
-  }, [currentLocation])
+  }, [location])
 
   const onSearchClicked = () => {
     setIsSearchOpen(prevState => !prevState)

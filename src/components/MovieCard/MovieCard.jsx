@@ -74,7 +74,19 @@ export const MovieCard = ({ filmData, isFetching }) => {
     </div>
   )
 
-  const titleLink = <Link to={`/${contentType}/${id}`}>{title}</Link>
+  const titleLink = (
+    <Link to={`/${contentType}/${id}`}>
+      {title}
+    </Link>
+  )
+  const avatar = (
+    <div className='movie-card__rating'>
+      <Rating
+        rating={vote_average}
+        vote_count={vote_count}
+      />
+    </div>
+  )
 
   return (
     <>
@@ -85,7 +97,7 @@ export const MovieCard = ({ filmData, isFetching }) => {
       >
         <Skeleton loading={imgFetching} active>
           <Meta
-            avatar={<div className='movie-card__rating'><Rating rating={vote_average} vote_count={vote_count} /></div>}
+            avatar={avatar}
             title={titleLink}
             description={release_date}
           />

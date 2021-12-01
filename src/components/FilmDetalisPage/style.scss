@@ -88,14 +88,14 @@
 
   &__info {
     width: 100%;
-    padding: 0 10px;
+    padding: 10px 10px 0;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
   }
 
   &__title-block {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   &__title {
@@ -133,7 +133,7 @@
   &__rating {
     display: flex;
     align-items: center;
-    padding: 15px 0;
+    padding: 5px 0;
   }
 
   &__rating-name {
@@ -170,7 +170,7 @@
 
   &__text {
     margin: 0;
-    max-height: 250px;
+    max-height: 130px;
     overflow-y: auto;
   }
 }
