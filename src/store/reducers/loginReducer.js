@@ -1,14 +1,5 @@
 import { LOGIN_TYPES } from "../actions/types";
 
-const users = JSON.stringify([
-  {
-    username: 'admin',
-    password: 'admin'
-  },
-])
-
-localStorage.setItem('filmsUsers', users)
-
 const initialState = {
   userData: {},
   isAuth: false,

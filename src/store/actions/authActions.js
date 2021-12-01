@@ -1,5 +1,5 @@
 import { LOGIN_TYPES } from "./types"
-import { isDataCorrect } from "../../helpers/isDataCorrect"
+import { isDataCorrect, isUserExists, createNewUser } from "../../helpers/authHelpers"
 
 export const authToggle = (newData) => {
   return {
@@ -35,18 +35,39 @@ export const setUserData = (newData) => {
 }
 
 export const loginUser = (userData) => async (dispatch, getState) => {
-  const { login: { errors } } = getState()
   try {
-    if (isDataCorrect(userData)) {
-      dispatch(setUserData(userData))
-      dispatch(authToggle(true))
-      dispatch(setClearError())
-    } else {
+    if (!isDataCorrect(userData)) {
       throw new Error('Incorrect username or password')
+    }
+    dispatch(setUserData(userData))
+    dispatch(authToggle(true))
+    dispatch(setClearError())
+    /*
+    if (userData.remember) {
+      rememberUser(userData)
+    }
+    */
+  } catch (error) {
+    console.warn(error)
+    const { login: { errors } } = getState()
+    if (!errors.some(item => item === error.message)) {
+      dispatch(setAuthError(error.message))
+    }
+  }
+}
+
+export const setNewUser = (userData) => async (dispatch, getState) => {
+  try {
+    if (isUserExists(userData)) {
+      throw new Error('Such user has been alredy exists!')
+    } else {
+      createNewUser(userData)
+      dispatch(setClearError())
     }
   } catch (error) {
     console.warn(error)
-    if ( !errors.some(item => item === error.message) ) {
+    const { login: { errors } } = getState()
+    if (!errors.some(item => item === error.message)) {
       dispatch(setAuthError(error.message))
     }
   }
