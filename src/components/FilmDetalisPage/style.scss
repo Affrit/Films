@@ -119,11 +119,7 @@
   }
 
   &__img {
-    width: 380px;
-
-    @media (min-width: 768px) {
-      width: 280px;
-    }
+    width: 280px;
   }
 
   &__genre {

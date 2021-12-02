@@ -58,7 +58,7 @@ export const MovieCard = ({ filmData }) => {
         onChange={onLikeClicked}
         value={isLiked}
       />
-      <Link to={`/${contentType}/${id}`}>
+      <Link className='movie-card__link'  to={`/${contentType}/${id}`}>
         <img
           className='movie-card__img' alt='#'
           src={isLoadError ? altImg : imgSrc}
@@ -97,7 +97,7 @@ export const MovieCard = ({ filmData }) => {
         />
 
         {isAuthError &&
-          <div className='card-alert'>
+          <div className='movie-card__alert'>
             <Alert
               message="You must be autorized"
               type="warning"
