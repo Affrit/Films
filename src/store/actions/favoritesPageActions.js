@@ -1,6 +1,6 @@
-import { isInFavorites } from "../../helpers/isInFavorites";
 import { FAVORITES_PAGE_TYPES } from "../actions/types";
-import { setFavoriteList } from "../../helpers/authHelpers";
+import { isInFavorites } from "../../helpers/favoriteHelpers";
+import { setFavoriteList } from "../../helpers/favoriteHelpers";
 
 export const setFavoritesError = (newData) => {
   return {

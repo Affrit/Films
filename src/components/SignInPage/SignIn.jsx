@@ -18,9 +18,12 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (isAuth) {
-      navigate(-1)
+      navigate('/movie')
     }
-  }, [isAuth, navigate])
+    return () => {
+      dispatch(setClearError())
+    }
+  }, [isAuth, navigate, dispatch])
 
   const onFinish = (values) => {
     dispatch(loginUser(values))

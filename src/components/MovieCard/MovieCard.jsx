@@ -8,7 +8,7 @@ import { Rating } from '../Rating/Rating';
 // other
 import { favoritesToggle } from '../../store/actions/favoritesPageActions';
 import { BASE_URL_IMG } from '../../constants/constants';
-import { isInFavorites } from '../../helpers/isInFavorites';
+import { isInFavorites } from '../../helpers/favoriteHelpers';
 import { favoritesSelector } from '../FavoritesPage/selector';
 import { authSelector } from '../PrivateRoute/selector';
 import altImg from '../../img/default.png';

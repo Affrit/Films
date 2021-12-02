@@ -6,7 +6,7 @@ import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 // other
 import { favoritesSelector } from './selector';
 import { authSelector } from '../PrivateRoute/selector';
-import { getFavoriteList } from '../../helpers/authHelpers';
+import { getFavoriteList } from '../../helpers/favoriteHelpers';
 import { setFavorites } from '../../store/actions/favoritesPageActions';
 import './style.scss';
 

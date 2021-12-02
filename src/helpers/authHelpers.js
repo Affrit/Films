@@ -28,23 +28,9 @@ export const getRemeberedUser = () => {
   return rememberedUser
 }
 
-export const getFavoriteList = (listId) => {
-  const favoriteList = JSON.parse(localStorage.getItem(listId))
-  return favoriteList
-}
-
-export const setFavoriteList = (list, listId) => {
-  const newList = JSON.stringify(list)
-  localStorage.setItem(listId, newList)
-}
-
 const allUsers = JSON.parse(localStorage.getItem('MC-users'))
 if (!allUsers) {
-  const users = JSON.stringify([
-    {
-      username: 'admin',
-      password: 'admin'
-    },
-  ])
+  const defaultUser = { username: 'admin', password: 'admin' }
+  const users = JSON.stringify([defaultUser])
   localStorage.setItem('MC-users', users)
 }

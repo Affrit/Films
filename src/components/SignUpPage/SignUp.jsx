@@ -20,7 +20,10 @@ export const SignUp = () => {
     if (isAuth) {
       navigate('/movie')
     }
-  }, [isAuth, navigate])
+    return () => {
+      dispatch(setClearError())
+    }
+  }, [isAuth, navigate, dispatch])
 
   const onFinish = (values) => {
     dispatch(setNewUser(values))
