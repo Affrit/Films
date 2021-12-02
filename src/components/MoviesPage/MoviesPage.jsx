@@ -18,7 +18,7 @@ import './style.scss';
 
 export const MoviesPage = () => {
   const dispatch = useDispatch()
-  const { page, total_results, results, errors } = useSelector(moviesDataSelector)
+  const { page, total_results, results, errors, isMoviesFetching } = useSelector(moviesDataSelector)
   const location = useLocation()
   const contentType = getCurrentLocation(location.pathname)
   const [savedLocation, setSavedLocation] = useState(contentType)

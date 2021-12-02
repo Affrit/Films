@@ -1,14 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Result, Button } from 'antd';
-import { useNavigate } from 'react-router';
+//import { useNavigate } from 'react-router';
 import { Navigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { authSelector } from '../PrivateRoute/selector';
 import './style.scss';
 
 export const Page403 = () => {
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
   const { isAuth } = useSelector(authSelector)
 
   /*

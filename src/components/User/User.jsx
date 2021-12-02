@@ -16,15 +16,14 @@ export const User = () => {
   const dispatch = useDispatch()
   const { username } = useSelector(authSelector)
   const { isAuth } = useSelector(authSelector)
-  const remeberedUser = getRemeberedUser()
-  console.log(remeberedUser)
 
   useEffect(() => {
+    const remeberedUser = getRemeberedUser()
     if (remeberedUser) {
       dispatch(setUserData(remeberedUser))
       dispatch(authToggle(true))
     }
-  }, [])
+  }, [dispatch])
 
   const onLogOut = () => {
     dispatch(setLogOut(false))

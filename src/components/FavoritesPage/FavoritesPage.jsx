@@ -14,13 +14,13 @@ export const FavoritesPage = () => {
   const dispatch = useDispatch()
   const { favoritesData } = useSelector(favoritesSelector)
   const { username } = useSelector(authSelector)
-  const listFromStorage = getFavoriteList(username)
 
   useEffect(() => {
+    const listFromStorage = getFavoriteList(username)
     if (listFromStorage) {
       dispatch(setFavorites(listFromStorage))
     }
-  }, [])
+  }, [dispatch, username])
 
   return (
     <div className='favoritePage'>
