@@ -27,26 +27,20 @@ export const FilmDetalisPage = () => {
   const bgSrc = backdrop_path ? BASE_URL_IMG + backdrop_path : ''
   const posterSrc = poster_path ? BASE_URL_IMG + poster_path : ''
 
-  const [imgFetching, setImgFetching] = useState(true)
   const [isLoadError, setIsLoadError] = useState(false)
 
   useEffect(() => {
     dispatch(getFilmDetalis(filmId, contentType))
   }, [dispatch, filmId, contentType])
 
-  const onImgLoad = () => {
-    setImgFetching(false)
-  }
-
   const onImgLoadError = () => {
-    setImgFetching(false)
     setIsLoadError(true)
   }
 
   const spawnImg = () => {
     return (
       <img
-        onLoad={onImgLoad} onError={onImgLoadError}
+        onError={onImgLoadError}
         src={isLoadError ? altImg : posterSrc}
         className='filmPage__img' alt="#"
       />
@@ -137,32 +131,3 @@ export const FilmDetalisPage = () => {
     </div>
   )
 }
-
-/*
-const [moveX, setMoveX] = useState()
-  const [moveY, setMoveY] = useState()
-  const handler = (e) => {
-    const winWidth = e.screenX
-    const winHeight = e.screenY
-    const moveX = e.pageX / (winWidth)
-    const moveY = e.pageY / (winHeight)
-    console.log(moveX)
-    setMoveX(moveX)
-    setMoveY(moveY)
-    'transform: `translateX(${moveX}%)`, transform: `translateY(${moveY}%)`'
-    onMouseMove={handler}
-  }
-
-
-  const companiesImages = production_companies.map(company => {
-    if (!company.logo_path) return ;
-    const imgSrc = BASE_URL_IMG + company.logo_path
-    return (
-    <img
-      src={imgSrc}
-      className='filmPage__company-img' alt="#"
-    />
-    )
-  })
-
-*/

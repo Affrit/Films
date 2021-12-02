@@ -47,13 +47,15 @@ export const MoviesPage = () => {
     <>
       <MoviesSider contentType={savedLocation} />
       <div className='movies-page' >
+        
         <h1 className='movies-page__title'>{title}</h1>
         <MoviesSpawner
           data={results}
           contentType={contentType}
+          isFetching={isMoviesFetching}
         />
-        {
-          total_results > 20 &&
+
+        {total_results > 20 &&
           <Pagination
             showQuickJumper
             showSizeChanger={false}
@@ -63,6 +65,7 @@ export const MoviesPage = () => {
             className='pagination'
           />
         }
+
         {errors.length ?
           <Alert
             message="Search error"
@@ -77,98 +80,3 @@ export const MoviesPage = () => {
     </>
   )
 }
-
-/* working good but have wornings
-useEffect(() => {
-    dispatch(getMoviesPageData(page, contentType))
-  }, [dispatch, page])
-
-  useEffect(() => {
-    if (contentType !== savedLocation) {
-      dispatch(getMoviesPageData(1, contentType))
-      setSavedLocation(contentType)
-    }
-    dispatch(getGenreList(contentType))
-  }, [dispatch, contentType])
-*/
-
-
-
-/*
-const dispatch = useDispatch()
-  const { moviesPageData, isMoviesFetching } = useSelector(({ moviesPage: { moviesPageData, isMoviesFetching } }) => ({
-    moviesPageData, isMoviesFetching
-  }))
-  const { page } = useSelector(({ moviesPage: { moviesPageData: { page } } }) => ({
-    page
-  }))
-
-    useEffect(() => {
-      const onScroll = (e) => {
-        console.log(e)
-        //console.log(e.wheelDelta < 0)
-        console.log(window.scrollY)
-      }
-      window.addEventListener('wheel', onScroll)
-    }, [])
-
-  useEffect(() => {
-    if (isMoviesFetching) {
-      dispatch(getMoviesPageData(page + 1))
-    }
-  }, [dispatch, isMoviesFetching])
-
-  useEffect(() => {
-    return () => {
-      document.removeEventListener('scroll', onScroll)
-    }
-  }, [])
-
-  const onScroll = (e) => {
-    const commonHeight = e.target.documentElement.scrollHeight
-    const currentPos = e.target.documentElement.scrollTop
-    const windowHeigth = window.innerHeight
-    const heightBufer = 10
-    if (commonHeight - currentPos - heightBufer < windowHeigth) {
-      dispatch(setMoviesFetchingAC(true))
-    }
-  }
-
-  useEffect(() => {
-
-    const onScroll = (e) => {
-      console.log(e)
-      //console.log(e.wheelDelta < 0)
-      console.log(window.scrollY)
-    }
-    window.addEventListener('wheel', onScroll)
-
-  }, [])
-
-  const onLoadMore = () => {
-    dispatch(setMoviesFetchingAC(true))
-    document.addEventListener('scroll', onScroll)
-  }
-
-  return (
-    <>
-      <MoviesSider />
-      <div className='movies-page'>
-        Movies Page
-        <div className='movies'>
-          {moviesSpawner(moviesPageData)}
-        </div>
-        <Button
-          onClick={onLoadMore}
-          type="primary"
-          loading={isMoviesFetching}
-          block={true}
-          shape="round"
-          size={'large'}
-        >
-          Load More
-        </Button>
-      </div>
-    </>
-  )
-  */

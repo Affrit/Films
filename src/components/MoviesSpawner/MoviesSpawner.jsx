@@ -1,9 +1,9 @@
 import React from 'react';
 import { MovieCard } from '../MovieCard/MovieCard';
-import { Empty } from 'antd';
+import { Empty, Spin } from 'antd';
 import './style.scss';
 
-const MoviesSpawner = ({ data, contentType }) => {
+const MoviesSpawner = ({ data, contentType, isFetching }) => {
   const filmCards = data.map(film => {
     const filmData = {
       contentType: contentType ?? film.contentType,
@@ -16,15 +16,19 @@ const MoviesSpawner = ({ data, contentType }) => {
     }
     return (
       <div key={film.id} className='movies__inner'>
-        <MovieCard isFetching={false} filmData={filmData} />
+        <MovieCard filmData={filmData} />
       </div>
     )
   })
 
   return (
-    <div className='movies'>
-      {data.length > 0 ? filmCards : <Empty />}
-    </div>
+    <>
+      {isFetching ? <Spin className='movies__spinner' size='large' /> :
+        <div className='movies'>
+          {data.length > 0 ? filmCards : <Empty />}
+        </div>
+      }
+    </>
   )
 }
 

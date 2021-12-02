@@ -2,7 +2,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  padding-top: 10px;
   width: 90%;
 
   @media (min-width: 375px) {
@@ -33,5 +32,9 @@
     @media (min-width: 1200px) {
       width: 20%;
     }
+  }
+
+  &__spinner {
+    flex-grow: 1;
   }
 }

@@ -13,7 +13,7 @@ import { spawnErorrsText } from '../../helpers/spawnErrorsText';
 import './style.scss';
 
 export const SearchPage = () => {
-  const { searchWord, page, total_results, results, errors } = useSelector(searchDataSelector)
+  const { searchWord, page, total_results, results, errors, isFetching } = useSelector(searchDataSelector)
   const dispatch = useDispatch()
   const { type: contentType } = useParams()
 
@@ -42,6 +42,7 @@ export const SearchPage = () => {
         <MoviesSpawner
           data={results}
           contentType={contentType}
+          isFetching={isFetching}
         />
 
         {total_results > 20 &&
