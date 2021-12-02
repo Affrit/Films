@@ -18,8 +18,6 @@ export const createNewUser = ({ username, password }) => {
   localStorage.setItem('MC-users', newUsers)
 }
 
-
-/*
 export const rememberUser = ({ username, password }) => {
   const remeberedUser = JSON.stringify({ username, password })
   localStorage.setItem('MC-remebered', remeberedUser)
@@ -30,12 +28,15 @@ export const getRemeberedUser = () => {
   return rememberedUser
 }
 
-const rememberedUser = getRemeberedUser()
-  if (rememberedUser) {
-    dispatch(setUserData(rememberedUser))
-    dispatch(authToggle(true))
-  }
-*/
+export const getFavoriteList = (listId) => {
+  const favoriteList = JSON.parse(localStorage.getItem(listId))
+  return favoriteList
+}
+
+export const setFavoriteList = (list, listId) => {
+  const newList = JSON.stringify(list)
+  localStorage.setItem(listId, newList)
+}
 
 const allUsers = JSON.parse(localStorage.getItem('MC-users'))
 if (!allUsers) {
@@ -45,7 +46,5 @@ if (!allUsers) {
       password: 'admin'
     },
   ])
-  const remeberedUser = JSON.stringify('')
   localStorage.setItem('MC-users', users)
-  localStorage.setItem('MC-remebered', remeberedUser)
 }

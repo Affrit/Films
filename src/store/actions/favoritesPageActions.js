@@ -1,5 +1,6 @@
 import { isInFavorites } from "../../helpers/isInFavorites";
 import { FAVORITES_PAGE_TYPES } from "../actions/types";
+import { setFavoriteList } from "../../helpers/authHelpers";
 
 export const setFavoritesError = (newData) => {
   return {
@@ -24,12 +25,15 @@ export const setFavorites = (newData) => {
 export const favoritesToggle = (film) => async (dispatch, getState) => {
   try {
     const { favoritesPage: { favoritesData } } = getState()
+    const { login: { userData: { username } } } = getState()
     if (isInFavorites(film, favoritesData)) {
       const newfavoritesData = favoritesData.filter(item => item.id !== film.id)
       dispatch(setFavorites(newfavoritesData))
+      setFavoriteList(newfavoritesData, username)
     } else {
       const newfavoritesData = [...favoritesData, film]
       dispatch(setFavorites(newfavoritesData))
+      setFavoriteList(newfavoritesData, username)
     }
   } catch (error) {
     console.warn(error)

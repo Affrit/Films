@@ -18,7 +18,7 @@ export const SignIn = () => {
 
   useEffect(() => {
     if (isAuth) {
-      navigate('/movie')
+      navigate(-1)
     }
   }, [isAuth, navigate])
 

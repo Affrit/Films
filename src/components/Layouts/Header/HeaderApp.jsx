@@ -2,14 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router';
-import { useSelector } from 'react-redux';
 // components
 import { Layout, Menu } from 'antd';
 import { User } from '../../User/User';
 import { SearchOutlined } from '@ant-design/icons';
 import { SearchComponent } from '../../SearchComponent/SearchComponent';
 // other
-import { authSelector } from '../../PrivateRoute/selector';
 import logo from '../../../img/logo.png';
 import './style.scss';
 
@@ -18,7 +16,6 @@ const { Header } = Layout
 export const HeaderApp = () => {
   const location = useLocation()
   const currentLocation = location.pathname.split('/')[1]
-  const { isAuth } = useSelector(authSelector)
   const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   useEffect(() => {
@@ -54,13 +51,8 @@ export const HeaderApp = () => {
         <SearchComponent />
       </div>
 
-      {isAuth ?
-        <User /> :
-        <div className='header__refs'>
-          <Link to="/">log in</Link>
-          <Link to="/sign-up">sign up</Link>
-        </div>
-      }
+      <User />
+      
     </Header>
   )
 }

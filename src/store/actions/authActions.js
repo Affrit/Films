@@ -1,5 +1,5 @@
 import { LOGIN_TYPES } from "./types"
-import { isDataCorrect, isUserExists, createNewUser } from "../../helpers/authHelpers"
+import { isDataCorrect, isUserExists, createNewUser, rememberUser } from "../../helpers/authHelpers"
 
 export const authToggle = (newData) => {
   return {
@@ -42,11 +42,9 @@ export const loginUser = (userData) => async (dispatch, getState) => {
     dispatch(setUserData(userData))
     dispatch(authToggle(true))
     dispatch(setClearError())
-    /*
     if (userData.remember) {
       rememberUser(userData)
     }
-    */
   } catch (error) {
     console.warn(error)
     const { login: { errors } } = getState()
@@ -62,6 +60,7 @@ export const setNewUser = (userData) => async (dispatch, getState) => {
       throw new Error('Such user has been alredy exists!')
     } else {
       createNewUser(userData)
+      dispatch(loginUser(userData))
       dispatch(setClearError())
     }
   } catch (error) {

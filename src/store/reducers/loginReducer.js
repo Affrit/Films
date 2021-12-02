@@ -1,6 +1,9 @@
 import { LOGIN_TYPES } from "../actions/types";
+//import { getRemeberedUser } from "../../helpers/authHelpers";
 
-const initialState = {
+//const rememberedUser = getRemeberedUser()
+
+export const initialState = {
   userData: {},
   isAuth: false,
   errors: []
@@ -34,7 +37,9 @@ export default function loginReducer(state = initialState, action) {
 
     case LOGIN_TYPES.SET_LOGOUT:
       return {
-        ...initialState
+        userData: {},
+        isAuth: false,
+        errors: []
       }
 
     default:
