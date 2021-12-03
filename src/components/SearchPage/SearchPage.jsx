@@ -7,7 +7,7 @@ import { Pagination, Alert } from 'antd';
 import { SearchSider } from './SearchPageSider/SearchSider';
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 // other
-import { getSearchedData, setClearSerchErrors, setSearchPageAC } from '../../store/actions/searchPageActions';
+import { getSearchedData, setClearSerchErrors, setSearchPage } from '../../store/actions/searchPageActions';
 import { searchDataSelector } from './selector';
 import { spawnErorrsText } from '../../helpers/spawnErrorsText';
 import './style.scss';
@@ -22,7 +22,7 @@ export const SearchPage = () => {
   }, [searchWord, page, contentType, dispatch])
 
   const onChangePage = (page) => {
-    dispatch(setSearchPageAC(page))
+    dispatch(setSearchPage(page))
   }
 
   const onAlertClose = () => {

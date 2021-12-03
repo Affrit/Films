@@ -7,7 +7,7 @@ import { Menu } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import { SiderApp } from '../../Layouts/Sider/SiderApp';
 // other
-import { setSearchPageAC } from '../../../store/actions/searchPageActions';
+import { setSearchPage } from '../../../store/actions/searchPageActions';
 import './style.scss';
 
 const { SubMenu } = Menu
@@ -16,7 +16,7 @@ export const SearchSider = ({ currentLocation }) => {
   const dispatch = useDispatch()
 
   const handleClick = () => {
-    dispatch(setSearchPageAC(1))
+    dispatch(setSearchPage(1))
   }
 
   return (

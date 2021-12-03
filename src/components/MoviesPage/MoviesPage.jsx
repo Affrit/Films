@@ -8,7 +8,7 @@ import { MoviesSider } from './MoviesPageSider/MoviesSider';
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 // other
 import {
-  getMoviesPageData, setMoviesPageAC,
+  getMoviesPageData, setMoviesPage,
   getGenreList, setClearData, setClearMoviesErrors
 } from '../../store/actions/moviesPageActions';
 import { moviesDataSelector } from './selector';
@@ -34,7 +34,7 @@ export const MoviesPage = () => {
   }, [dispatch, page, contentType, savedLocation])
 
   const onChangePage = (page) => {
-    dispatch(setMoviesPageAC(page))
+    dispatch(setMoviesPage(page))
   }
 
   const onAlertClose = () => {

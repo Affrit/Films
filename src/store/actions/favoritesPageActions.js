@@ -2,6 +2,13 @@ import { FAVORITES_PAGE_TYPES } from "../actions/types";
 import { isInFavorites } from "../../helpers/favoriteHelpers";
 import { setFavoriteList } from "../../helpers/favoriteHelpers";
 
+export const setFavorites = (newData) => {
+  return {
+      type: FAVORITES_PAGE_TYPES.SET_FAVORITES,
+      payload: newData
+  }
+}
+
 export const setFavoritesError = (newData) => {
   return {
       type: FAVORITES_PAGE_TYPES.SET_FAVORITES_ERROR,
@@ -12,13 +19,6 @@ export const setFavoritesError = (newData) => {
 export const setClearFavorites = () => {
   return {
       type: FAVORITES_PAGE_TYPES.SET_CLEAR_FAVORITES
-  }
-}
-
-export const setFavorites = (newData) => {
-  return {
-      type: FAVORITES_PAGE_TYPES.SET_FAVORITES,
-      payload: newData
   }
 }
 

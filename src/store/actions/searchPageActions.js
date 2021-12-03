@@ -2,30 +2,37 @@ import { SEARCH_PAGE_TYPES } from "./types"
 import { API_KEY } from "../../constants/constants"
 import { BASE_URL } from "../../constants/constants"
 
-export const fetchingAC = (newData) => {
-  return {
-      type: SEARCH_PAGE_TYPES.SET_FETCHING,
-      payload: newData
-  }
-}
-
-export const setSearchWordAC = (newData) => {
-  return {
-      type: SEARCH_PAGE_TYPES.SET_SEARCH_WORD,
-      payload: newData
-  }
-}
-
-export const setSearchDataAC = (newData) => {
+export const setSearchData = (newData) => {
   return {
       type: SEARCH_PAGE_TYPES.SET_SEARCH_DATA,
       payload: newData
   }
 }
 
-export const setErrorAC = (newData) => {
+export const setSearchPage = (newData) => {
+  return {
+      type: SEARCH_PAGE_TYPES.SET_SEARCH_PAGE,
+      payload: newData
+  }
+}
+
+export const setSearchWord = (newData) => {
+  return {
+      type: SEARCH_PAGE_TYPES.SET_SEARCH_WORD,
+      payload: newData
+  }
+}
+
+export const setError = (newData) => {
   return {
       type: SEARCH_PAGE_TYPES.SET_SEARCH_PAGE_ERROR,
+      payload: newData
+  }
+}
+
+export const setFetching = (newData) => {
+  return {
+      type: SEARCH_PAGE_TYPES.SET_FETCHING,
       payload: newData
   }
 }
@@ -36,16 +43,9 @@ export const setClearSerchErrors = () => {
   }
 }
 
-export const setSearchPageAC = (newData) => {
-  return {
-      type: SEARCH_PAGE_TYPES.SET_SEARCH_PAGE,
-      payload: newData
-  }
-}
-
 export const getSearchedData = (page = 1, contentType = 'movie') => async (dispatch, getState) => {
   try {
-    dispatch(fetchingAC(true))
+    dispatch(setFetching(true))
     const { searchPage: { searchWord } } = getState()
     const response = await fetch(`${BASE_URL}/search/${contentType}?${API_KEY}&query=${searchWord}&page=${page}`)
     const searchData = await response.json()
@@ -53,12 +53,12 @@ export const getSearchedData = (page = 1, contentType = 'movie') => async (dispa
       const { status_message } = searchData
       throw new Error(status_message || 'bad response')
     }
-    dispatch(setSearchDataAC(searchData))
+    dispatch(setSearchData(searchData))
     dispatch(setClearSerchErrors())
   } catch (error) {
     console.warn(error)
-    dispatch(setErrorAC(error.message))
+    dispatch(setError(error.message))
   } finally {
-    dispatch(fetchingAC(false))
+    dispatch(setFetching(false))
   }
 }

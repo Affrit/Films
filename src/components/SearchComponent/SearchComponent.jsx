@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 // components
 import { Input } from 'antd';
 // other
-import { setSearchWordAC, setSearchPageAC } from "../../store/actions/searchPageActions";
+import { setSearchWord, setSearchPage } from "../../store/actions/searchPageActions";
 import { searchDataSelector } from "../SearchPage/selector";
 
 const { Search } = Input;
@@ -21,8 +21,8 @@ export const SearchComponent = () => {
   }
   const onSearch = () => {
     if (inputValue.length < 1) return;
-    dispatch(setSearchWordAC(inputValue))
-    dispatch(setSearchPageAC(1))
+    dispatch(setSearchWord(inputValue))
+    dispatch(setSearchPage(1))
     navigate("/search/movie")
   }
 

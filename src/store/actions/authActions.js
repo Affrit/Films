@@ -1,6 +1,13 @@
 import { LOGIN_TYPES } from "./types"
 import { isDataCorrect, isUserExists, createNewUser, rememberUser } from "../../helpers/authHelpers"
 
+export const setUserData = (newData) => {
+  return {
+    type: LOGIN_TYPES.SET_USER_DATA,
+    payload: newData
+  }
+}
+
 export const authToggle = (newData) => {
   return {
     type: LOGIN_TYPES.SET_AUTH,
@@ -24,13 +31,6 @@ export const setClearError = () => {
 export const setLogOut = () => {
   return {
     type: LOGIN_TYPES.SET_LOGOUT
-  }
-}
-
-export const setUserData = (newData) => {
-  return {
-    type: LOGIN_TYPES.SET_USER_DATA,
-    payload: newData
   }
 }
 

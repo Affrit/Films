@@ -8,10 +8,10 @@ import { FilterOutlined, SortAscendingOutlined } from '@ant-design/icons';
 import { SiderApp } from '../../Layouts/Sider/SiderApp';
 // other
 import {
-  getMoviesPageData, setSortParamAC,
-  setSelectedGenres, setClearFiltersAC,
-  setReleaseDateGteAC, setReleaseDateLteAC,
-  setRatingGteAC, setRatingLteAC
+  getMoviesPageData, setSortParam,
+  setSelectedGenres, setClearFilters,
+  setReleaseDateGte, setReleaseDateLte,
+  setRatingGte, setRatingLte
 } from '../../../store/actions/moviesPageActions';
 import { SORT_PARAMS } from '../../../constants/constants';
 import { optionsSelector } from './selector';
@@ -40,12 +40,12 @@ export const MoviesSider = ({ contentType }) => {
   }
 
   const onClearFilters = () => {
-    dispatch(setClearFiltersAC())
+    dispatch(setClearFilters())
     setRatingVal([0, 100])
   }
 
   const onChangeSort = (value) => {
-    dispatch(setSortParamAC(value))
+    dispatch(setSortParam(value))
   }
 
   const onChangeGenres = (selectedItems) => {
@@ -53,11 +53,11 @@ export const MoviesSider = ({ contentType }) => {
   }
 
   const onChangeFromDate = (_, dateString) => {
-    dispatch(setReleaseDateGteAC(dateString))
+    dispatch(setReleaseDateGte(dateString))
   }
 
   const onChangeToDate = (_, dateString) => {
-    dispatch(setReleaseDateLteAC(dateString))
+    dispatch(setReleaseDateLte(dateString))
   }
 
   const onRatingChange = (result) => {
@@ -68,8 +68,8 @@ export const MoviesSider = ({ contentType }) => {
     const [from, to] = result
     const voteGte = `${from / 10}`
     const voteLte = `${to / 10}`
-    dispatch(setRatingGteAC(voteGte))
-    dispatch(setRatingLteAC(voteLte))
+    dispatch(setRatingGte(voteGte))
+    dispatch(setRatingLte(voteLte))
   }
 
   return (
