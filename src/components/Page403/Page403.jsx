@@ -1,22 +1,16 @@
+// libs
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Result, Button } from 'antd';
-//import { useNavigate } from 'react-router';
 import { Navigate } from 'react-router';
 import { useSelector } from 'react-redux';
+// components
+import { Result, Button } from 'antd';
+// other
 import { authSelector } from '../PrivateRoute/selector';
 import './style.scss';
 
 export const Page403 = () => {
-  //const navigate = useNavigate()
   const { isAuth } = useSelector(authSelector)
-
-  /*
-  useEffect(() => {
-    console.log(isAuth)
-    navigate(-1)
-  }, [isAuth])
-  */
 
   return (
     <>
@@ -27,9 +21,11 @@ export const Page403 = () => {
             status="403"
             title="403"
             subTitle="Sorry, you are not authorized to access this page."
-            extra={<Link to="/">
-              <Button type="primary">Go to login</Button>
-            </Link>}
+            extra={
+              <Link to="/">
+                <Button type="primary">Go to login</Button>
+              </Link>
+            }
           />
         </div>
       }

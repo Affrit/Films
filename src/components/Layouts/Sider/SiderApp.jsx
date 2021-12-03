@@ -11,8 +11,7 @@ export const SiderApp = ({ children }) => {
         theme='lite'
         width={'200px'}
         className="site-layout-background"
-        //collapsible={true}
-        //collapsed={true}
+        collapsible={true}
         breakpoint="lg"
         collapsedWidth="0" 
       >

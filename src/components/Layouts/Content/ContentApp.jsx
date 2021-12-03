@@ -7,11 +7,13 @@ const { Content } = Layout
 
 export const ContentApp = ({ children }) => {
   return (
-      <Content className="site-layout">
-        <div className="site-layout__inner" style={{ backgroundImage: `url(${background})`}}>
-          {children}
-        </div>
-      </Content>
+    <Content className="site-layout">
+      <div
+        className="site-layout__inner"
+        style={{ backgroundImage: `url(${background})` }}
+      >
+        {children}
+      </div>
+    </Content>
   )
 }
-

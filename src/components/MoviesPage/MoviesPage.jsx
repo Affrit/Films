@@ -17,8 +17,10 @@ import { spawnErorrsText } from '../../helpers/spawnErrorsText';
 import './style.scss';
 
 export const MoviesPage = () => {
+  const { 
+    page, total_results, results, errors, isMoviesFetching 
+  } = useSelector(moviesDataSelector)
   const dispatch = useDispatch()
-  const { page, total_results, results, errors, isMoviesFetching } = useSelector(moviesDataSelector)
   const location = useLocation()
   const contentType = getCurrentLocation(location.pathname)
   const [savedLocation, setSavedLocation] = useState(contentType)
@@ -41,14 +43,13 @@ export const MoviesPage = () => {
     dispatch(setClearMoviesErrors())
   }
 
-  const title = contentType === 'movie' ? 'All movies' : 'All TV shows'
+  const pageTitle = contentType === 'movie' ? 'All movies' : 'All TV shows'
 
   return (
     <>
       <MoviesSider contentType={savedLocation} />
       <div className='movies-page' >
-        
-        <h1 className='movies-page__title'>{title}</h1>
+        <h1 className='movies-page__title'>{pageTitle}</h1>
         <MoviesSpawner
           data={results}
           contentType={contentType}
@@ -63,8 +64,7 @@ export const MoviesPage = () => {
             total={total_results}
             onChange={onChangePage}
             className='pagination'
-          />
-        }
+          />}
 
         {errors.length ?
           <Alert
@@ -74,8 +74,7 @@ export const MoviesPage = () => {
             type="error"
             className='search-page__error'
             closable
-          /> : ''
-        }
+          /> : ''}
       </div>
     </>
   )

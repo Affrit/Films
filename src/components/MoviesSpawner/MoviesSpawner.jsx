@@ -23,10 +23,11 @@ const MoviesSpawner = ({ data, contentType, isFetching }) => {
 
   return (
     <>
-      {isFetching ? <Spin className='movies__spinner' size='large' /> :
-        <div className='movies'>
-          {data.length > 0 ? filmCards : <Empty />}
-        </div>
+      {
+        isFetching ? <Spin className='movies__spinner' size='large' /> :
+          <div className='movies'>
+            {data.length > 0 ? filmCards : <Empty />}
+          </div>
       }
     </>
   )

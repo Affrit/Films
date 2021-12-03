@@ -14,9 +14,9 @@ import './style.scss';
 const { Header } = Layout
 
 export const HeaderApp = () => {
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const location = useLocation()
   const currentLocation = location.pathname.split('/')[1]
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
 
   useEffect(() => {
     setIsSearchOpen(false)
@@ -29,22 +29,34 @@ export const HeaderApp = () => {
   return (
     <Header className="header">
       <div className="header__logo">
-        <Link to='/'><img className="header__img" src={logo} alt="" /></Link>
+        <Link to='/'>
+          <img className="header__img" src={logo} alt="" />
+        </Link>
       </div>
 
-      <Menu className="header__menu" theme="dark" mode="horizontal" defaultSelectedKeys={[currentLocation]}>
+      <Menu
+        className="header__menu"
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={[currentLocation]}
+      >
+        
         <Menu.Item key='movie'>
           <Link to='/movie'>movies</Link>
         </Menu.Item>
+
         <Menu.Item key='tv'>
           <Link to='/tv'>tv shows</Link>
         </Menu.Item>
+
         <Menu.Item key='favorites'>
           <Link to='/favorites'>favorites</Link>
         </Menu.Item>
+
         <Menu.Item onClick={onSearchClicked} key='search'>
           <SearchOutlined />
         </Menu.Item>
+
       </Menu>
 
       <div className={isSearchOpen ? 'search' : 'search_hide'}>
@@ -52,7 +64,7 @@ export const HeaderApp = () => {
       </div>
 
       <User />
-      
+
     </Header>
   )
 }

@@ -17,13 +17,16 @@ import './style.scss';
 const { Meta } = Card;
 
 export const MovieCard = ({ filmData }) => {
-  const { id, poster_path, title, release_date, vote_average, vote_count, contentType } = filmData
+  const {
+    id, poster_path, title, release_date,
+    vote_average, vote_count, contentType,
+  } = filmData
   const [isLoadError, setIsLoadError] = useState(false)
   const [isAuthError, setIsError] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
-  const dispatch = useDispatch()
   const { isAuth } = useSelector(authSelector)
   const { favoritesData } = useSelector(favoritesSelector)
+  const dispatch = useDispatch()
   const imgSrc = poster_path ? BASE_URL_IMG + poster_path : ''
 
   useEffect(() => {
@@ -58,7 +61,10 @@ export const MovieCard = ({ filmData }) => {
         onChange={onLikeClicked}
         value={isLiked}
       />
-      <Link className='movie-card__link'  to={`/${contentType}/${id}`}>
+      <Link
+        className='movie-card__link'
+        to={`/${contentType}/${id}`}
+      >
         <img
           className='movie-card__img' alt='#'
           src={isLoadError ? altImg : imgSrc}
@@ -104,8 +110,7 @@ export const MovieCard = ({ filmData }) => {
               closable
               onClose={onAlertClose}
             />
-          </div>
-        }
+          </div>}
       </Card>
     </>
   )

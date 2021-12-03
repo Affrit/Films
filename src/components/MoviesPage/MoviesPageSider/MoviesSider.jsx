@@ -15,24 +15,24 @@ import {
 } from '../../../store/actions/moviesPageActions';
 import { SORT_PARAMS } from '../../../constants/constants';
 import { optionsSelector } from './selector';
-import { optionsGenerator } from '../../../helpers/optionsGenerator'
+import { optionsGenerator } from '../../../helpers/optionsGenerator';
 import { ratingValTransform } from '../../../helpers/ratingValTransform';
 import './style.scss';
 
 const { SubMenu } = Menu
 
 export const MoviesSider = ({ contentType }) => {
-  const { 
+  const {
     isGenreFetching, genreList, sort_by, with_genres,
-    voteGte, voteLte, releaseGte, releaseLte 
+    voteGte, voteLte, releaseGte, releaseLte
   } = useSelector(optionsSelector)
   const [ratingVal, setRatingVal] = useState(ratingValTransform(voteGte, voteLte))
+  const dispatch = useDispatch()
   const genreOptions = optionsGenerator(genreList)
   const sortOptions = optionsGenerator(SORT_PARAMS)
-  const dispatch = useDispatch()
 
   useEffect(() => {
-      setRatingVal(ratingValTransform(voteGte, voteLte))
+    setRatingVal(ratingValTransform(voteGte, voteLte))
   }, [voteGte, voteLte])
 
   const onApplyFilters = () => {
@@ -63,7 +63,7 @@ export const MoviesSider = ({ contentType }) => {
   const onRatingChange = (result) => {
     setRatingVal(result)
   }
-  
+
   const afterChangeRating = (result) => {
     const [from, to] = result
     const voteGte = `${from / 10}`
@@ -88,7 +88,11 @@ export const MoviesSider = ({ contentType }) => {
         >
           <Menu.Item className='sub-menu__item' key="sort-select">
             <div className='select-wrap'>
-              <Select className='sub-menu__select' value={sort_by} onChange={onChangeSort}>
+              <Select
+                className='sub-menu__select'
+                value={sort_by}
+                onChange={onChangeSort}
+              >
                 {sortOptions}
               </Select>
             </div>
@@ -101,8 +105,11 @@ export const MoviesSider = ({ contentType }) => {
           title="Filters by"
           className='sub-menu'
         >
+
           <Menu.Item className='sub-menu__item' key="genre-filter">
-            <Divider className='filters-divider' plain>genres</Divider>
+            <Divider className='filters-divider' plain>
+              genres
+            </Divider>
             <div className='select-wrap'>
               <Select
                 loading={isGenreFetching}
@@ -118,8 +125,11 @@ export const MoviesSider = ({ contentType }) => {
           </Menu.Item>
 
           <Menu.Item className='sub-menu__item' key="date-filter">
-            <Divider className='filters-divider' plain>Release dates</Divider>
+            <Divider className='filters-divider' plain>
+              Release dates
+            </Divider>
             <div className='select-wrap'>
+
               <div className='date-wrap'>
                 <span>From</span>
                 <DatePicker
@@ -128,6 +138,7 @@ export const MoviesSider = ({ contentType }) => {
                   value={releaseGte && moment(releaseGte)}
                 />
               </div>
+
               <div className='date-wrap'>
                 <span>To</span>
                 <DatePicker
@@ -136,14 +147,17 @@ export const MoviesSider = ({ contentType }) => {
                   value={releaseLte && moment(releaseLte)}
                 />
               </div>
+
             </div>
           </Menu.Item>
 
           <Menu.Item className='sub-menu__item' key="rating-filter">
-            <Divider className='filters-divider' plain>Rating</Divider>
+            <Divider className='filters-divider' plain>
+              Rating
+            </Divider>
             <div className='slider-wrap'>
               <Slider
-                range 
+                range
                 value={ratingVal}
                 onChange={onRatingChange}
                 onAfterChange={afterChangeRating}
@@ -158,8 +172,11 @@ export const MoviesSider = ({ contentType }) => {
         </SubMenu>
 
         <Menu.Item className='controls' key="controls" >
-          <Divider className='filters-divider' plain>controls</Divider>
+          <Divider className='filters-divider' plain>
+            controls
+          </Divider>
           <div className='controls__wrap'>
+
             <Button
               onClick={onApplyFilters}
               className='controls__btn'
@@ -177,8 +194,8 @@ export const MoviesSider = ({ contentType }) => {
             >
               Clear
             </Button>
+
           </div>
-          <Divider className='filters-divider'></Divider>
         </Menu.Item>
 
       </Menu>
