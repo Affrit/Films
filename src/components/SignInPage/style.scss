@@ -1,9 +1,13 @@
-.signIn {
+.form-page {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
+
+  &__title {
+    color: #ffffff;
+  }
 
   &__alert {
     position: absolute;
@@ -17,20 +21,25 @@
     text-align: center;
   }
 
-  &__form {
-    position: relative;
-    padding: 20px;
-    width: 280px;
-    background-color: rgba(255, 255, 255, 0.705);
-    border: 2px solid black;
-    border-radius: 10px;
-
-    @media (min-width: 768px) {
-      width: 450px;
-    }
-  }
-
   &__info {
     text-align: center;
+  }
+}
+
+.form {
+  position: relative;
+  padding: 20px;
+  width: 280px;
+  background-color: rgba(255, 255, 255, 0.705);
+  border: 2px solid black;
+  border-radius: 10px;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  @media (min-width: 768px) {
+    width: 450px;
   }
 }

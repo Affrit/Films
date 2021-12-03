@@ -34,16 +34,18 @@ export const SignIn = () => {
   }
 
   return (
-    <div className='signIn'>
+    <div className='form-page'>
+      <h1 className='form-page__title'>Welcome to movies catalog!</h1>
       <Form
-        name="basic"
+        name="signIn"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         initialValues={{ remember: true }}
         onFinish={onFinish}
         autoComplete="off"
-        className='signIn__form'
+        className='form'
       >
+        <h2 className='form__title'>Log in</h2>
         <Form.Item
           label="Username"
           name="username"
@@ -76,23 +78,23 @@ export const SignIn = () => {
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Sign in
           </Button>
         </Form.Item>
 
-        <div className='signIn__info'>
+        <div className='form-page__info'>
           <span>didn't have an account? </span>
           <Link to="sign-up">sign up</Link>
         </div>
 
-        <div className='signIn__alert'>
+        <div className='form-page__alert'>
           {errors.length ?
             <Alert
               message="Login error"
               description={spawnErorrsText(errors)}
               onClose={onAlertClose}
               type="error"
-              className='signIn__error'
+              className='form-page__error'
               closable
             /> : ''
           }

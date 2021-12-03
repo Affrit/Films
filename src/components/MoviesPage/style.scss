@@ -12,3 +12,13 @@
     margin: 0;
   }
 }
+
+.back-top {
+  display: block;
+  background-color: #ffffff;
+  border-radius: 50%;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+}

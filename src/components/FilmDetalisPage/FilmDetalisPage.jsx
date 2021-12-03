@@ -110,8 +110,8 @@ export const FilmDetalisPage = () => {
                   </span>
                 </div>
 
-                {budget ? <span>Budget: {budget}</span> : ''}
-                {revenue ? <span>Revenue: {revenue}</span> : ''}
+                {budget ? <span>Budget: {budget} $</span> : ''}
+                {revenue ? <span>Revenue: {revenue} $</span> : ''}
 
                 <div className='filmPage-overview'>
                   <h2 className='filmPage-overview__title'>Overview</h2>

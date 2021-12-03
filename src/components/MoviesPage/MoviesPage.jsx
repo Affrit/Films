@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router';
 // components
-import { Pagination, Alert } from 'antd';
+import { Pagination, Alert, BackTop } from 'antd';
 import { MoviesSider } from './MoviesPageSider/MoviesSider';
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 // other
@@ -17,8 +17,8 @@ import { spawnErorrsText } from '../../helpers/spawnErrorsText';
 import './style.scss';
 
 export const MoviesPage = () => {
-  const { 
-    page, total_results, results, errors, isMoviesFetching 
+  const {
+    page, total_results, results, errors, isMoviesFetching
   } = useSelector(moviesDataSelector)
   const dispatch = useDispatch()
   const location = useLocation()
@@ -47,6 +47,7 @@ export const MoviesPage = () => {
 
   return (
     <>
+      <BackTop visibilityHeight={1} className='back-top' />
       <MoviesSider contentType={savedLocation} />
       <div className='movies-page' >
         <h1 className='movies-page__title'>{pageTitle}</h1>

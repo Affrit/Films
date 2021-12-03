@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 // components
-import { DownOutlined } from '@ant-design/icons';
+import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Menu, Dropdown } from 'antd';
 // other
 import { authToggle, setLogOut, setUserData } from "../../store/actions/authActions";
@@ -46,7 +46,7 @@ export const User = () => {
       {isAuth ?
         <div className='user-block'>
           <div>
-            <span className='user-block__title' >user:</span>
+            <UserOutlined className='user-block__title' />
             <span>{username}</span>
           </div>
           <Dropdown overlay={menu}>
