@@ -1,5 +1,7 @@
-import { LOGIN_TYPES } from "./types"
-import { isDataCorrect, isUserExists, createNewUser, rememberUser } from "../../helpers/authHelpers"
+import { LOGIN_TYPES } from "./types";
+import {
+  isDataCorrect, isUserExists, createNewUser, rememberUser
+} from "../../helpers/authHelpers";
 
 export const setUserData = (newData) => {
   return {

@@ -13,6 +13,24 @@
   }
 }
 
+.refs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+  padding: 5px;
+  width: 20%;
+
+  @media (min-width: 576px) {
+    width: 15%;
+  }
+
+  @media (min-width: 768px) {
+    width: 10%;
+  }
+}
+
 .ant-dropdown-link {
   color: #1890ff;
   cursor: pointer;

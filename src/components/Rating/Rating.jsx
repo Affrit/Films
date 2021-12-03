@@ -5,11 +5,14 @@ import './style.scss';
 export const Rating = ({ rating, vote_count }) => {
   const percent = rating * 10 || 'NR'
   return (
-    <Tooltip title={vote_count ? `based on ${vote_count} votes` : ''}>
+    <Tooltip
+      title={vote_count && `based on ${vote_count} votes`}
+    >
       <Progress
         percent={percent}
         success={{ percent: percent }}
-        type="circle" width={45}
+        type="circle" 
+        width={45}
         format={() => percent}
       />
     </Tooltip>

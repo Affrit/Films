@@ -1,6 +1,6 @@
-import { SEARCH_PAGE_TYPES } from "./types"
-import { API_KEY } from "../../constants/constants"
-import { BASE_URL } from "../../constants/constants"
+import { SEARCH_PAGE_TYPES } from "./types";
+import { API_KEY } from "../../constants/constants";
+import { BASE_URL } from "../../constants/constants";
 
 export const setSearchData = (newData) => {
   return {

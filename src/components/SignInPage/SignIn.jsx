@@ -47,7 +47,10 @@ export const SignIn = () => {
         <Form.Item
           label="Username"
           name="username"
-          rules={[{ required: true, message: 'Please input your username!' }, { type: 'string', min: 3 }]}
+          rules={[
+            { required: true, message: 'Please input your username!' },
+            { type: 'string', min: 3 }
+          ]}
         >
           <Input />
         </Form.Item>
@@ -55,12 +58,19 @@ export const SignIn = () => {
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }, { type: 'string', min: 3 }]}
+          rules={[
+            { required: true, message: 'Please input your password!' },
+            { type: 'string', min: 3 }
+          ]}
         >
           <Input.Password />
         </Form.Item>
 
-        <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
+        <Form.Item
+          name="remember"
+          valuePropName="checked"
+          wrapperCol={{ offset: 8, span: 16 }}
+        >
           <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
@@ -71,7 +81,8 @@ export const SignIn = () => {
         </Form.Item>
 
         <div className='signIn__info'>
-          <span>didn't have an account? </span><Link to="sign-up">sign up</Link>
+          <span>didn't have an account? </span>
+          <Link to="sign-up">sign up</Link>
         </div>
 
         <div className='signIn__alert'>

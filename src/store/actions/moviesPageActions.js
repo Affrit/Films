@@ -1,7 +1,7 @@
-import { MOVIES_PAGE_TYPES } from "./types"
-import { BASE_URL } from "../../constants/constants"
-import { API_KEY } from "../../constants/constants"
-import { getUrl } from "../../helpers/getUrl"
+import { MOVIES_PAGE_TYPES } from "./types";
+import { BASE_URL } from "../../constants/constants";
+import { API_KEY } from "../../constants/constants";
+import { getUrl } from "../../helpers/getUrl";
 
 export const setMoviesData = (newData) => {
   return {

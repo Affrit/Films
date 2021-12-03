@@ -7,13 +7,17 @@ import { Pagination, Alert } from 'antd';
 import { SearchSider } from './SearchPageSider/SearchSider';
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 // other
-import { getSearchedData, setClearSerchErrors, setSearchPage } from '../../store/actions/searchPageActions';
+import {
+  getSearchedData, setClearSerchErrors, setSearchPage
+} from '../../store/actions/searchPageActions';
 import { searchDataSelector } from './selector';
 import { spawnErorrsText } from '../../helpers/spawnErrorsText';
 import './style.scss';
 
 export const SearchPage = () => {
-  const { searchWord, page, total_results, results, errors, isFetching } = useSelector(searchDataSelector)
+  const {
+    searchWord, page, total_results, results, errors, isFetching
+  } = useSelector(searchDataSelector)
   const dispatch = useDispatch()
   const { type: contentType } = useParams()
 
@@ -37,7 +41,12 @@ export const SearchPage = () => {
           <h1 className='search-page__title'>Search Result</h1>
         </div>
 
-        {total_results ? <span className='search-result'>We found {total_results} results</span> : ''}
+        {
+          total_results ?
+            <span className='search-result'>
+              We found {total_results} results
+            </span> : ''
+        }
 
         <MoviesSpawner
           data={results}
@@ -55,6 +64,7 @@ export const SearchPage = () => {
             className='pagination'
           />
         }
+        
         {errors.length ?
           <Alert
             message="Search error"

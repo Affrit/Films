@@ -19,6 +19,7 @@ export const SearchComponent = () => {
   const onInputChange = ({ target: { value } }) => {
     setInputValue(value)
   }
+  
   const onSearch = () => {
     if (inputValue.length < 1) return;
     dispatch(setSearchWord(inputValue))
@@ -33,7 +34,8 @@ export const SearchComponent = () => {
       onSearch={onSearch}
       onPressEnter={onSearch}
       placeholder="input search text"
-      enterButton="Search" size="large"
+      enterButton="Search" 
+      size="large"
       loading={isFetching}
     />
   )

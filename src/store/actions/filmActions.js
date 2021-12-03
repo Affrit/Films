@@ -1,6 +1,6 @@
-import { FILM_DETALIS_PAGE_TYPES } from "./types"
-import { API_KEY } from "../../constants/constants"
-import { BASE_URL } from "../../constants/constants"
+import { FILM_DETALIS_PAGE_TYPES } from "./types";
+import { API_KEY } from "../../constants/constants";
+import { BASE_URL } from "../../constants/constants";
 
 export const setFilmData = (newData) => {
   return {

@@ -15,7 +15,7 @@ const { SubMenu } = Menu
 export const SearchSider = ({ currentLocation }) => {
   const dispatch = useDispatch()
 
-  const handleClick = () => {
+  const onSwitchSearchResult = () => {
     dispatch(setSearchPage(1))
   }
 
@@ -36,13 +36,13 @@ export const SearchSider = ({ currentLocation }) => {
         >
 
           <Menu.Item key="movie">
-            <Link to='/search/movie' onClick={handleClick}>
+            <Link to='/search/movie' onClick={onSwitchSearchResult}>
               <span>Movies</span>
             </Link>
           </Menu.Item>
 
           <Menu.Item key="tv">
-            <Link to='/search/tv' onClick={handleClick}>
+            <Link to='/search/tv' onClick={onSwitchSearchResult}>
               <span>Shows</span>
             </Link>
           </Menu.Item>

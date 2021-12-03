@@ -34,7 +34,9 @@ export const User = () => {
   const menu = (
     <Menu>
       <Menu.Item key='log-out'>
-        <Button onClick={onLogOut} size="small">Log out</Button>
+        <Button onClick={onLogOut} size="small">
+          Log out
+        </Button>
       </Menu.Item>
     </Menu>
   )
@@ -54,7 +56,7 @@ export const User = () => {
           </Dropdown>
         </div> :
 
-        <div className='header__refs'>
+        <div className='refs'>
           <Link to="/">log in</Link>
           <Link to="/sign-up">sign up</Link>
         </div>

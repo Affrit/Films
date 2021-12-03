@@ -1,5 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
+import background from '../../../img/background.jpg';
 import './style.scss';
 
 const { Content } = Layout
@@ -7,7 +8,7 @@ const { Content } = Layout
 export const ContentApp = ({ children }) => {
   return (
       <Content className="site-layout">
-        <div className="site-layout__inner" style={{ backgroundImage: 'url("https://static.tildacdn.com/tild6539-3237-4064-a533-653737616437/ebookbg_2.jpg")'}}>
+        <div className="site-layout__inner" style={{ backgroundImage: `url(${background})`}}>
           {children}
         </div>
       </Content>
