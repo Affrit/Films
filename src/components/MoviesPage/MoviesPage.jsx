@@ -68,7 +68,7 @@ export const MoviesPage = () => {
 
         {errors.length ?
           <Alert
-            message="Search error"
+            message="Load error"
             description={spawnErorrsText(errors)}
             onClose={onAlertClose}
             type="error"

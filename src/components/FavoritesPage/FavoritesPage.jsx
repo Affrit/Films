@@ -11,9 +11,9 @@ import { setFavorites } from '../../store/actions/favoritesPageActions';
 import './style.scss';
 
 export const FavoritesPage = () => {
-  const dispatch = useDispatch()
   const { favoritesData } = useSelector(favoritesSelector)
   const { username } = useSelector(authSelector)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const listFromStorage = getFavoriteList(username)
