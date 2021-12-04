@@ -44,7 +44,6 @@ export const User = () => {
     <>
       {isAuth ?
         <div className='user-block'>
-          <div className='user-block__inner'> 
             <div>
               <UserOutlined className='user-block__title' />
               <span>{username}</span>
@@ -54,7 +53,6 @@ export const User = () => {
                 settings <DownOutlined />
               </span>
             </Dropdown>
-          </div>
         </div> :
 
         <div className='refs'>

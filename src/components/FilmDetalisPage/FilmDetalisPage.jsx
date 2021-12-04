@@ -30,6 +30,7 @@ export const FilmDetalisPage = () => {
   const contentType = location.pathname.split('/')[1]
   const bgSrc = backdrop_path ? BASE_URL_IMG + backdrop_path : ''
   const posterSrc = poster_path ? BASE_URL_IMG + poster_path : ''
+  const filmTitle = title ?? name ?? 'title not found'
   const releaseDate = release_date ?? first_air_date
   const releaseYear = releaseDate?.split('-')[0]
 
@@ -86,7 +87,7 @@ export const FilmDetalisPage = () => {
 
                 <div className='filmPage__title-block'>
                   <h1 className='filmPage__title'>
-                    {title ?? name}
+                    {filmTitle}
                     <span className='filmPage__suptitle'>
                       {`(${releaseYear})`}
                     </span>

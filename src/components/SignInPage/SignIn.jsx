@@ -54,7 +54,7 @@ export const SignIn = () => {
             { type: 'string', min: 3 }
           ]}
         >
-          <Input />
+          <Input placeholder="username" data-testid="username" />
         </Form.Item>
 
         <Form.Item
@@ -65,7 +65,7 @@ export const SignIn = () => {
             { type: 'string', min: 3 }
           ]}
         >
-          <Input.Password />
+          <Input.Password placeholder="password" data-testid="password" />
         </Form.Item>
 
         <Form.Item
