@@ -1,6 +1,6 @@
 import { FILM_DETALIS_PAGE_TYPES } from "./types";
 import { API_KEY } from "../../constants/constants";
-import { BASE_URL } from "../../constants/constants";
+import { API } from "../../API/API";
 
 export const setFilmData = (newData) => {
   return {
@@ -26,12 +26,8 @@ export const setErrorFilm = (newData) => {
 export const getFilmDetalis = (filmId, type) => async (dispatch) => {
   try {
     dispatch(setFetchingFilm(true))
-    const dataFromServer = await fetch(`${BASE_URL}/${type}/${filmId}?${API_KEY}`)
-    const data = await dataFromServer.json()
-    if (data.errors) {
-      throw new Error(data.errors[0])
-    }
-    dispatch(setFilmData(data))
+    const response = await API.get(`/${type}/${filmId}?${API_KEY}`)
+    dispatch(setFilmData(response.data))
   } catch (error) {
     console.warn(error)
     dispatch(setErrorFilm(error.message))

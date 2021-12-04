@@ -1,6 +1,6 @@
 import { SEARCH_PAGE_TYPES } from "./types";
 import { API_KEY } from "../../constants/constants";
-import { BASE_URL } from "../../constants/constants";
+import { API } from "../../API/API";
 
 export const setSearchData = (newData) => {
   return {
@@ -47,13 +47,8 @@ export const getSearchedData = (page = 1, contentType = 'movie') => async (dispa
   try {
     dispatch(setFetching(true))
     const { searchPage: { searchWord } } = getState()
-    const response = await fetch(`${BASE_URL}/search/${contentType}?${API_KEY}&query=${searchWord}&page=${page}`)
-    const searchData = await response.json()
-    if (!response.ok) {
-      const { status_message } = searchData
-      throw new Error(status_message || 'bad response')
-    }
-    dispatch(setSearchData(searchData))
+    const response = await API.get(`/search/${contentType}?${API_KEY}&query=${searchWord}&page=${page}`)
+    dispatch(setSearchData(response.data))
     dispatch(setClearSerchErrors())
   } catch (error) {
     console.warn(error)

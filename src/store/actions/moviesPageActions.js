@@ -1,7 +1,7 @@
 import { MOVIES_PAGE_TYPES } from "./types";
-import { BASE_URL } from "../../constants/constants";
 import { API_KEY } from "../../constants/constants";
 import { getUrl } from "../../helpers/getUrl";
+import { API } from "../../API/API";
 
 export const setMoviesData = (newData) => {
   return {
@@ -108,13 +108,8 @@ export const setClearMoviesErrors = () => {
 export const getGenreList = (contentType = 'movie') => async (dispatch) => {
   try {
     dispatch(setGenreFetching(true))
-    const response = await fetch(`${BASE_URL}/genre/${contentType}/list?${API_KEY}`)
-    const genreData = await response.json()
-    if (!response.ok) {
-      const { status_message } = genreData
-      throw new Error(status_message || "can't get genres")
-    }
-    dispatch(setGenreList(genreData.genres))
+    const response = await API.get(`/genre/${contentType}/list?${API_KEY}`)
+    dispatch(setGenreList(response.data.genres))
   } catch (error) {
     console.warn(error)
     dispatch(setError(error.message))
@@ -128,13 +123,8 @@ export const getMoviesPageData = (page = 1, contentType = 'movie') => async (dis
     dispatch(setMoviesFetching(true))
     const { moviesPage: { filtrationOptions } } = getState()
     const url = getUrl(page, filtrationOptions, contentType)
-    const response = await fetch(url)
-    const moviesData = await response.json()
-    if (!response.ok) {
-      const { status_message } = moviesData
-      throw new Error(status_message || 'bad response')
-    }
-    dispatch(setMoviesData(moviesData))
+    const response = await API.get(url)
+    dispatch(setMoviesData(response.data))
     dispatch(setClearMoviesErrors())
   } catch (error) {
     console.warn(error)
