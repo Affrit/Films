@@ -14,8 +14,7 @@ import './style.scss';
 
 export const User = () => {
   const dispatch = useDispatch()
-  const { username } = useSelector(authSelector)
-  const { isAuth } = useSelector(authSelector)
+  const { isAuth, username } = useSelector(authSelector)
 
   useEffect(() => {
     const remeberedUser = getRemeberedUser()
@@ -45,15 +44,17 @@ export const User = () => {
     <>
       {isAuth ?
         <div className='user-block'>
-          <div>
-            <UserOutlined className='user-block__title' />
-            <span>{username}</span>
+          <div className='user-block__inner'> 
+            <div>
+              <UserOutlined className='user-block__title' />
+              <span>{username}</span>
+            </div>
+            <Dropdown overlay={menu}>
+              <span className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+                settings <DownOutlined />
+              </span>
+            </Dropdown>
           </div>
-          <Dropdown overlay={menu}>
-            <span className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-              settings <DownOutlined />
-            </span>
-          </Dropdown>
         </div> :
 
         <div className='refs'>
