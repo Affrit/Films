@@ -6,19 +6,3 @@ export const API = axios.create({
     "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjEzYTBiOGQ0YzgwYzFiNjM5YzZmZTRiOWNiMzRhYyIsInN1YiI6IjYxOGQ3MDhiYTMxM2I4MDA0MmRmNTUwNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lSYeGWTWML_cqrUz-BQb64n5ac-1a3FBiXiwGiuaIMM"
   }
 })
-
-export const getSerchedData = (contentType, searchWord, page) => {
-  return API.get(`/search/${contentType}?query=${searchWord}&page=${page}`)
-}
-
-export const getFilmDetalis = (contentType, filmId) => {
-  return API.get(`/${contentType}/${filmId}`)
-}
-
-export const getGenreList = (contentType) => {
-  return API.get(`/genre/${contentType}/list`)
-}
-
-export const getMoviesPageData = (contentType) => {
-  return API.get(``)
-}

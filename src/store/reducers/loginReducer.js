@@ -1,7 +1,4 @@
 import { LOGIN_TYPES } from "../actions/types";
-//import { getRemeberedUser } from "../../helpers/authHelpers";
-
-//const rememberedUser = getRemeberedUser()
 
 export const initialState = {
   userData: {},

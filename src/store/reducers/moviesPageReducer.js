@@ -56,7 +56,6 @@ export default function moviesPageReducer(state = initialState, action) {
       return {
         ...state,
         moviesPageData: action.payload,
-        //results: [...state.moviesPageData.results, ...action.payload.results]
       }
 
     case MOVIES_PAGE_TYPES.SET_SORT_PARAM:
