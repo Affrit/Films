@@ -47,7 +47,6 @@ export const MoviesPage = () => {
 
   return (
     <>
-      <BackTop visibilityHeight={1} className='back-top' />
       <MoviesSider contentType={savedLocation} />
       <div className='movies-page' >
         <h1 className='movies-page__title'>{pageTitle}</h1>
@@ -77,6 +76,7 @@ export const MoviesPage = () => {
             closable
           /> : ''}
       </div>
+      <BackTop className='back-top' />
     </>
   )
 }

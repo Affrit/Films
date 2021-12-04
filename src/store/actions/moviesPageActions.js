@@ -1,5 +1,4 @@
 import { MOVIES_PAGE_TYPES } from "./types";
-import { API_KEY } from "../../constants/constants";
 import { getUrl } from "../../helpers/getUrl";
 import { API } from "../../API/API";
 
@@ -108,7 +107,7 @@ export const setClearMoviesErrors = () => {
 export const getGenreList = (contentType = 'movie') => async (dispatch) => {
   try {
     dispatch(setGenreFetching(true))
-    const response = await API.get(`/genre/${contentType}/list?${API_KEY}`)
+    const response = await API.get(`/genre/${contentType}/list`)
     dispatch(setGenreList(response.data.genres))
   } catch (error) {
     console.warn(error)

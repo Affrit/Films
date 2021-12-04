@@ -1,12 +1,24 @@
 import axios from "axios";
 
 export const API = axios.create({
-  baseURL: 'https://api.themoviedb.org/3'
+  baseURL: 'https://api.themoviedb.org/3',
+  headers: {
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMjEzYTBiOGQ0YzgwYzFiNjM5YzZmZTRiOWNiMzRhYyIsInN1YiI6IjYxOGQ3MDhiYTMxM2I4MDA0MmRmNTUwNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lSYeGWTWML_cqrUz-BQb64n5ac-1a3FBiXiwGiuaIMM"
+  }
 })
 
-//client.get("/1")
-/*
-export async const getSerched = (params) => {
-  return await API.get(`/search/${params}`)
+export const getSerchedData = (contentType, searchWord, page) => {
+  return API.get(`/search/${contentType}?query=${searchWord}&page=${page}`)
 }
-*/
+
+export const getFilmDetalis = (contentType, filmId) => {
+  return API.get(`/${contentType}/${filmId}`)
+}
+
+export const getGenreList = (contentType) => {
+  return API.get(`/genre/${contentType}/list`)
+}
+
+export const getMoviesPageData = (contentType) => {
+  return API.get(``)
+}

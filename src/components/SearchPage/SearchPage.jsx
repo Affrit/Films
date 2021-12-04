@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 //components
-import { Pagination, Alert } from 'antd';
+import { Pagination, Alert, BackTop } from 'antd';
 import { SearchSider } from './SearchPageSider/SearchSider';
 import MoviesSpawner from '../MoviesSpawner/MoviesSpawner';
 // other
@@ -76,6 +76,7 @@ export const SearchPage = () => {
           /> : ''
         }
       </div>
+      <BackTop className='back-top' />
     </>
   )
 }
