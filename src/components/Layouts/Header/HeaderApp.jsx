@@ -38,7 +38,7 @@ export const HeaderApp = () => {
         className="header__menu"
         theme="dark"
         mode="horizontal"
-        defaultSelectedKeys={[currentLocation]}
+        selectedKeys={[currentLocation]}
       >
         
         <Menu.Item key='movie'>
