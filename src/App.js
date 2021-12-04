@@ -9,7 +9,10 @@ import { MyRoutes } from './MyRoutes/MyRoutes';
 import { Layout } from 'antd';
 // other
 import store from './store/store.js';
+import { storageInitialization } from './helpers/storeInitialization';
 import './App.css';
+
+storageInitialization()
 
 function App() {
   return (
