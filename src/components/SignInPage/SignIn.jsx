@@ -83,7 +83,7 @@ export const SignIn = () => {
         </Form.Item>
 
         <div className='form-page__info'>
-          <span>didn't have an account? </span>
+          <span>don't have an account yet? </span>
           <Link to="sign-up">sign up</Link>
         </div>
 

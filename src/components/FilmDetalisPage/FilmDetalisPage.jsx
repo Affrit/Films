@@ -28,9 +28,10 @@ export const FilmDetalisPage = () => {
   const { film: filmId } = useParams()
 
   const contentType = location.pathname.split('/')[1]
-  const releaseYear = (release_date ?? first_air_date)?.split('-')[0]
   const bgSrc = backdrop_path ? BASE_URL_IMG + backdrop_path : ''
   const posterSrc = poster_path ? BASE_URL_IMG + poster_path : ''
+  const releaseDate = release_date ?? first_air_date
+  const releaseYear = releaseDate?.split('-')[0]
 
   useEffect(() => {
     dispatch(getFilmDetalis(filmId, contentType))
@@ -54,7 +55,7 @@ export const FilmDetalisPage = () => {
 
   return (
     <div
-      style={{ backgroundImage: `url(${bgSrc})` }}
+      style={{ backgroundImage: `url(${isFetching || bgSrc})` }}
       className='filmPage-wrap'
     >
       <div className='filmPage'>
@@ -95,7 +96,7 @@ export const FilmDetalisPage = () => {
                   </span>
                 </div>
 
-                <span>{release_date || first_air_date} {status && `(${status})`}</span>
+                <span>{releaseDate} {status && `(${status})`}</span>
 
                 <div className='filmPage__genres'>
                   {genreList}

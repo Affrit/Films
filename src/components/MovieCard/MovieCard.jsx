@@ -1,7 +1,7 @@
 // libs
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 // components
 import { Card, Rate, Alert } from 'antd';
 import { Rating } from '../Rating/Rating';
@@ -15,18 +15,18 @@ import altImg from '../../img/default.png';
 import './style.scss';
 
 const { Meta } = Card;
-
 export const MovieCard = ({ filmData }) => {
   const {
     id, poster_path, title, release_date,
     vote_average, vote_count, contentType,
   } = filmData
   const [isLoadError, setIsLoadError] = useState(false)
-  const [isAuthError, setIsError] = useState(false)
+  const [authError, setAuthError] = useState(false)
   const [isLiked, setIsLiked] = useState(false)
   const { isAuth } = useSelector(authSelector)
   const { favoritesData } = useSelector(favoritesSelector)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const imgSrc = poster_path ? BASE_URL_IMG + poster_path : ''
 
   useEffect(() => {
@@ -45,12 +45,20 @@ export const MovieCard = ({ filmData }) => {
     if (isAuth) {
       dispatch(favoritesToggle(filmData))
     } else {
-      setIsError(true)
+      setAuthError(true)
+
+      setTimeout(() => {
+        onAlertClose()
+      }, 4000)
     }
   }
 
   const onAlertClose = () => {
-    setIsError(false)
+    setAuthError(false)
+  }
+
+  const onCardClicked = () => {
+    navigate(`/${contentType}/${id}`)
   }
 
   const cardCover = (
@@ -61,23 +69,12 @@ export const MovieCard = ({ filmData }) => {
         onChange={onLikeClicked}
         value={isLiked}
       />
-      <Link
-        className='movie-card__link'
-        to={`/${contentType}/${id}`}
-      >
-        <img
-          className='movie-card__img' alt='#'
-          src={isLoadError ? altImg : imgSrc}
-          onError={onError}
-        />
-      </Link>
+      <img
+        className='movie-card__img' alt='#'
+        src={isLoadError ? altImg : imgSrc}
+        onError={onError} onClick={onCardClicked}
+      />
     </div>
-  )
-
-  const titleLink = (
-    <Link to={`/${contentType}/${id}`}>
-      {title}
-    </Link>
   )
 
   const avatar = (
@@ -89,6 +86,15 @@ export const MovieCard = ({ filmData }) => {
     </div>
   )
 
+  const cardTitle = (
+    <span
+      onClick={onCardClicked}
+      className='movie-card__title'
+    >
+      {title}
+    </span>
+  )
+
   return (
     <>
       <Card
@@ -98,11 +104,11 @@ export const MovieCard = ({ filmData }) => {
       >
         <Meta
           avatar={avatar}
-          title={titleLink}
+          title={cardTitle}
           description={release_date}
         />
 
-        {isAuthError &&
+        {authError &&
           <div className='movie-card__alert'>
             <Alert
               message="You must be autorized"
