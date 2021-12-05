@@ -1,9 +1,11 @@
 import userEvent from '@testing-library/user-event';
-import { createStore, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
-import { render, cleanup, screen, fireEvent, RenderResult } from '@testing-library/react';
+import { render, cleanup, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk'
 import { SignIn } from './components/SignInPage/SignIn'
 
 window.matchMedia = window.matchMedia || function () {
@@ -22,11 +24,9 @@ const mockInitialStateAuth = {
 
 const mockReducerAuth = (state = mockInitialStateAuth) => state;
 
-const store = createStore(
-  combineReducers({
-    login: mockReducerAuth,
-  }),
-);
+const store = createStore(combineReducers({
+  login: mockReducerAuth,
+}), composeWithDevTools(applyMiddleware(thunk)))
 
 describe('SignIn page', () => {
   let component;
@@ -64,7 +64,7 @@ describe('SignIn page', () => {
     expect(inputPass.value).toBe('NewPassword');
   })
 
-  it('onChange input', async () => {
+  it('Should render alert', async () => {
     const { getByTestId } = component;
     const inputName = getByTestId('username');
     expect(inputName.value).toBeFalsy();
@@ -73,41 +73,3 @@ describe('SignIn page', () => {
     expect(alertText).toBeInTheDocument()
   })
 })
-
-
-/*
-const mockedNavigate = jest.fn();
-
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
-  useNavigate: () => mockedNavigate
-}));
-// then you should be able to:
-expect(mockedNavigate).toHaveBeenCalledWith('/movie');
-
-
-describe('With React Testing Library', () => {
-  const initialState = { login: { isAuth: true } };
-  const mockStore = configureStore();
-  let store;
-
-  it('Shows "Hello world!"', () => {
-      store = mockStore(initialState);
-      const { getByText } = render(
-          <Provider store={store}>
-              <SignIn />
-          </Provider>
-      );
-
-      expect(getByText('Sign in')).not.toBeNull();
-  });
-});
-
-describe('SignIn', () => {
-  it('render SignIn component', () => {
-    render(<SignIn />);
-    screen.debug();
-    expect(screen.getByText(/test/i)).toBeInTheDocument();
-  })
-})
-*/

@@ -15,11 +15,11 @@ import {
 } from '../../../store/actions/moviesPageActions';
 import { SORT_PARAMS } from '../../../constants/constants';
 import { optionsSelector } from './selector';
-import { optionsGenerator } from '../../../helpers/optionsGenerator';
 import { ratingValTransform } from '../../../helpers/ratingValTransform';
 import './style.scss';
 
 const { SubMenu } = Menu
+const { Option } = Select
 
 export const MoviesSider = ({ contentType }) => {
   const {
@@ -28,8 +28,6 @@ export const MoviesSider = ({ contentType }) => {
   } = useSelector(optionsSelector)
   const [ratingVal, setRatingVal] = useState(ratingValTransform(voteGte, voteLte))
   const dispatch = useDispatch()
-  const genreOptions = optionsGenerator(genreList)
-  const sortOptions = optionsGenerator(SORT_PARAMS)
 
   useEffect(() => {
     setRatingVal(ratingValTransform(voteGte, voteLte))
@@ -71,6 +69,15 @@ export const MoviesSider = ({ contentType }) => {
     dispatch(setRatingGte(voteGte))
     dispatch(setRatingLte(voteLte))
   }
+
+  const optionsGenerator = (itemsList) => {
+    return itemsList.map(item => {
+      return <Option key={item.id}>{item.name}</Option>
+    })
+  }
+
+  const genreOptions = optionsGenerator(genreList)
+  const sortOptions = optionsGenerator(SORT_PARAMS)
 
   return (
     <SiderApp >

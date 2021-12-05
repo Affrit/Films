@@ -43,7 +43,7 @@ export const MoviesPage = () => {
     dispatch(setClearMoviesErrors())
   }
 
-  const pageTitle = contentType === 'movie' ? 'All movies' : 'All TV shows'
+  const pageTitle = contentType === 'tv' ? 'All TV shows' : 'All movies'
 
   return (
     <>

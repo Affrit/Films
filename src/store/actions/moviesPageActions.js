@@ -104,19 +104,6 @@ export const setClearMoviesErrors = () => {
   }
 }
 
-export const getGenreList = (contentType = 'movie') => async (dispatch) => {
-  try {
-    dispatch(setGenreFetching(true))
-    const response = await API.get(`/genre/${contentType}/list`)
-    dispatch(setGenreList(response.data.genres))
-  } catch (error) {
-    console.warn(error)
-    dispatch(setError(error.message))
-  } finally {
-    dispatch(setGenreFetching(false))
-  }
-}
-
 export const getMoviesPageData = (page = 1, contentType = 'movie') => async (dispatch, getState) => {
   try {
     dispatch(setMoviesFetching(true))
@@ -130,5 +117,18 @@ export const getMoviesPageData = (page = 1, contentType = 'movie') => async (dis
     dispatch(setError(error.message))
   } finally {
     dispatch(setMoviesFetching(false))
+  }
+}
+
+export const getGenreList = (contentType = 'movie') => async (dispatch) => {
+  try {
+    dispatch(setGenreFetching(true))
+    const response = await API.get(`/genre/${contentType}/list`)
+    dispatch(setGenreList(response.data.genres))
+  } catch (error) {
+    console.warn(error)
+    dispatch(setError(error.message))
+  } finally {
+    dispatch(setGenreFetching(false))
   }
 }
