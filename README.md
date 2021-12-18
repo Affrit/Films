@@ -1,3 +1,10 @@
+# Movies Catalog
+
+You can use default credentials to login, or create a new user.
+ ### `username: admin`
+ ### `password: admin`
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
