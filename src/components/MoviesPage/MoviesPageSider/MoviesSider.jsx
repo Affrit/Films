@@ -13,7 +13,7 @@ import {
   setReleaseDateGte, setReleaseDateLte,
   setRatingGte, setRatingLte
 } from '../../../store/actions/moviesPageActions';
-import { SORT_PARAMS } from '../../../constants/constants';
+import { SORT_PARAMS, IS_MOBILE } from '../../../constants/constants';
 import { optionsSelector } from './selector';
 import { ratingValTransform } from '../../../helpers/ratingValTransform';
 import './style.scss';
@@ -141,6 +141,7 @@ export const MoviesSider = ({ contentType }) => {
                 <span>From</span>
                 <DatePicker
                   className='date-picker'
+                  inputReadOnly={IS_MOBILE}
                   onChange={onChangeFromDate}
                   value={releaseGte && moment(releaseGte)}
                 />
@@ -150,6 +151,7 @@ export const MoviesSider = ({ contentType }) => {
                 <span>To</span>
                 <DatePicker
                   className='date-picker'
+                  inputReadOnly={IS_MOBILE}
                   onChange={onChangeToDate}
                   value={releaseLte && moment(releaseLte)}
                 />

@@ -14,3 +14,8 @@ export const SORT_PARAMS = [
   { id: 'original_title.desc', name: 'Name(descending)' },
   { id: 'original_title.asc', name: 'Name(ascending)' },
 ]
+
+export const IS_MOBILE = (
+  /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i
+  .test(navigator.userAgent)
+);
